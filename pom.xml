@@ -13,6 +13,7 @@
     <modules>
         <module>API</module>
         <module>v1_12_R1</module>
+        <module>v1_11_R1</module>
         <module>Plugin</module>
     </modules>
 
