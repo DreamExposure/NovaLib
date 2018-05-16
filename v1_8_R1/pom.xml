@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.novamaday.novalib</groupId>
+        <artifactId>NovaLib</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>com.novamaday.novalib.nms</groupId>
+    <artifactId>v1_8_R1</artifactId>
+    <version>v1_8_R1</version>
+
+    <dependencies>
+        <!--CB version-->
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.8</version>
+            <type>jar</type>
+            <optional>true</optional>
+            <scope>provided</scope>
+        </dependency>
+        <!--DEPEND ON THE API-->
+        <dependency>
+            <groupId>com.novamaday.novalib</groupId>
+            <artifactId>API</artifactId>
+            <version>1.0.0</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+</project>
