@@ -89,6 +89,14 @@
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>com.novamaday.novalib.nms</groupId>
+            <artifactId>v1_7_R4</artifactId>
+            <version>v1_7_R4</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
 
         <!--Latest Bukkit release to build upon-->
         <dependency>
