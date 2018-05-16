@@ -8,6 +8,7 @@ public class PacketManager {
     private IPing ping;
     private ITabList tabList;
     private ISignEditor signEditor;
+    private IActionBar actionBar;
 
     private PacketManager() {
     }
@@ -35,6 +36,7 @@ public class PacketManager {
             ping = (IPing) Class.forName(packageName + ".Ping").getConstructor().newInstance();
             tabList = (ITabList) Class.forName(packageName + ".TabList").getConstructor().newInstance();
             signEditor = (ISignEditor) Class.forName(packageName + ".SignEditor").getConstructor().newInstance();
+            actionBar = (IActionBar) Class.forName(packageName + ".ActionBar").getConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
             Bukkit.getLogger().severe("Could not find support for this CraftBukkit version!");
@@ -67,5 +69,14 @@ public class PacketManager {
      */
     public ISignEditor getSignEditor() {
         return signEditor;
+    }
+
+    /**
+     * Gets the {@link IActionBar} loaded for the current MC version of the server.
+     *
+     * @return The IActionBar for this server.
+     */
+    public IActionBar getActionBar() {
+        return actionBar;
     }
 }

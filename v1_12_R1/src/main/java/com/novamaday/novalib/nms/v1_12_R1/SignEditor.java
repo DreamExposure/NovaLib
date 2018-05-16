@@ -1,7 +1,9 @@
 package com.novamaday.novalib.nms.v1_12_R1;
 
+import com.novamaday.novalib.api.NovaLibAPI;
 import com.novamaday.novalib.api.packets.ISignEditor;
 import net.minecraft.server.v1_12_R1.*;
+import org.bukkit.Bukkit;
 import org.bukkit.block.Sign;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -11,7 +13,7 @@ public class SignEditor implements ISignEditor {
     public void open(Player player, Sign sign) {
         //Check if chunk loaded
         if (!sign.getLocation().getChunk().isLoaded())
-            sign.getLocation().getChunk().load();
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(NovaLibAPI.getApi().plugin, () -> sign.getLocation().getChunk().load());
 
         BlockPosition position = new BlockPosition(sign.getLocation().getX(), sign.getLocation().getY(), sign.getLocation().getZ());
         EntityPlayer nmsPlayer = ((CraftPlayer) player).getHandle();
