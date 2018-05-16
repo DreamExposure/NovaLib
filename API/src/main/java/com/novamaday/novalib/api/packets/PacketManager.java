@@ -9,6 +9,7 @@ public class PacketManager {
     private ITabList tabList;
     private ISignEditor signEditor;
     private IActionBar actionBar;
+    private IEntityTypes entityTypes;
 
     private PacketManager() {
     }
@@ -37,6 +38,7 @@ public class PacketManager {
             tabList = (ITabList) Class.forName(packageName + ".TabList").getConstructor().newInstance();
             signEditor = (ISignEditor) Class.forName(packageName + ".SignEditor").getConstructor().newInstance();
             actionBar = (IActionBar) Class.forName(packageName + ".ActionBar").getConstructor().newInstance();
+            entityTypes = (IEntityTypes) Class.forName(packageName + ".EntityTypes").getConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
             Bukkit.getLogger().severe("Could not find support for this CraftBukkit version!");
@@ -78,5 +80,14 @@ public class PacketManager {
      */
     public IActionBar getActionBar() {
         return actionBar;
+    }
+
+    /**
+     * Gets the {@link IEntityTypes} loaded for the current MC version of the server.
+     *
+     * @return The IEntityTypes for this server.
+     */
+    public IEntityTypes getEntityTypes() {
+        return entityTypes;
     }
 }
