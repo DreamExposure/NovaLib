@@ -29,20 +29,18 @@
         <module>Plugin</module>
     </modules>
 
-    <!--
     <distributionManagement>
         <repository>
             <id>maven-releases-pub</id>
             <name>Releases</name>
-            <url>https://repo.novamaday.com/repository/maven-releases-pub/</url>
+            <url>http://repo.novafox161.com/repository/maven-releases-pub/</url>
         </repository>
         <snapshotRepository>
             <id>maven-snapshots-pub</id>
             <name>Snapshots</name>
-            <url>https://repo.novamaday.com/repository/maven-snapshots-pub/</url>
+            <url>http://repo.novafox161.com/repository/maven-snapshots-pub/</url>
         </snapshotRepository>
     </distributionManagement>
-    -->
 
     <repositories>
         <!--Bukkit Repo-->
