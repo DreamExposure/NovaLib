@@ -33,12 +33,12 @@
         <repository>
             <id>maven-releases-pub</id>
             <name>Releases</name>
-            <url>http://138.197.2.223:8081/repository/maven-releases-pub/</url>
+            <url>https://repo.novamaday.com/repository/maven-releases-pub/</url>
         </repository>
         <snapshotRepository>
             <id>maven-snapshots-pub</id>
             <name>Snapshots</name>
-            <url>http://138.197.2.223:8081/repository/maven-snapshots-pub/</url>
+            <url>https://repo.novamaday.com/repository/maven-snapshots-pub/</url>
         </snapshotRepository>
     </distributionManagement>
 
