@@ -29,6 +29,7 @@
         <module>Plugin</module>
     </modules>
 
+    <!--
     <distributionManagement>
         <repository>
             <id>maven-releases-pub</id>
@@ -41,6 +42,7 @@
             <url>https://repo.novamaday.com/repository/maven-snapshots-pub/</url>
         </snapshotRepository>
     </distributionManagement>
+    -->
 
     <repositories>
         <!--Bukkit Repo-->
