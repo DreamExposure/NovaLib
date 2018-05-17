@@ -14,12 +14,24 @@ public class CustomConfig {
     private final String folder;
     private final String file;
 
+    /**
+     * Creates a new instance of the CustomConfig
+     *
+     * @param _plugin The plugin creating the config.
+     * @param _folder The folder for the file (excluding the plugin folder).
+     * @param _file   The file to create (with extension).
+     */
     public CustomConfig(JavaPlugin _plugin, String _folder, String _file) {
         plugin = _plugin;
         folder = _folder;
         file = _file;
     }
 
+    /**
+     * Creates the file on disk.
+     * @param message The message to log.
+     * @param header The file header in the file.
+     */
     public void create(String message, String header) {
         reload();
         save();
@@ -29,6 +41,10 @@ public class CustomConfig {
             plugin.getLogger().info(message);
     }
 
+    /**
+     * Gets the loaded instance of the Yaml file
+     * @return The loaded instance of the Yaml file
+     */
     public YamlConfiguration get() {
         if (config == null)
             reload();
@@ -36,12 +52,19 @@ public class CustomConfig {
         return config;
     }
 
+    /**
+     * Loads the file into memory
+     * @param header The file header.
+     */
     public void load(String header) {
         config.options().header(header);
         config.options().copyDefaults(true);
         save();
     }
 
+    /**
+     * Reloads the file from disk
+     */
     public void reload() {
         if (configFile == null)
             configFile = new File(plugin.getDataFolder() + folder, file);
@@ -49,6 +72,9 @@ public class CustomConfig {
         config = YamlConfiguration.loadConfiguration(configFile);
     }
 
+    /**
+     * Saves the file to disk
+     */
     public void save() {
         if (config == null || configFile == null)
             return;
@@ -61,6 +87,10 @@ public class CustomConfig {
         }
     }
 
+    /**
+     * Updates the paths and values in the config
+     * @param settings A hash map of the paths and default values.
+     */
     public void update(Map<String, Object> settings) {
         for (String path : settings.keySet()) {
             get().addDefault(path, settings.get(path));

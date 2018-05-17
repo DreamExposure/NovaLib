@@ -5,6 +5,13 @@ import java.io.*;
 @SuppressWarnings({"ResultOfMethodCallIgnored", "unused", "ConstantConditions", "WeakerAccess", "UnusedReturnValue"})
 public class FileUtils {
 
+    /**
+     * Copies the specified folder and all of its contents to the specified destination
+     *
+     * @param src  The folder to copy
+     * @param dest The folder to place the copy into.
+     * @throws IOException if files are corrupted or don't exist.
+     */
     public static void copyFolder(File src, File dest) throws IOException {
         if (src.isDirectory()) {
             //if directory not exists, create it
@@ -38,6 +45,11 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Deletes the specified file. If a folder, deletes all contents.
+     * @param pFile The file or folder to delete.
+     * @return Whether or not the deletion was successful.
+     */
     public static boolean deleteFile(File pFile) {
         if (pFile.exists()) {
             if (pFile.isDirectory()) {
