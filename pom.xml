@@ -6,6 +6,11 @@
 
     <packaging>pom</packaging>
 
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
     <groupId>com.novamaday.novalib</groupId>
     <artifactId>NovaLib</artifactId>
     <version>1.0.0</version>
@@ -23,6 +28,19 @@
         <module>v1_7_R4</module>
         <module>Plugin</module>
     </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>maven-releases-pub</id>
+            <name>Releases</name>
+            <url>https://repo.novamaday.com/repository/maven-releases-pub/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-snapshots-pub</id>
+            <name>Snapshots</name>
+            <url>https://repo.novamaday.com/repository/maven-snapshots-pub/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <repositories>
         <!--Bukkit Repo-->
