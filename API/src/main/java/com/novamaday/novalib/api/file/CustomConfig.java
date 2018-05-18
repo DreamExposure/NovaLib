@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class CustomConfig {
@@ -91,9 +92,9 @@ public class CustomConfig {
      * Updates the paths and values in the config
      * @param settings A hash map of the paths and default values.
      */
-    public void update(Map<String, Object> settings) {
-        for (String path : settings.keySet()) {
-            get().addDefault(path, settings.get(path));
+    public void update(LinkedHashMap<String, Object> settings) {
+        for (Map.Entry<String, Object> ent : settings.entrySet()) {
+            get().addDefault(ent.getKey(), ent.getValue());
         }
         get().options().copyDefaults(true);
         save();
