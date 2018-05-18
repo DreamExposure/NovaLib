@@ -1,4 +1,4 @@
-package com.novamaday.novalib.v1_7_R4;
+package com.novamaday.novalib.nms.v1_7_R4;
 
 import com.novamaday.novalib.api.packets.IActionBar;
 import net.minecraft.server.v1_7_R4.ChatSerializer;
