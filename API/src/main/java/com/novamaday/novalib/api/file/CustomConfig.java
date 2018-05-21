@@ -2,7 +2,6 @@ package com.novamaday.novalib.api.file;
 
 import net.md_5.bungee.api.plugin.Plugin;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class CustomConfig {
-    private final JavaPlugin plugin;
+    private final org.bukkit.plugin.Plugin plugin;
     private final Plugin bungeePlugin;
     private YamlConfiguration config;
     private File configFile;
@@ -24,7 +23,7 @@ public class CustomConfig {
      * @param _folder The folder for the file (excluding the plugin folder).
      * @param _file   The file to create (with extension).
      */
-    public CustomConfig(JavaPlugin _plugin, String _folder, String _file) {
+    public CustomConfig(org.bukkit.plugin.Plugin _plugin, String _folder, String _file) {
         plugin = _plugin;
         bungeePlugin = null;
         folder = _folder;

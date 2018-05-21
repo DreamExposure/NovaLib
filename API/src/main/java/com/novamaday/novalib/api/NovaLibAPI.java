@@ -6,13 +6,12 @@ import com.novamaday.novalib.api.network.crosstalk.server.ServerSocketHandler;
 import com.novamaday.novalib.api.packets.PacketManager;
 import net.md_5.bungee.api.plugin.Plugin;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.LinkedHashMap;
 
 public class NovaLibAPI {
     private static NovaLibAPI instance;
-    public JavaPlugin plugin;
+    public org.bukkit.plugin.Plugin plugin;
     public Plugin bungeePlugin;
 
     public CustomConfig config;
@@ -34,7 +33,7 @@ public class NovaLibAPI {
     /**
      * Initializes all parts of the API. This is automatically handled on server boot and SHOULD NOT be called by any plugins.
      */
-    public void initAPI(JavaPlugin _plugin) {
+    public void initAPI(org.bukkit.plugin.Plugin _plugin) {
         plugin = _plugin;
         PacketManager.getManager().init(Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3]);
 
