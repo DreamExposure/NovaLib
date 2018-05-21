@@ -15,7 +15,7 @@ public class NovaLib extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        NovaLibAPI.getApi().shutdownAPI();
     }
 
     public static NovaLib getInstance() {

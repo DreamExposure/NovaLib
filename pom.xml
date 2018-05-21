@@ -43,6 +43,11 @@
     </distributionManagement>
 
     <repositories>
+        <!--Maven Central-->
+        <repository>
+            <id>central</id>
+            <url>http://central.maven.org/maven2/</url>
+        </repository>
         <!--Bukkit Repo-->
         <repository>
             <id>bukkit-repo</id>
