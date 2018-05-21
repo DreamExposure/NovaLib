@@ -13,7 +13,7 @@
     <artifactId>API</artifactId>
 
     <dependencies>
-        <!--Latest CB to compile against-->
+        <!--Latest Bukkit version to compile against-->
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
