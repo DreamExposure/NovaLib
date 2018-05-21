@@ -28,6 +28,12 @@ public class CustomConfig {
         file = _file;
     }
 
+    public CustomConfig(String _folder, String _file) {
+        plugin = null;
+        folder = _folder;
+        file = _file;
+    }
+
     /**
      * Creates the file on disk.
      * @param message The message to log.
@@ -38,8 +44,12 @@ public class CustomConfig {
         save();
         load(header);
 
-        if (message != null)
-            plugin.getLogger().info(message);
+        if (message != null) {
+            if (plugin != null)
+                plugin.getLogger().info(message);
+            else
+                System.out.println("[INFO] [NovaLib] " + message);
+        }
     }
 
     /**
@@ -67,8 +77,12 @@ public class CustomConfig {
      * Reloads the file from disk
      */
     public void reload() {
-        if (configFile == null)
-            configFile = new File(plugin.getDataFolder() + folder, file);
+        if (configFile == null) {
+            if (plugin != null)
+                configFile = new File(plugin.getDataFolder() + folder, file);
+            else
+                configFile = new File(folder, file);
+        }
 
         config = YamlConfiguration.loadConfiguration(configFile);
     }
@@ -83,7 +97,10 @@ public class CustomConfig {
         try {
             get().save(configFile);
         } catch (final IOException e) {
-            plugin.getLogger().severe("Could not save config to " + configFile);
+            if (plugin != null)
+                plugin.getLogger().severe("Could not save config to " + configFile);
+            else
+                System.out.println("[SEVERE] [NovaLib] Could not save config to " + configFile);
             e.printStackTrace();
         }
     }

@@ -46,6 +46,19 @@ public class NovaLibAPI {
         }
     }
 
+    public void initAPIForBungee(String dataFolder) {
+        plugin = null;
+
+        config = new CustomConfig(dataFolder, "config.yml");
+
+        config.update(getSettings());
+
+        //Start CrossTalk
+        if (config.get().getBoolean("CrossTalk.Enabled")) {
+            ServerSocketHandler.initListener();
+        }
+    }
+
     /**
      * Shuts down the API gracefully. This is automatically handled on server shutdown and SHOULD NOT be called by any plugins.
      */
