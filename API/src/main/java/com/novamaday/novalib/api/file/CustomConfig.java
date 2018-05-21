@@ -1,5 +1,6 @@
 package com.novamaday.novalib.api.file;
 
+import net.md_5.bungee.api.plugin.Plugin;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 
 public class CustomConfig {
     private final JavaPlugin plugin;
+    private final Plugin bungeePlugin;
     private YamlConfiguration config;
     private File configFile;
     private final String folder;
@@ -24,6 +26,14 @@ public class CustomConfig {
      */
     public CustomConfig(JavaPlugin _plugin, String _folder, String _file) {
         plugin = _plugin;
+        bungeePlugin = null;
+        folder = _folder;
+        file = _file;
+    }
+
+    public CustomConfig(Plugin _plugin, String _folder, String _file) {
+        bungeePlugin = _plugin;
+        plugin = null;
         folder = _folder;
         file = _file;
     }
@@ -38,8 +48,12 @@ public class CustomConfig {
         save();
         load(header);
 
-        if (message != null)
-            plugin.getLogger().info(message);
+        if (message != null) {
+            if (plugin != null)
+                plugin.getLogger().info(message);
+            else
+                bungeePlugin.getLogger().info(message);
+        }
     }
 
     /**
@@ -67,8 +81,12 @@ public class CustomConfig {
      * Reloads the file from disk
      */
     public void reload() {
-        if (configFile == null)
-            configFile = new File(plugin.getDataFolder() + folder, file);
+        if (configFile == null) {
+            if (plugin != null)
+                configFile = new File(plugin.getDataFolder() + folder, file);
+            else
+                configFile = new File(bungeePlugin.getDataFolder() + folder, file);
+        }
 
         config = YamlConfiguration.loadConfiguration(configFile);
     }
@@ -83,7 +101,10 @@ public class CustomConfig {
         try {
             get().save(configFile);
         } catch (final IOException e) {
-            plugin.getLogger().severe("Could not save config to " + configFile);
+            if (plugin != null)
+                plugin.getLogger().severe("Could not save config to " + configFile);
+            else
+                bungeePlugin.getLogger().severe("Count not save config to " + configFile);
             e.printStackTrace();
         }
     }

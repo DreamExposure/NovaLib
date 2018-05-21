@@ -2,7 +2,9 @@ package com.novamaday.novalib.api;
 
 import com.novamaday.novalib.api.file.CustomConfig;
 import com.novamaday.novalib.api.network.crosstalk.client.ClientSocketHandler;
+import com.novamaday.novalib.api.network.crosstalk.server.ServerSocketHandler;
 import com.novamaday.novalib.api.packets.PacketManager;
+import net.md_5.bungee.api.plugin.Plugin;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,6 +13,7 @@ import java.util.LinkedHashMap;
 public class NovaLibAPI {
     private static NovaLibAPI instance;
     public JavaPlugin plugin;
+    public Plugin bungeePlugin;
 
     public CustomConfig config;
 
@@ -45,12 +48,30 @@ public class NovaLibAPI {
         }
     }
 
+    public void initAPI(Plugin _plugin) {
+        bungeePlugin = _plugin;
+
+        config = new CustomConfig(bungeePlugin, "", "config.yml");
+
+        config.update(getSettings());
+
+        //Start CrossTalk
+        if (config.get().getBoolean("CrossTalk.Enabled")) {
+            ServerSocketHandler.initListener();
+        }
+
+
+    }
+
     /**
      * Shuts down the API gracefully. This is automatically handled on server shutdown and SHOULD NOT be called by any plugins.
      */
     public void shutdownAPI() {
         if (config.get().getBoolean("CrossTalk.Enabled")) {
-            ClientSocketHandler.shutdownListener();
+            if (plugin != null)
+                ClientSocketHandler.shutdownListener();
+            else
+                ServerSocketHandler.shutdownListener();
         }
     }
 
