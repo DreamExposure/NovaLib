@@ -4,15 +4,14 @@ import com.novamaday.novalib.api.file.CustomConfig;
 import com.novamaday.novalib.api.network.crosstalk.client.ClientSocketHandler;
 import com.novamaday.novalib.api.network.crosstalk.server.ServerSocketHandler;
 import com.novamaday.novalib.api.packets.PacketManager;
-import net.md_5.bungee.api.plugin.Plugin;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.LinkedHashMap;
 
 public class NovaLibAPI {
     private static NovaLibAPI instance;
-    public org.bukkit.plugin.Plugin plugin;
-    public Plugin bungeePlugin;
+    public JavaPlugin plugin;
 
     public CustomConfig config;
 
@@ -33,7 +32,7 @@ public class NovaLibAPI {
     /**
      * Initializes all parts of the API. This is automatically handled on server boot and SHOULD NOT be called by any plugins.
      */
-    public void initAPI(org.bukkit.plugin.Plugin _plugin) {
+    public void initAPI(JavaPlugin _plugin) {
         plugin = _plugin;
         PacketManager.getManager().init(Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3]);
 
@@ -45,21 +44,6 @@ public class NovaLibAPI {
         if (config.get().getBoolean("CrossTalk.Enabled")) {
             ClientSocketHandler.initListener();
         }
-    }
-
-    public void initAPI(Plugin _plugin) {
-        bungeePlugin = _plugin;
-
-        config = new CustomConfig(bungeePlugin, "", "config.yml");
-
-        config.update(getSettings());
-
-        //Start CrossTalk
-        if (config.get().getBoolean("CrossTalk.Enabled")) {
-            ServerSocketHandler.initListener();
-        }
-
-
     }
 
     /**
