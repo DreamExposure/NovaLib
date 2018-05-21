@@ -10,7 +10,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>Plugin</artifactId>
+    <artifactId>Plugin-Bukkit</artifactId>
 
     <dependencies>
         <!--Depend on our own API of course!!-->
@@ -110,7 +110,7 @@
 
     <build>
         <directory>../target</directory> <!-- Build it one level up, because it is the one we care about -->
-        <finalName>NovaLib</finalName>
+        <finalName>NovaLib-Bukkit</finalName>
         <!-- Define filtering for the inclusion of plugin.yml, so we can utilize the pom.xml version in it -->
         <resources>
             <resource>

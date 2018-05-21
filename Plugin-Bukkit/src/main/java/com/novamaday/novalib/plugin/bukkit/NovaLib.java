@@ -1,4 +1,4 @@
-package com.novamaday.novalib.plugin;
+package com.novamaday.novalib.plugin.bukkit;
 
 import com.novamaday.novalib.api.NovaLibAPI;
 import org.bukkit.plugin.java.JavaPlugin;

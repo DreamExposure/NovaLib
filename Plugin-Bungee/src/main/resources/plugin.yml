@@ -4,6 +4,4 @@ description: An advanced API and Library for all of my plugins and more.
 author: Shades161 (NovaFox161)
 website: http://www.novamaday.com/plugins/novalib
 
-softdepend: [Vault, PerWorldChatPlus]
-
-main: com.novamaday.novalib.plugin.NovaLib
+main: com.novamaday.novalib.plugin.bungee.NovaLib

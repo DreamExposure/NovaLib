@@ -26,7 +26,8 @@
         <module>v1_8_R2</module>
         <module>v1_8_R1</module>
         <module>v1_7_R4</module>
-        <module>Plugin</module>
+        <module>Plugin-Bukkit</module>
+        <module>Plugin-Bungee</module>
     </modules>
 
     <distributionManagement>
@@ -52,6 +53,11 @@
         <repository>
             <id>bukkit-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+        <!--Bungeecord Repo-->
+        <repository>
+            <id>bungeecord-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
         <!--Private Repo for CB Builds-->
         <repository>
