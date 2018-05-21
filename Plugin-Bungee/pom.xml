@@ -118,7 +118,7 @@
 
     <build>
         <directory>../target</directory> <!-- Build it one level up, because it is the one we care about -->
-        <finalName>NovaLib-Bungee</finalName>
+        <finalName>NovaLib-Bungee-${project.version}</finalName>
         <!-- Define filtering for the inclusion of plugin.yml, so we can utilize the pom.xml version in it -->
         <resources>
             <resource>
