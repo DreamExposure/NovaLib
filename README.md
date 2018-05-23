@@ -4,6 +4,10 @@ An advanced API and library for my Bukkit plugins that can be used for many thin
 
 Join our discord server: https://discord.gg/2TFqyuy
 
+Javadoc: https://docs.novamaday.com/plugins/novalib/
+
+Wiki with WAY more info: https://wiki.novamaday.com/plugins/novalib/start
+
 ## About
 
 NovaLib is a robust API for bukkit plugins. It handles NMS code for you so that you don't have to build 10 versions of the same plugin or handle complex class loading. NovaLib also integrates easy to use file utilities, database utilities and so much more!
@@ -67,7 +71,7 @@ Directions on how to use it are provided below (currently only Maven is supporte
            <version>VERSION</version>
        </dependency>
     ```
-2. Use the JavaDoc provided here: LINK COMING SOON
+2. Use the JavaDoc provided here: https://docs.novamaday.com/plugins/novalib/
 
 3. And now you can start using NG in your plugin. Just check the Javadoc and wiki for further help.
    
