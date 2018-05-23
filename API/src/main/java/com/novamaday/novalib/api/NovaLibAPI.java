@@ -89,4 +89,22 @@ public class NovaLibAPI {
 
         return s;
     }
+
+    /**
+     * Gets whether or not NovaLib is in Debug Mode.
+     *
+     * @return Whether or not NovaLib is in Debug Mode.
+     */
+    public static boolean debug() {
+        return getApi().config.get().getBoolean("Console.Debug");
+    }
+
+    /**
+     * Gets whether or not NovaLib is in Verbose Mode.
+     *
+     * @return Whether or not NovaLib is in Verbose Mode.
+     */
+    public static boolean verbose() {
+        return getApi().config.get().getBoolean("Console.Verbose");
+    }
 }
