@@ -9,14 +9,14 @@ public interface IEntityTypes {
      *
      * @param entityId    The ID of the entity.
      * @param entityName  The name of the entity.
-     * @param entityClass The Entity class <bold>MUST EXTEND THE NMS ENTITY FOR THE VERSION IN USE!</bold>
+     * @param entityClass The Entity class <strong>MUST EXTEND THE NMS ENTITY FOR THE VERSION IN USE!</strong>
      */
     void addCustomEntity(int entityId, String entityName, Class entityClass);
 
     /**
      * Spawns the specified entity
      *
-     * @param entityClass The Entity to spawn <bold>MUST EXTEND THE NMS ENTITY FOR THE VERSION IN USE!</bold>
+     * @param entityClass The Entity to spawn <strong>MUST EXTEND THE NMS ENTITY FOR THE VERSION IN USE!</strong>
      * @param loc         The location to spawn the entity at.
      */
     void spawnEntity(Object entityClass, Location loc);
