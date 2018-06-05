@@ -15,9 +15,9 @@ public class FileUtils {
     public static void copyFolder(File src, File dest) throws IOException {
         if (src.isDirectory()) {
             //if directory not exists, create it
-            if (!dest.exists()) {
+            if (!dest.exists())
                 dest.mkdir();
-            }
+
             //list all the directory contents
             String files[] = src.list();
             for (String file : files) {

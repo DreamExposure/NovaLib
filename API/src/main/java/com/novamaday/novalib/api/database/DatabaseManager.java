@@ -6,6 +6,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class DatabaseManager {
+    /**
+     * Connects to the MySQL server with the provided details in the settings.
+     *
+     * @param settings The DatabaseSettings with the needed info the connect to the database.
+     * @return The DatabaseInfo with all related data for future use.
+     */
     public static DatabaseInfo connectToMySQL(DatabaseSettings settings) {
         try {
             MySQL mySQL = new MySQL(settings.getHostname(), settings.getPort(), settings.getDatabase(), settings.getUser(), settings.getPassword());
@@ -23,6 +29,11 @@ public class DatabaseManager {
         return null;
     }
 
+    /**
+     * Disconnects from the MySQL server in the DatabaseInfo.
+     * @param info The DatabaseInfo with all the required data.
+     * @return <code>true</code> if successful, otherwise <code>false</code>
+     */
     public static boolean disconnectFromMySQL(DatabaseInfo info) {
         try {
             info.getMySQL().closeConnection();

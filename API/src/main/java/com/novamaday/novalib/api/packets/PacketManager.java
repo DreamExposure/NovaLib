@@ -2,6 +2,7 @@ package com.novamaday.novalib.api.packets;
 
 import org.bukkit.Bukkit;
 
+@SuppressWarnings("unused")
 public class PacketManager {
     private static PacketManager manager;
 

@@ -2,6 +2,7 @@ package com.novamaday.novalib.api.packets;
 
 import org.bukkit.Location;
 
+@SuppressWarnings("unused")
 public interface IEntityTypes {
 
     /**

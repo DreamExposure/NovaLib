@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 /**
  * Handles NMS code for easily getting the Player's current ping in MS.
  */
+@SuppressWarnings("unused")
 public interface IPing {
 
     /**

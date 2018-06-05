@@ -49,7 +49,6 @@ public class ServerSocketHandler {
     public static void initListener() {
         try {
             serverSocket = new ServerSocket(NovaLibAPI.getApi().config.get().getInt("CrossTalk.Server.Port"));
-
         } catch (Exception e) {
             System.out.println("[NovaLib] Failed to start Server CrossTalk Server! Are you sure it was configured correctly?");
             e.printStackTrace();

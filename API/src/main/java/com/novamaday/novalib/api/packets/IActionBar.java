@@ -2,6 +2,7 @@ package com.novamaday.novalib.api.packets;
 
 import org.bukkit.entity.Player;
 
+@SuppressWarnings("unused")
 public interface IActionBar {
 
     /**

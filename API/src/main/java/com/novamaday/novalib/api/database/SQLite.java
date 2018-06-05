@@ -26,14 +26,12 @@ public class SQLite extends Database {
 
     @Override
     public Connection openConnection() throws SQLException, ClassNotFoundException {
-        if (checkConnection()) {
+        if (checkConnection())
             return connection;
-        }
 
         File dataFolder = new File("sqlite-db/");
-        if (!dataFolder.exists()) {
+        if (!dataFolder.exists())
             dataFolder.mkdirs();
-        }
 
         File file = new File(dataFolder, dbLocation);
         if (!(file.exists())) {
@@ -43,11 +41,9 @@ public class SQLite extends Database {
                 System.out.println("Unable to create database!");
             }
         }
+
         Class.forName("org.sqlite.JDBC");
-        connection = DriverManager
-                .getConnection("jdbc:sqlite:"
-                        + dataFolder + "/"
-                        + dbLocation);
+        connection = DriverManager.getConnection("jdbc:sqlite:" + dataFolder + "/" + dbLocation);
         return connection;
     }
 }

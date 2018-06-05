@@ -20,8 +20,7 @@ public class MySQL extends Database {
      * @param username Username
      * @param password Password
      */
-    public MySQL(String hostname, String port, String username,
-                 String password) {
+    public MySQL(String hostname, String port, String username, String password) {
         this(hostname, port, null, username, password);
     }
 
@@ -34,8 +33,7 @@ public class MySQL extends Database {
      * @param username Username
      * @param password Password
      */
-    public MySQL(String hostname, String port, String database,
-                 String username, String password) {
+    public MySQL(String hostname, String port, String database, String username, String password) {
         this.hostname = hostname;
         this.port = port;
         this.database = database;
@@ -44,20 +42,16 @@ public class MySQL extends Database {
     }
 
     @Override
-    public Connection openConnection() throws SQLException,
-            ClassNotFoundException {
-        if (checkConnection()) {
+    public Connection openConnection() throws SQLException, ClassNotFoundException {
+        if (checkConnection())
             return connection;
-        }
-        String connectionURL = "jdbc:mysql://"
-                + this.hostname + ":" + this.port;
-        if (database != null) {
+
+        String connectionURL = "jdbc:mysql://" + this.hostname + ":" + this.port;
+        if (database != null)
             connectionURL = connectionURL + "/" + this.database;
-        }
 
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection(connectionURL,
-                this.user, this.password);
+        connection = DriverManager.getConnection(connectionURL, this.user, this.password);
         return connection;
     }
 }

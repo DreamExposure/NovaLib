@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 /**
  * Handles NMS code for the player tablist.
  */
+@SuppressWarnings("unused")
 public interface ITabList {
 
     /**

@@ -12,7 +12,7 @@ import java.sql.Statement;
  * @author -_Husky_-
  * @author tips48
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused", "WeakerAccess", "UnusedReturnValue"})
 public abstract class Database {
     protected Connection connection;
 

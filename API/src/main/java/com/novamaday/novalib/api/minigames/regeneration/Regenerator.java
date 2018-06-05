@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-@SuppressWarnings({"deprecation", "ResultOfMethodCallIgnored"})
+@SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
 public class Regenerator {
     private static Regenerator instance;
 
@@ -27,13 +27,22 @@ public class Regenerator {
     private Regenerator() {
     } //Prevent initialization
 
+    /**
+     * Gets the currently loaded instance of the Regenerator.
+     *
+     * @return The currently loaded instance of the Regenerator.
+     */
     public static Regenerator getInstance() {
         if (instance == null)
             instance = new Regenerator();
         return instance;
     }
 
-
+    /**
+     * Saves the world files to a backup on disk.
+     * @param world The world to backup.
+     * @return <code>true</code> if successful, otherwise <code>false</code>
+     */
     public boolean saveWorldBackup(World world) {
         String name = world.getName();
         if (Bukkit.getServer().getWorld(name) == null)
@@ -59,16 +68,26 @@ public class Regenerator {
         return true;
     }
 
+    /**
+     * Saves all blocks in the region to memory
+     * @param originalRegenArea The region to backup.
+     * @param toMemory ignore this, shouldn't be there >.<
+     */
     public void saveAllBlocksToMemory(Cuboid originalRegenArea, boolean toMemory) {
-        if (toMemory) {
-            for (Block block : originalRegenArea.getBlocks()) {
-                Location loc = block.getLocation();
-                BlockState state = block.getState();
-                originalBlocks.put(loc, state);
-            }
+        for (Block block : originalRegenArea.getBlocks()) {
+            Location loc = block.getLocation();
+            BlockState state = block.getState();
+            originalBlocks.put(loc, state);
         }
     }
 
+    /**
+     * Reloads the world from the backup on disk..
+     * @param world The World to restore.
+     * @param quitLocation The location to teleport players that are in the world.
+     * @param deleteAfterReload Whether or not to delete the world backup after the restart.
+     * @return <code>true</code> if successful, otherwise <code>false</code>
+     */
     public boolean reloadWorldFromBackup(World world, Location quitLocation, boolean deleteAfterReload) {
         String name = world.getName();
         if (world.getPlayers().size() > 0) {
@@ -97,6 +116,10 @@ public class Regenerator {
         return true;
     }
 
+    /**
+     * Regenerates all blocks from memory.
+     * @param regenArea The region to restore.
+     */
     public void regenAllBlocksFromMemory(Cuboid regenArea) {
         for (Block block : regenArea.getBlocks()) {
             Location loc = block.getLocation();
@@ -109,6 +132,10 @@ public class Regenerator {
         }
     }
 
+    /**
+     * Clears all items on the ground.
+     * @param regenArea The region to clear items from.
+     */
     public void clearGroundItems(Cuboid regenArea) {
         List<Entity> entList = regenArea.getWorld().getEntities();
         for (Entity entity : entList) {
@@ -119,6 +146,10 @@ public class Regenerator {
         }
     }
 
+    /**
+     * Clears all non-player/item entities from the region.
+     * @param regenArea The region to clear entities from.
+     */
     public void removeAllEntities(Cuboid regenArea) {
         List<Entity> entList = regenArea.getWorld().getEntities();
         for (Entity entity : entList) {
@@ -129,6 +160,10 @@ public class Regenerator {
         }
     }
 
+    /**
+     * Closes all doors or openable blocks in the region.
+     * @param regenArea The region to close all openable blocks in.
+     */
     public void resetDoors(Cuboid regenArea) {
         for (Block block : regenArea.getBlocks()) {
             if (block == null || block.getType().equals(Material.AIR))

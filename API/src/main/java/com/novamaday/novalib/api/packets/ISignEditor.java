@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 /**
  * Handles NMS code for the sign editor
  */
+@SuppressWarnings("unused")
 public interface ISignEditor {
     /**
      * Opens the sign editor for the specified player and sign.
