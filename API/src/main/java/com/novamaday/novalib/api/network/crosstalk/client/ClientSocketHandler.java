@@ -67,24 +67,28 @@ public class ClientSocketHandler {
         listenerTread = new Thread(() -> {
             while (true) {
                 try {
-                    Socket client = serverSocket.accept();
+                    if (!serverSocket.isClosed()) {
+                        Socket client = serverSocket.accept();
 
-                    DataInputStream dis = new DataInputStream(client.getInputStream());
-                    String dataRaw = dis.readUTF();
+                        DataInputStream dis = new DataInputStream(client.getInputStream());
+                        String dataRaw = dis.readUTF();
 
-                    JSONObject dataOr = new JSONObject(dataRaw);
+                        JSONObject dataOr = new JSONObject(dataRaw);
 
-                    //Parse
-                    JSONObject data = new JSONObject(dataOr.getJSONObject("Data"));
-                    String clientIp = dataOr.getString("Client-IP");
-                    String clientPlugin = dataOr.getString("Client-Plugin");
+                        //Parse
+                        JSONObject data = new JSONObject(dataOr.getJSONObject("Data"));
+                        String clientIp = dataOr.getString("Client-IP");
+                        String clientPlugin = dataOr.getString("Client-Plugin");
 
-                    //Send event so plugins can use.
-                    CrossTalkReceiveEvent event = new CrossTalkReceiveEvent(data, clientIp, clientPlugin);
-                    Bukkit.getPluginManager().callEvent(event);
+                        //Send event so plugins can use.
+                        CrossTalkReceiveEvent event = new CrossTalkReceiveEvent(data, clientIp, clientPlugin);
+                        Bukkit.getPluginManager().callEvent(event);
 
-                    dis.close();
-                    client.close();
+                        dis.close();
+                        client.close();
+                    } else {
+                        return;
+                    }
                 } catch (Exception e) {
                     Bukkit.getServer().getLogger().severe("[NovaLib] Failed to handle Server CrossTalk receive!");
                     e.printStackTrace();
