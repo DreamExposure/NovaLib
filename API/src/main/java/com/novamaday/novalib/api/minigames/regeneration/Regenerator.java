@@ -71,7 +71,7 @@ public class Regenerator {
     /**
      * Saves all blocks in the region to memory
      * @param originalRegenArea The region to backup.
-     * @param toMemory ignore this, shouldn't be there >.<
+     * @param toMemory ignore this, shouldn't be there. Sorry.
      */
     public void saveAllBlocksToMemory(Cuboid originalRegenArea, boolean toMemory) {
         for (Block block : originalRegenArea.getBlocks()) {
