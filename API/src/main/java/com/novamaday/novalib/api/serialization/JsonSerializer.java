@@ -1,7 +1,9 @@
 package com.novamaday.novalib.api.serialization;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
@@ -206,5 +208,41 @@ public class JsonSerializer {
         }
 
         return inv;
+    }
+
+    /**
+     * Serializes the provided Location to a JSONObject for writing to disk.
+     *
+     * @param location The Location to serialize.
+     * @return a new JSONObject representing the Location.
+     */
+    public static JSONObject serializeLocation(Location location) {
+        JSONObject json = new JSONObject();
+
+        json.put("world", location.getWorld());
+        json.put("x", location.getX());
+        json.put("y", location.getY());
+        json.put("z", location.getZ());
+        json.put("yaw", location.getYaw());
+        json.put("pitch", location.getPitch());
+
+        return json;
+    }
+
+    /**
+     * Deserializes the Location from the provided JSONObject.
+     *
+     * @param json The JSONObject representing the Location
+     * @return a new Location from the provided data.
+     */
+    public static Location deserializeLocation(JSONObject json) {
+        World w = Bukkit.getWorld(json.getString("world"));
+        double x = json.getDouble("x");
+        double y = json.getDouble("y");
+        double z = json.getDouble("z");
+        int ya = json.getInt("yaw");
+        int pi = json.getInt("pitch");
+
+        return new Location(w, x, y, z, ya, pi);
     }
 }
