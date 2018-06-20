@@ -15,6 +15,8 @@ public class ClientSocketHandler {
     private static ServerSocket serverSocket;
     private static Thread listenerTread;
 
+    private static boolean allowListen = false;
+
     /**
      * Send the specified message to the Bungee CrossTalk Server
      *
@@ -64,31 +66,29 @@ public class ClientSocketHandler {
             return;
         }
 
+        allowListen = true;
+
         listenerTread = new Thread(() -> {
-            while (true) {
+            while (serverSocket != null && !serverSocket.isClosed() && allowListen) {
                 try {
-                    if (!serverSocket.isClosed()) {
-                        Socket client = serverSocket.accept();
+                    Socket client = serverSocket.accept();
 
-                        DataInputStream dis = new DataInputStream(client.getInputStream());
-                        String dataRaw = dis.readUTF();
+                    DataInputStream dis = new DataInputStream(client.getInputStream());
+                    String dataRaw = dis.readUTF();
 
-                        JSONObject dataOr = new JSONObject(dataRaw);
+                    JSONObject dataOr = new JSONObject(dataRaw);
 
-                        //Parse
-                        JSONObject data = new JSONObject(dataOr.getJSONObject("Data"));
-                        String clientIp = dataOr.getString("Client-IP");
-                        String clientPlugin = dataOr.getString("Client-Plugin");
+                    //Parse
+                    JSONObject data = new JSONObject(dataOr.getJSONObject("Data"));
+                    String clientIp = dataOr.getString("Client-IP");
+                    String clientPlugin = dataOr.getString("Client-Plugin");
 
-                        //Send event so plugins can use.
-                        CrossTalkReceiveEvent event = new CrossTalkReceiveEvent(data, clientIp, clientPlugin);
-                        Bukkit.getPluginManager().callEvent(event);
+                    //Send event so plugins can use.
+                    CrossTalkReceiveEvent event = new CrossTalkReceiveEvent(data, clientIp, clientPlugin);
+                    Bukkit.getPluginManager().callEvent(event);
 
-                        dis.close();
-                        client.close();
-                    } else {
-                        return;
-                    }
+                    dis.close();
+                    client.close();
                 } catch (Exception e) {
                     Bukkit.getServer().getLogger().severe("[NovaLib] Failed to handle Server CrossTalk receive!");
                     e.printStackTrace();
@@ -102,10 +102,13 @@ public class ClientSocketHandler {
     /**
      * Gracefully stops the CrossTalk Client Listener. This is automatically called by NovaLibAPI on server stop and should not be called by any plugins ever!
      */
+    @SuppressWarnings("deprecation")
     public static void shutdownListener() {
+        allowListen = false;
+
+        listenerTread.stop();
         if (serverSocket != null) {
             try {
-                listenerTread.interrupt();
                 serverSocket.close();
             } catch (Exception e) {
                 Bukkit.getServer().getLogger().warning("[NovaLib] Failed to close Server CrossTalk Receiver gracefully.");
