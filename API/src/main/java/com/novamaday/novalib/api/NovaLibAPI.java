@@ -46,6 +46,11 @@ public class NovaLibAPI {
         }
     }
 
+    /**
+     * Initializes all parts of the API. This is automatically handled on server boot and SHOULD NEVER be called by any plugins.
+     *
+     * @param dataFolder Plugin data folder provided by NovaLib itself.
+     */
     public void initAPIForBungee(String dataFolder) {
         plugin = null;
 
@@ -69,6 +74,15 @@ public class NovaLibAPI {
             else
                 ServerSocketHandler.shutdownListener();
         }
+    }
+
+    /**
+     * Hook a Bukkit plugin into NovaLibAPI. This will be needed more in the future to handle certain functions!
+     *
+     * @param _bPlugin The plugin to hook.
+     */
+    public void hookBukkitPlugin(JavaPlugin _bPlugin) {
+        plugin.getLogger().info("Plugin hooked: " + _bPlugin);
     }
 
     private LinkedHashMap<String, Object> getSettings() {
