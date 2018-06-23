@@ -1,6 +1,8 @@
 package com.novamaday.novalib.api.minigames.arena;
 
 import com.novamaday.novalib.api.minigames.enums.*;
+import com.novamaday.novalib.api.minigames.team.Team;
+import com.novamaday.novalib.api.minigames.team.Teams;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -98,7 +100,12 @@ public interface IArena {
      */
     boolean useTeams();
 
-    //TODO: Add Teams
+    /**
+     * Gets the Teams object containing all team related data for the arena.
+     *
+     * @return The Teams object containing all team related data for the arena.
+     */
+    Teams getTeams();
 
     //TODO: Add scoreboard manager
 
@@ -117,8 +124,12 @@ public interface IArena {
      */
     ArrayList<UUID> getWInningPlayers();
 
-    //TODO: Add get winning teams
-
+    /**
+     * Gets a list of Team(s) that have won the game.
+     *
+     * @return A list of Team(s) that have won the game.
+     */
+    ArrayList<Team> getWinningTeams();
     //Setters
 
     /**
