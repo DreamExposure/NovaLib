@@ -1,14 +1,14 @@
 package com.novamaday.novalib.api.command;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandInfo {
     private final String name;
     private String description;
     private String example;
 
-    private final Map<String, String> subCommands = new HashMap<>();
+    private final List<ISubCommand> subCommands = new ArrayList<>();
 
     /**
      * Creates a new CommandInfo object for the specified command.
@@ -51,7 +51,7 @@ public class CommandInfo {
      *
      * @return The sub commands and their descriptions.
      */
-    public Map<String, String> getSubCommands() {
+    public List<ISubCommand> getSubCommands() {
         return subCommands;
     }
 
