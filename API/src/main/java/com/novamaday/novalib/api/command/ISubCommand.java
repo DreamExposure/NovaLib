@@ -14,7 +14,6 @@ public interface ISubCommand {
 
     /**
      * Gets the short aliases of the command this object is responsible for.
-     * </br>
      * This will return an empty ArrayList if none are present
      *
      * @return The aliases of the command.
