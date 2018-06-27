@@ -1,6 +1,6 @@
 package com.novamaday.novalib.api;
 
-import com.novamaday.novalib.api.file.CustomConfig;
+import com.novamaday.novalib.api.bukkit.file.CustomConfig;
 import com.novamaday.novalib.api.network.crosstalk.client.ClientSocketHandler;
 import com.novamaday.novalib.api.network.crosstalk.server.ServerSocketHandler;
 import com.novamaday.novalib.api.packets.PacketManager;
@@ -54,7 +54,8 @@ public class NovaLibAPI {
     public void initAPIForBungee(String dataFolder) {
         plugin = null;
 
-        config = new CustomConfig(dataFolder, "config.yml");
+        //TODO: Figure this shit out for bungee!!!!!!!
+        //config = new CustomConfig(dataFolder, "config.yml");
 
         config.update(getSettings());
 

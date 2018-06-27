@@ -1,4 +1,4 @@
-package com.novamaday.novalib.api.file;
+package com.novamaday.novalib.api.bukkit.file;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -8,10 +8,6 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Use {@link com.novamaday.novalib.api.bukkit.file.CustomConfig}
- */
-@Deprecated
 public class CustomConfig {
     private final JavaPlugin plugin;
     private YamlConfiguration config;
@@ -32,32 +28,24 @@ public class CustomConfig {
         file = _file;
     }
 
-    public CustomConfig(String _folder, String _file) {
-        plugin = null;
-        folder = _folder;
-        file = _file;
-    }
-
     /**
      * Creates the file on disk.
+     *
      * @param message The message to log.
-     * @param header The file header in the file.
+     * @param header  The file header in the file.
      */
     public void create(String message, String header) {
         reload();
         save();
         load(header);
 
-        if (message != null) {
-            if (plugin != null)
-                plugin.getLogger().info(message);
-            else
-                System.out.println("[INFO] [NovaLib] " + message);
-        }
+        if (message != null)
+            plugin.getLogger().info(message);
     }
 
     /**
      * Gets the loaded instance of the Yaml file
+     *
      * @return The loaded instance of the Yaml file
      */
     public YamlConfiguration get() {
@@ -69,6 +57,7 @@ public class CustomConfig {
 
     /**
      * Loads the file into memory
+     *
      * @param header The file header.
      */
     public void load(String header) {
@@ -81,12 +70,8 @@ public class CustomConfig {
      * Reloads the file from disk
      */
     public void reload() {
-        if (configFile == null) {
-            if (plugin != null)
-                configFile = new File(plugin.getDataFolder() + folder, file);
-            else
-                configFile = new File(folder, file);
-        }
+        if (configFile == null)
+            configFile = new File(plugin.getDataFolder() + folder, file);
 
         config = YamlConfiguration.loadConfiguration(configFile);
     }
@@ -101,20 +86,18 @@ public class CustomConfig {
         try {
             get().save(configFile);
         } catch (final IOException e) {
-            if (plugin != null)
-                plugin.getLogger().severe("Could not save config to " + configFile);
-            else
-                System.out.println("[SEVERE] [NovaLib] Could not save config to " + configFile);
+            plugin.getLogger().severe("Could not save config to " + configFile);
             e.printStackTrace();
         }
     }
 
     /**
      * Updates the paths and values in the config
+     *
      * @param settings A hash map of the paths and default values.
      */
     public void update(LinkedHashMap<String, Object> settings) {
-        for (Map.Entry<String, Object> ent : settings.entrySet()) {
+        for (Map.Entry<String, Object> ent: settings.entrySet()) {
             get().addDefault(ent.getKey(), ent.getValue());
         }
         get().options().copyDefaults(true);

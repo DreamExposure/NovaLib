@@ -19,6 +19,25 @@
             <artifactId>bukkit</artifactId>
             <version>1.12.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+            <type>jar</type>
+            <optional>true</optional>
+        </dependency>
+        <!--Latest BungeeCord version to compile against-->
+        <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-api</artifactId>
+            <version>1.12-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-api</artifactId>
+            <version>1.12-SNAPSHOT</version>
+            <type>javadoc</type>
+            <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         <!--JSON API-->
         <dependency>
@@ -26,6 +45,7 @@
             <artifactId>json</artifactId>
             <version>20140107</version>
             <scope>compile</scope>
+            <optional>false</optional>
         </dependency>
     </dependencies>
 
