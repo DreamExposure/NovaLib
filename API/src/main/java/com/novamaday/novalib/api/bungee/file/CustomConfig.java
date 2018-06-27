@@ -67,14 +67,21 @@ public class CustomConfig {
     /**
      * Reloads the file from disk
      */
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void reload() {
         if (configFile == null)
             configFile = new File(plugin.getDataFolder() + folder, file);
 
         try {
+            if (!configFile.exists()) {
+                configFile.getParentFile().mkdirs();
+                configFile.createNewFile();
+            }
+
             config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(configFile);
         } catch (IOException e) {
             plugin.getLogger().severe("Could not reload config!");
+            e.printStackTrace();
         }
     }
 
