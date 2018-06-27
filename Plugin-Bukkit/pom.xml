@@ -18,9 +18,8 @@
             <groupId>com.novamaday.novalib</groupId>
             <artifactId>API</artifactId>
             <version>1.0.0-SNAPSHOT</version>
-            <type>jar</type>
             <scope>compile</scope>
-            <optional>true</optional>
+            <optional>false</optional>
         </dependency>
 
         <!--All supported MC versions get built into our plugin-->

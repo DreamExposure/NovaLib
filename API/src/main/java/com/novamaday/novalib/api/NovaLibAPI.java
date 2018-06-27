@@ -59,12 +59,11 @@ public class NovaLibAPI {
      * Initializes all parts of the API. This is automatically handled on server boot and SHOULD NEVER be called by any plugins.
      */
     public void initAPIForBungee(Plugin _plugin) {
-        bukkitPlugin = null;
         bungeePlugin = _plugin;
+        bukkitPlugin = null;
         bukkit = false;
 
         bungeeConfig = new com.novamaday.novalib.api.bungee.file.CustomConfig(bungeePlugin, "", "config.yml");
-
         bungeeConfig.update(getSettings());
 
         //Start CrossTalk
@@ -76,9 +75,9 @@ public class NovaLibAPI {
      * Shuts down the API gracefully. This is automatically handled on server shutdown and SHOULD NOT be called by any plugins.
      */
     public void shutdownAPI() {
-        if (getBungeeConfig() != null && getBungeeConfig().get().getBoolean("CrossTalk.Enabled"))
+        if (!bukkit && getBungeeConfig().get().getBoolean("CrossTalk.Enabled"))
             ServerSocketHandler.shutdownListener();
-        else if (bukkitConfig != null && bukkitConfig.get().getBoolean("CrossTalk.Enabled"))
+        else if (bukkit && bukkitConfig.get().getBoolean("CrossTalk.Enabled"))
             ClientSocketHandler.shutdownListener();
     }
 
