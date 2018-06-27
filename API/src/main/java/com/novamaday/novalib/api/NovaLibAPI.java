@@ -4,6 +4,7 @@ import com.novamaday.novalib.api.bukkit.file.CustomConfig;
 import com.novamaday.novalib.api.network.crosstalk.client.ClientSocketHandler;
 import com.novamaday.novalib.api.network.crosstalk.server.ServerSocketHandler;
 import com.novamaday.novalib.api.packets.PacketManager;
+import net.md_5.bungee.api.plugin.Plugin;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,9 +12,15 @@ import java.util.LinkedHashMap;
 
 public class NovaLibAPI {
     private static NovaLibAPI instance;
-    public JavaPlugin plugin;
 
-    public CustomConfig config;
+    private JavaPlugin bukkitPlugin;
+    private Plugin bungeePlugin;
+
+
+    private CustomConfig bukkitConfig;
+    private com.novamaday.novalib.api.bungee.file.CustomConfig bungeeConfig;
+
+    private boolean bukkit = false;
 
     private NovaLibAPI() {
     } //Prevent initialization
@@ -32,49 +39,47 @@ public class NovaLibAPI {
     /**
      * Initializes all parts of the API. This is automatically handled on server boot and SHOULD NOT be called by any plugins.
      */
-    public void initAPI(JavaPlugin _plugin) {
-        plugin = _plugin;
+    public void initAPIForBukkit(JavaPlugin _plugin) {
+        bukkitPlugin = _plugin;
+        bungeePlugin = null;
+        bukkit = true;
+
         PacketManager.getManager().init(Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3]);
 
-        config = new CustomConfig(plugin, "", "config.yml");
+        bukkitConfig = new CustomConfig(bukkitPlugin, "", "config.yml");
 
-        config.update(getSettings());
+        bukkitConfig.update(getSettings());
 
         //Start CrossTalk
-        if (config.get().getBoolean("CrossTalk.Enabled")) {
+        if (bukkitConfig.get().getBoolean("CrossTalk.Enabled"))
             ClientSocketHandler.initListener();
-        }
     }
 
     /**
      * Initializes all parts of the API. This is automatically handled on server boot and SHOULD NEVER be called by any plugins.
-     *
-     * @param dataFolder Plugin data folder provided by NovaLib itself.
      */
-    public void initAPIForBungee(String dataFolder) {
-        plugin = null;
+    public void initAPIForBungee(Plugin _plugin) {
+        bukkitPlugin = null;
+        bungeePlugin = _plugin;
+        bukkit = false;
 
-        //TODO: Figure this shit out for bungee!!!!!!!
-        //config = new CustomConfig(dataFolder, "config.yml");
+        bungeeConfig = new com.novamaday.novalib.api.bungee.file.CustomConfig(bungeePlugin, "", "config.yml");
 
-        config.update(getSettings());
+        bungeeConfig.update(getSettings());
 
         //Start CrossTalk
-        if (config.get().getBoolean("CrossTalk.Enabled")) {
+        if (bungeeConfig.get().getBoolean("CrossTalk.Enabled"))
             ServerSocketHandler.initListener();
-        }
     }
 
     /**
      * Shuts down the API gracefully. This is automatically handled on server shutdown and SHOULD NOT be called by any plugins.
      */
     public void shutdownAPI() {
-        if (config.get().getBoolean("CrossTalk.Enabled")) {
-            if (plugin != null)
-                ClientSocketHandler.shutdownListener();
-            else
-                ServerSocketHandler.shutdownListener();
-        }
+        if (getBungeeConfig() != null && getBungeeConfig().get().getBoolean("CrossTalk.Enabled"))
+            ServerSocketHandler.shutdownListener();
+        else if (bukkitConfig != null && bukkitConfig.get().getBoolean("CrossTalk.Enabled"))
+            ClientSocketHandler.shutdownListener();
     }
 
     /**
@@ -83,7 +88,16 @@ public class NovaLibAPI {
      * @param _bPlugin The plugin to hook.
      */
     public void hookBukkitPlugin(JavaPlugin _bPlugin) {
-        plugin.getLogger().info("Plugin hooked: " + _bPlugin);
+        bukkitPlugin.getLogger().info("Plugin hooked: " + _bPlugin.getDescription().getName());
+    }
+
+    /**
+     * Hook a Bungee plugin into NovaLibAPI. This will be needed more in the future to handle certain functions.
+     *
+     * @param _bPlugin The plugin to hook.
+     */
+    public void hookBungeePlugin(Plugin _bPlugin) {
+        bungeePlugin.getLogger().info("Plugin hooked: " + _bPlugin.getDescription().getName());
     }
 
     private LinkedHashMap<String, Object> getSettings() {
@@ -105,13 +119,62 @@ public class NovaLibAPI {
         return s;
     }
 
+
+    /**
+     * Gets the CustomConfig for when the API is running on a Bukkit Server.
+     *
+     * @return The CustomConfig for when the API is running on a Bukkit Server.
+     */
+    public CustomConfig getBukkitConfig() {
+        return bukkitConfig;
+    }
+
+    /**
+     * Gets the CustomConfig for when the API is running on a Bungee Proxy Server.
+     *
+     * @return The CustomConfig for when the API is running on a Bungee Proxy Server.
+     */
+    public com.novamaday.novalib.api.bungee.file.CustomConfig getBungeeConfig() {
+        return bungeeConfig;
+    }
+
+    /**
+     * Gets the BukkitPlugin for when the API is running on a Bukkit Server.
+     *
+     * @return The BukkitPlugin for when the API is running on a Bukkit Server.
+     */
+    public JavaPlugin getBukkitPlugin() {
+        return bukkitPlugin;
+    }
+
+    /**
+     * Gets the BungeePlugin for when the API is running on a Bungee Proxy Server.
+     *
+     * @return The BungeePlugin for when the API is running on a Bungee Proxy Server.
+     */
+    public Plugin getBungeePlugin() {
+        return bungeePlugin;
+    }
+
+    /**
+     * Gets whether or not the server is Bukkit or Bungee. This is only for internal stuff for handling bungee/bukkit configs within the API.
+     *
+     * @return Whether or not hte server is Bukkit or Bungee.
+     */
+    public boolean isBukkit() {
+        return bukkit;
+    }
+
     /**
      * Gets whether or not NovaLib is in Debug Mode.
      *
      * @return Whether or not NovaLib is in Debug Mode.
      */
     public static boolean debug() {
-        return getApi().config.get().getBoolean("Console.Debug");
+        if (getApi().isBukkit())
+            return getApi().getBukkitConfig().get().getBoolean("Console.Debug");
+        else
+            return getApi().getBungeeConfig().get().getBoolean("Console.Debug");
     }
 
     /**
@@ -120,6 +183,9 @@ public class NovaLibAPI {
      * @return Whether or not NovaLib is in Verbose Mode.
      */
     public static boolean verbose() {
-        return getApi().config.get().getBoolean("Console.Verbose");
+        if (getApi().isBukkit())
+            return getApi().getBukkitConfig().get().getBoolean("Console.Verbose");
+        else
+            return getApi().getBungeeConfig().get().getBoolean("Console.Verbose");
     }
 }

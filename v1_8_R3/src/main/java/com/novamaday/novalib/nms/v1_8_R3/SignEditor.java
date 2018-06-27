@@ -13,7 +13,7 @@ public class SignEditor implements ISignEditor {
     public void open(Player player, Sign sign) {
         //Check if chunk loaded
         if (!sign.getLocation().getChunk().isLoaded())
-            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(NovaLibAPI.getApi().plugin, () -> sign.getLocation().getChunk().load());
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(NovaLibAPI.getApi().getBukkitPlugin(), () -> sign.getLocation().getChunk().load());
 
         BlockPosition position = new BlockPosition(sign.getLocation().getX(), sign.getLocation().getY(), sign.getLocation().getZ());
         EntityPlayer nmsPlayer = ((CraftPlayer) player).getHandle();

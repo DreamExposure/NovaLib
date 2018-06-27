@@ -18,11 +18,17 @@ public class DatabaseManager {
 
             Connection mySQLConnection = mySQL.getConnection();
 
-            NovaLibAPI.getApi().plugin.getLogger().info("Database connection successful!");
+            if (NovaLibAPI.getApi().isBukkit())
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().info("Database connection successful!");
+            else
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().info("Database connection successful!");
 
             return new DatabaseInfo(mySQL, mySQLConnection, settings);
         } catch (Exception e) {
-            NovaLibAPI.getApi().plugin.getLogger().severe("Failed to connect to database! Are the settings provided correct?");
+            if (NovaLibAPI.getApi().isBukkit())
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().severe("Failed to connect to database! Are the settings provided correct?");
+            else
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().severe("Failed to connect to database! Are the settings provided correct?");
             e.printStackTrace();
         }
 
@@ -37,10 +43,16 @@ public class DatabaseManager {
     public static boolean disconnectFromMySQL(DatabaseInfo info) {
         try {
             info.getMySQL().closeConnection();
-            NovaLibAPI.getApi().plugin.getLogger().info("Successfully disconnected from MySQL Database!");
+            if (NovaLibAPI.getApi().isBukkit())
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().info("Successfully disconnected from MySQL Database!");
+            else
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().info("Successfully disconnected from MySQL Database!");
             return true;
         } catch (SQLException e) {
-            NovaLibAPI.getApi().plugin.getLogger().warning("MySQL Connection may not have been closed properly! Data may be invalidated!");
+            if (NovaLibAPI.getApi().isBukkit())
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().warning("MySQL Connection may not have been closed properly! Data may be invalidated!");
+            else
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().warning("MySQL Connection may not have been closed properly! Data may be invalidated!");
         }
         return false;
     }

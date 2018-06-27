@@ -19,7 +19,7 @@ public class SignEditor implements ISignEditor {
 
         //Check if chunk loaded
         if (!loc.getChunk().isLoaded())
-            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(NovaLibAPI.getApi().plugin, () -> loc.getChunk().load());
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(NovaLibAPI.getApi().getBukkitPlugin(), () -> loc.getChunk().load());
 
         EntityPlayer nmsPlayer = ((CraftPlayer) player).getHandle();
         TileEntitySign tileEntitySign = (TileEntitySign) nmsPlayer.world.getTileEntity(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());

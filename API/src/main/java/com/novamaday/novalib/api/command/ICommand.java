@@ -4,6 +4,7 @@ import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public interface ICommand {
     /**
      * Gets the command this Object is responsible for.

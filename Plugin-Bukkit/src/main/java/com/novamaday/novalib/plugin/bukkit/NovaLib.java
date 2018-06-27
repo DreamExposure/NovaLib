@@ -10,7 +10,7 @@ public class NovaLib extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        NovaLibAPI.getApi().initAPI(this);
+        NovaLibAPI.getApi().initAPIForBukkit(this);
     }
 
     @Override

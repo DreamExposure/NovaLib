@@ -27,8 +27,8 @@ public class ServerSocketHandler {
             //TODO: Get list of all clients!!
 
             //Init socket
-            String hostname = NovaLibAPI.getApi().config.get().getString("HOSTNAME");
-            int port = NovaLibAPI.getApi().config.get().getInt("PORT");
+            String hostname = NovaLibAPI.getApi().getBungeeConfig().get().getString("HOSTNAME");
+            int port = NovaLibAPI.getApi().getBungeeConfig().get().getInt("PORT");
             Socket sock = new Socket(hostname, port);
 
             //Send data to Bungee CrossTalk Server
@@ -50,7 +50,7 @@ public class ServerSocketHandler {
      */
     public static void initListener() {
         try {
-            serverSocket = new ServerSocket(NovaLibAPI.getApi().config.get().getInt("CrossTalk.Server.Port"));
+            serverSocket = new ServerSocket(NovaLibAPI.getApi().getBungeeConfig().get().getInt("CrossTalk.Server.Port"));
         } catch (Exception e) {
             System.out.println("[NovaLib] Failed to start Server CrossTalk Server! Are you sure it was configured correctly?");
             e.printStackTrace();

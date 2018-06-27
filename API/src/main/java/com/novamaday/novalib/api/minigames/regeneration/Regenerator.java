@@ -51,7 +51,7 @@ public class Regenerator {
         world.save();
 
         File srcFolder = Bukkit.getWorld(name).getWorldFolder();
-        File destFolder = new File(NovaLibAPI.getApi().plugin.getDataFolder() + "/Backups/Worlds/" + name);
+        File destFolder = new File(NovaLibAPI.getApi().getBukkitPlugin().getDataFolder() + "/Backups/Worlds/" + name);
         destFolder.mkdirs();
         //make sure source exists
         if (!srcFolder.exists()) {
@@ -96,7 +96,7 @@ public class Regenerator {
             }
         }
         File destFolder = Bukkit.getWorld(name).getWorldFolder();
-        File srcFolder = new File(NovaLibAPI.getApi().plugin.getDataFolder() + "/Backups/Worlds/" + name);
+        File srcFolder = new File(NovaLibAPI.getApi().getBukkitPlugin().getDataFolder() + "/Backups/Worlds/" + name);
 
         Bukkit.getServer().unloadWorld(world, false);
 

@@ -3,6 +3,7 @@ package com.novamaday.novalib.api.command;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class CommandInfo {
     private final String name;
     private String description;

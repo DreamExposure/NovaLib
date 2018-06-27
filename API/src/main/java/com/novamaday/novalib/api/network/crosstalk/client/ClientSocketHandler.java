@@ -29,14 +29,14 @@ public class ClientSocketHandler {
             //Add the additional data we need so that the Bungee CrossTalk server knows where this is to go.
             JSONObject input = new JSONObject();
 
-            input.put("Client-IP", NovaLibAPI.getApi().config.get().getString("CrossTalk.Client.Hostname"));
-            input.put("Client-Port", NovaLibAPI.getApi().config.get().getInt("CrossTalk.Client.Port"));
+            input.put("Client-IP", NovaLibAPI.getApi().getBukkitConfig().get().getString("CrossTalk.Client.Hostname"));
+            input.put("Client-Port", NovaLibAPI.getApi().getBukkitConfig().get().getInt("CrossTalk.Client.Port"));
             input.put("Client-Plugin", plugin.getName());
             input.put("Data", data);
 
             //Init socket
-            String hostname = NovaLibAPI.getApi().config.get().getString("CrossTalk.Server.Hostname");
-            int port = NovaLibAPI.getApi().config.get().getInt("CrossTalk.Server.Port");
+            String hostname = NovaLibAPI.getApi().getBukkitConfig().get().getString("CrossTalk.Server.Hostname");
+            int port = NovaLibAPI.getApi().getBukkitConfig().get().getInt("CrossTalk.Server.Port");
             Socket sock = new Socket(hostname, port);
 
             //Send data to Bungee CrossTalk Server
@@ -58,7 +58,7 @@ public class ClientSocketHandler {
      */
     public static void initListener() {
         try {
-            serverSocket = new ServerSocket(NovaLibAPI.getApi().config.get().getInt("CrossTalk.Client.Port"));
+            serverSocket = new ServerSocket(NovaLibAPI.getApi().getBukkitConfig().get().getInt("CrossTalk.Client.Port"));
 
         } catch (Exception e) {
             Bukkit.getServer().getLogger().severe("[NovaLib] Failed to start Server CrossTalk Client! Are you sure it was configured correctly?");

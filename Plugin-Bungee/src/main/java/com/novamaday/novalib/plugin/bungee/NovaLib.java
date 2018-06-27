@@ -10,7 +10,7 @@ public class NovaLib extends Plugin {
     public void onEnable() {
         instance = this;
 
-        NovaLibAPI.getApi().initAPIForBungee(getDataFolder() + "");
+        NovaLibAPI.getApi().initAPIForBungee(this);
     }
 
     @Override
