@@ -21,8 +21,11 @@ NovaLib is mainly static typed allowing you to use the various hooks without nee
 - NMS packet handling so you don't have to touch NMS code.
 - CustomConfig object to easily handle custom configs/files for you
 - Database API for easy connections to MySQL databases.
-- File/folder utilities for convenience
-- Custom entity handling (Work inProgress)
+- File/folder utilities for convenience.
+- Custom entity handling (Work inProgress).
+- EXP Timers.
+- Easy and simple communicate between Servers in a Bungeecord network.
+- Command API for simplifying the way you make commands (and simplifying complex commands)
 - And more!
 
 
