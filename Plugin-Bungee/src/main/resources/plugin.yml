@@ -1,7 +1,8 @@
 name: NovaLib
 version: ${project.version}
-description: An advanced API and Library for all of my plugins and more.
-author: Shades161 (NovaFox161)
-website: http://www.novamaday.com/plugins/novalib
+description: An advanced API and Library for our plugins and so much more!
+author: DreamExposure
+authors: [NovaFox161]
+website: https://www.novamaday.com/plugins/novalib
 
 main: com.novamaday.novalib.plugin.bungee.NovaLib
