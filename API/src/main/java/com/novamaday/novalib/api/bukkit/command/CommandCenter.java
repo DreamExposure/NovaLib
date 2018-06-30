@@ -1,4 +1,4 @@
-package com.novamaday.novalib.api.command;
+package com.novamaday.novalib.api.bukkit.command;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,7 +8,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 
 @SuppressWarnings("unused")
-@Deprecated
 public class CommandCenter implements CommandExecutor {
     private final JavaPlugin plugin;
 

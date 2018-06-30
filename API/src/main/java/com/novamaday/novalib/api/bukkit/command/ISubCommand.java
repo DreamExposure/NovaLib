@@ -1,11 +1,10 @@
-package com.novamaday.novalib.api.command;
+package com.novamaday.novalib.api.bukkit.command;
 
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 
 @SuppressWarnings("unused")
-@Deprecated
 public interface ISubCommand {
     /**
      * Gets the command this Object is responsible for.

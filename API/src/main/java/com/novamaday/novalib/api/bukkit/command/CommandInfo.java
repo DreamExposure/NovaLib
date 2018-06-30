@@ -1,10 +1,9 @@
-package com.novamaday.novalib.api.command;
+package com.novamaday.novalib.api.bukkit.command;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unused")
-@Deprecated
 public class CommandInfo {
     private final String name;
     private String description;

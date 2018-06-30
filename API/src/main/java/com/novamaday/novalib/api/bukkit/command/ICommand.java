@@ -1,18 +1,17 @@
-package com.novamaday.novalib.api.command;
+package com.novamaday.novalib.api.bukkit.command;
 
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 
 @SuppressWarnings("unused")
-@Deprecated
-public interface ISubCommand {
+public interface ICommand {
     /**
      * Gets the command this Object is responsible for.
      *
      * @return The command this Object is responsible for.
      */
-    String getSubCommand();
+    String getCommand();
 
     /**
      * Gets the short aliases of the command this object is responsible for.

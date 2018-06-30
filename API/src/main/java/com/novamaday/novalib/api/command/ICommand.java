@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 
 @SuppressWarnings("unused")
+@Deprecated
 public interface ICommand {
     /**
      * Gets the command this Object is responsible for.
