@@ -2,7 +2,7 @@ package com.novamaday.novalib.api.database;
 
 import java.sql.Connection;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class DatabaseInfo {
     private MySQL mySQL;
     private Connection con;

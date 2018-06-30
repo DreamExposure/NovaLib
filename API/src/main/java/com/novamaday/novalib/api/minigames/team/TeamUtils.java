@@ -1,5 +1,6 @@
 package com.novamaday.novalib.api.minigames.team;
 
+@SuppressWarnings("WeakerAccess")
 public class TeamUtils {
     public static int determineTeamAmount(int minTeams, int maxTeams, int playerCount) {
         if (minTeams < 2)

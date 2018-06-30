@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+@SuppressWarnings("unused")
 public class ExpTimer {
     /**
      * Starts the EXP timer for the specified player with the data. <strong>You must handle reverting the player's EXP to their previous levels.</strong>

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class CustomConfig {
     private final Plugin plugin;
     private Configuration config;
@@ -39,9 +40,8 @@ public class CustomConfig {
         reload();
         save();
 
-        if (message != null) {
+        if (message != null)
             plugin.getLogger().info(message);
-        }
     }
 
     /**

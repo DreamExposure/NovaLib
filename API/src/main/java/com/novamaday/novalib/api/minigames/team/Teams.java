@@ -6,6 +6,7 @@ import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.*;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Teams {
     private final int id;
 

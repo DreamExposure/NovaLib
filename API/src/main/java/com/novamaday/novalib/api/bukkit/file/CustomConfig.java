@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class CustomConfig {
     private final JavaPlugin plugin;
     private YamlConfiguration config;

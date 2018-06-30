@@ -120,6 +120,7 @@ public class Regenerator {
      * Regenerates all blocks from memory.
      * @param regenArea The region to restore.
      */
+    @SuppressWarnings("deprecation")
     public void regenAllBlocksFromMemory(Cuboid regenArea) {
         for (Block block : regenArea.getBlocks()) {
             Location loc = block.getLocation();
@@ -182,10 +183,20 @@ public class Regenerator {
     }
 
     private boolean isOpenable(Material mat) {
-        return mat.equals(Material.ACACIA_DOOR) || mat.equals(Material.BIRCH_DOOR) || mat.equals(Material.DARK_OAK_DOOR)
-                || mat.equals(Material.SPRUCE_DOOR) || mat.equals(Material.JUNGLE_DOOR) || mat.equals(Material.IRON_DOOR)
-                || mat.equals(Material.WOODEN_DOOR) || mat.equals(Material.TRAP_DOOR) || mat.equals(Material.FENCE_GATE)
-                || mat.equals(Material.ACACIA_FENCE_GATE) || mat.equals(Material.BIRCH_FENCE_GATE) || mat.equals(Material.DARK_OAK_FENCE_GATE)
-                || mat.equals(Material.SPRUCE_FENCE_GATE) || mat.equals(Material.JUNGLE_FENCE_GATE) || mat.equals(Material.IRON_TRAPDOOR);
+        return mat.equals(Material.ACACIA_DOOR) ||
+                mat.equals(Material.BIRCH_DOOR) ||
+                mat.equals(Material.DARK_OAK_DOOR) ||
+                mat.equals(Material.SPRUCE_DOOR) ||
+                mat.equals(Material.JUNGLE_DOOR) ||
+                mat.equals(Material.IRON_DOOR) ||
+                mat.equals(Material.WOODEN_DOOR) ||
+                mat.equals(Material.TRAP_DOOR) ||
+                mat.equals(Material.FENCE_GATE) ||
+                mat.equals(Material.ACACIA_FENCE_GATE) ||
+                mat.equals(Material.BIRCH_FENCE_GATE) ||
+                mat.equals(Material.DARK_OAK_FENCE_GATE) ||
+                mat.equals(Material.SPRUCE_FENCE_GATE) ||
+                mat.equals(Material.JUNGLE_FENCE_GATE) ||
+                mat.equals(Material.IRON_TRAPDOOR);
     }
 }

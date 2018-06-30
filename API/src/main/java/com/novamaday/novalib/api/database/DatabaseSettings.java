@@ -1,5 +1,6 @@
 package com.novamaday.novalib.api.database;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class DatabaseSettings {
     private final String hostname;
     private final String port;

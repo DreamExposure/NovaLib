@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ExpTimerData {
     private final UUID id;
 

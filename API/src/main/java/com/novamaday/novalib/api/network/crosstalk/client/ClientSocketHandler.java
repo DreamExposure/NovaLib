@@ -11,11 +11,10 @@ import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+@SuppressWarnings("unused")
 public class ClientSocketHandler {
     private static ServerSocket serverSocket;
     private static Thread listenerTread;
-
-    private static boolean allowListen = false;
 
     /**
      * Send the specified message to the Bungee CrossTalk Server
@@ -66,10 +65,8 @@ public class ClientSocketHandler {
             return;
         }
 
-        allowListen = true;
-
         listenerTread = new Thread(() -> {
-            while (serverSocket != null && !serverSocket.isClosed() && allowListen) {
+            while (serverSocket != null && !serverSocket.isClosed()) {
                 try {
                     Socket client = serverSocket.accept();
 
@@ -104,8 +101,6 @@ public class ClientSocketHandler {
      */
     @SuppressWarnings("deprecation")
     public static void shutdownListener() {
-        allowListen = false;
-
         listenerTread.stop();
         if (serverSocket != null) {
             try {

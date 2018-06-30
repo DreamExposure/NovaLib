@@ -5,6 +5,7 @@ import com.novamaday.novalib.api.NovaLibAPI;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+@SuppressWarnings("unused")
 public class DatabaseManager {
     /**
      * Connects to the MySQL server with the provided details in the settings.

@@ -18,6 +18,7 @@ public class NovaLib extends JavaPlugin {
         NovaLibAPI.getApi().shutdownAPI();
     }
 
+    @SuppressWarnings("unused")
     public static NovaLib getInstance() {
         return instance;
     }

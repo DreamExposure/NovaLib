@@ -7,6 +7,7 @@ import com.novamaday.novalib.api.minigames.team.Teams;
 import java.util.ArrayList;
 import java.util.UUID;
 
+@SuppressWarnings("unused")
 public interface IArena {
 
     //Getters

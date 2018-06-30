@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.LinkedHashMap;
 
+@SuppressWarnings("unused")
 public class NovaLibAPI {
     private static NovaLibAPI instance;
 

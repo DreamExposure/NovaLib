@@ -8,11 +8,10 @@ import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class ServerSocketHandler {
     private static ServerSocket serverSocket;
     private static Thread listenerTread;
-
-    private static boolean allowListen = false;
 
     public static boolean sendToAllClients(JSONObject data, String clientIp, String clientPort, String clientPlugin) {
         try {
@@ -57,8 +56,6 @@ public class ServerSocketHandler {
             return;
         }
 
-        allowListen = true;
-
         listenerTread = new Thread(() -> {
             while (serverSocket != null && !serverSocket.isClosed()) {
                 try {
@@ -95,7 +92,6 @@ public class ServerSocketHandler {
      */
     @SuppressWarnings("deprecation")
     public static void shutdownListener() {
-        allowListen = false;
         listenerTread.stop();
 
         if (serverSocket != null) {
