@@ -1,4 +1,4 @@
-package com.novamaday.novalib.api.exp;
+package com.novamaday.novalib.api.bukkit.exp;
 
 import org.bukkit.entity.Player;
 

@@ -1,8 +1,8 @@
 package com.novamaday.novalib.api.minigames.regeneration;
 
 import com.novamaday.novalib.api.NovaLibAPI;
+import com.novamaday.novalib.api.bukkit.region.Cuboid;
 import com.novamaday.novalib.api.file.FileUtils;
-import com.novamaday.novalib.api.region.Cuboid;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;

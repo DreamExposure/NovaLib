@@ -1,4 +1,4 @@
-package com.novamaday.novalib.api.region;
+package com.novamaday.novalib.api.bukkit.region;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
