@@ -4,6 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
     <parent>
         <groupId>com.novamaday.novalib</groupId>
         <artifactId>NovaLib</artifactId>
@@ -13,6 +18,7 @@
     <groupId>com.novamaday.novalib.nms</groupId>
     <artifactId>v1_12_R1</artifactId>
     <version>v1_12_R1</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <!--CB version-->
