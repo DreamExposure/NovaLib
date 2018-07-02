@@ -1,4 +1,4 @@
-package com.novamaday.novalib.api.serialization;
+package com.novamaday.novalib.api.bukkit.serialization;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
