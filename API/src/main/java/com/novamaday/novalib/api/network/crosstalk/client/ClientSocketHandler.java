@@ -46,7 +46,7 @@ public class ClientSocketHandler {
 
             return true;
         } catch (Exception e) {
-            Bukkit.getServer().getLogger().severe("[NovaLib] Failed to send Server CrossTalk Message");
+            NovaLibAPI.getApi().getBukkitPlugin().getLogger().severe("Failed to send Server CrossTalk Message");
             e.printStackTrace();
         }
         return false;
@@ -60,7 +60,7 @@ public class ClientSocketHandler {
             serverSocket = new ServerSocket(NovaLibAPI.getApi().getBukkitConfig().get().getInt("CrossTalk.Client.Port"));
 
         } catch (Exception e) {
-            Bukkit.getServer().getLogger().severe("[NovaLib] Failed to start Server CrossTalk Client! Are you sure it was configured correctly?");
+            NovaLibAPI.getApi().getBukkitPlugin().getLogger().severe("Failed to start Server CrossTalk Client! Are you sure it was configured correctly?");
             e.printStackTrace();
             return;
         }
@@ -69,6 +69,9 @@ public class ClientSocketHandler {
             while (serverSocket != null && !serverSocket.isClosed()) {
                 try {
                     Socket client = serverSocket.accept();
+
+                    if (NovaLibAPI.getApi().verbose())
+                        NovaLibAPI.getApi().getBukkitPlugin().getLogger().info("Received CrossTalk Message from Server!");
 
                     DataInputStream dis = new DataInputStream(client.getInputStream());
                     String dataRaw = dis.readUTF();
@@ -87,7 +90,7 @@ public class ClientSocketHandler {
                     dis.close();
                     client.close();
                 } catch (Exception e) {
-                    Bukkit.getServer().getLogger().severe("[NovaLib] Failed to handle Server CrossTalk receive!");
+                    NovaLibAPI.getApi().getBukkitPlugin().getLogger().severe("Failed to handle Server CrossTalk receive!");
                     e.printStackTrace();
                 }
             }
@@ -106,7 +109,7 @@ public class ClientSocketHandler {
             try {
                 serverSocket.close();
             } catch (Exception e) {
-                Bukkit.getServer().getLogger().warning("[NovaLib] Failed to close Server CrossTalk Receiver gracefully.");
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().warning("Failed to close Server CrossTalk Receiver gracefully.");
                 e.printStackTrace();
             }
         }

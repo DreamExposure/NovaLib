@@ -170,7 +170,7 @@ public class NovaLibAPI {
      *
      * @return Whether or not NovaLib is in Debug Mode.
      */
-    public static boolean debug() {
+    public boolean debug() {
         if (getApi().isBukkit())
             return getApi().getBukkitConfig().get().getBoolean("Console.Debug");
         else
@@ -182,7 +182,7 @@ public class NovaLibAPI {
      *
      * @return Whether or not NovaLib is in Verbose Mode.
      */
-    public static boolean verbose() {
+    public boolean verbose() {
         if (getApi().isBukkit())
             return getApi().getBukkitConfig().get().getBoolean("Console.Verbose");
         else

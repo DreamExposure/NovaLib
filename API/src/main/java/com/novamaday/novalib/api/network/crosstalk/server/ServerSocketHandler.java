@@ -7,13 +7,17 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class ServerSocketHandler {
     private static ServerSocket serverSocket;
     private static Thread listenerTread;
 
-    public static boolean sendToAllClients(JSONObject data, String clientIp, String clientPort, String clientPlugin) {
+    private static final List<ClientSocketData> clients = new ArrayList<>();
+
+    public static boolean sendToAllClients(JSONObject data, String clientIp, int clientPort, String clientPlugin) {
         try {
             //Add the additional data we need so that the Bungee CrossTalk server knows where this is to go.
             JSONObject input = new JSONObject();
@@ -23,22 +27,31 @@ public class ServerSocketHandler {
             input.put("Client-Plugin", clientPlugin);
             input.put("Data", data);
 
-            //TODO: Get list of all clients!!
+            //Send to all clients...
+            for (ClientSocketData csd : clients) {
+                //Don't send back to the client that just sent the message....
+                if (csd.getPort() != clientPort && !csd.getIp().equals(clientIp)) {
+                    try {
+                        //Init socket
+                        Socket sock = new Socket(csd.getIp(), csd.getPort());
 
-            //Init socket
-            String hostname = NovaLibAPI.getApi().getBungeeConfig().get().getString("HOSTNAME");
-            int port = NovaLibAPI.getApi().getBungeeConfig().get().getInt("PORT");
-            Socket sock = new Socket(hostname, port);
-
-            //Send data to Bungee CrossTalk Server
-            DataOutputStream ds = new DataOutputStream(sock.getOutputStream());
-            ds.writeUTF(input.toString());
-            ds.close();
-            sock.close();
-
+                        //Send data to CrossTalk Client
+                        DataOutputStream ds = new DataOutputStream(sock.getOutputStream());
+                        ds.writeUTF(input.toString());
+                        ds.close();
+                        sock.close();
+                    } catch (Exception e) {
+                        //Failed to send to specific client....
+                        if (NovaLibAPI.getApi().debug()) {
+                            NovaLibAPI.getApi().getBungeePlugin().getLogger().warning("Failed to send CrossTalk Data to client...");
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
             return true;
         } catch (Exception e) {
-            System.out.println("[NovaLib] Failed to send Server CrossTalk Message");
+            NovaLibAPI.getApi().getBungeePlugin().getLogger().severe("Failed to send Server CrossTalk Message");
             e.printStackTrace();
         }
         return false;
@@ -51,7 +64,7 @@ public class ServerSocketHandler {
         try {
             serverSocket = new ServerSocket(NovaLibAPI.getApi().getBungeeConfig().get().getInt("CrossTalk.Server.Port"));
         } catch (Exception e) {
-            System.out.println("[NovaLib] Failed to start Server CrossTalk Server! Are you sure it was configured correctly?");
+            NovaLibAPI.getApi().getBungeePlugin().getLogger().severe("Failed to start Server CrossTalk Server! Are you sure it was configured correctly?");
             e.printStackTrace();
             return;
         }
@@ -69,16 +82,27 @@ public class ServerSocketHandler {
                     //Parse
                     JSONObject data = new JSONObject(dataOr.getJSONObject("Data"));
                     String clientIp = dataOr.getString("Client-IP");
-                    String clientPort = dataOr.getString("Client-Port");
+                    int clientPort = dataOr.getInt("Client-Port");
                     String clientPlugin = dataOr.getString("Client-Plugin");
 
-                    //Send to all clients!!!!
-                    sendToAllClients(data, clientIp, clientPort, clientPlugin);
+                    if (clientPlugin.equalsIgnoreCase("NovaLib")) {
+                        if (NovaLibAPI.getApi().verbose())
+                            NovaLibAPI.getApi().getBungeePlugin().getLogger().info("CrossTalk KeepAlive message received!");
+
+                        //Keep alive...
+                        if (!isInList(clientIp, clientPort)) {
+                            ClientSocketData csd = new ClientSocketData(clientIp, clientPort);
+                            clients.add(csd);
+                        }
+                    } else {
+                        //Send to all clients!!!!
+                        sendToAllClients(data, clientIp, clientPort, clientPlugin);
+                    }
 
                     dis.close();
                     client.close();
                 } catch (Exception e) {
-                    System.out.println("[NovaLib] Failed to handle Server CrossTalk receive!");
+                    NovaLibAPI.getApi().getBungeePlugin().getLogger().severe("Failed to handle Server CrossTalk receive!");
                     e.printStackTrace();
                 }
             }
@@ -98,9 +122,17 @@ public class ServerSocketHandler {
             try {
                 serverSocket.close();
             } catch (Exception e) {
-                System.out.println("[NovaLib] Failed to close Server CrossTalk Receiver gracefully.");
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().warning("Failed to close Server CrossTalk Receiver gracefully.");
                 e.printStackTrace();
             }
         }
+    }
+
+    private static boolean isInList(String hostname, int port) {
+        for (ClientSocketData cds : clients) {
+            if (cds.getPort() == port && cds.getIp().equals(hostname))
+                return true;
+        }
+        return false;
     }
 }
