@@ -51,6 +51,9 @@ public class NovaLibAPI {
 
         bukkitConfig.update(getSettings());
 
+        if (debug())
+            getBukkitPlugin().getLogger().info("Started NovaLibAPI!");
+
         //Start CrossTalk
         if (bukkitConfig.get().getBoolean("CrossTalk.Enabled"))
             ClientSocketHandler.initListener();
@@ -66,6 +69,9 @@ public class NovaLibAPI {
 
         bungeeConfig = new com.novamaday.novalib.api.bungee.file.CustomConfig(bungeePlugin, "", "config.yml");
         bungeeConfig.update(getSettings());
+
+        if (debug())
+            getBungeePlugin().getLogger().info("Started NovaLibAPI!");
 
         //Start CrossTalk
         if (bungeeConfig.get().getBoolean("CrossTalk.Enabled"))

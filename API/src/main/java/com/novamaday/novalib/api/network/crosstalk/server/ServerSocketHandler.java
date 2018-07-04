@@ -74,6 +74,9 @@ public class ServerSocketHandler {
                 try {
                     Socket client = serverSocket.accept();
 
+                    if (NovaLibAPI.getApi().verbose())
+                        NovaLibAPI.getApi().getBungeePlugin().getLogger().info("Received CrossTalk Message from Client!");
+
                     DataInputStream dis = new DataInputStream(client.getInputStream());
                     String dataRaw = dis.readUTF();
 
@@ -86,10 +89,11 @@ public class ServerSocketHandler {
                     String clientPlugin = dataOr.getString("Client-Plugin");
 
                     if (clientPlugin.equalsIgnoreCase("NovaLib")) {
+                        //Keep alive...
+
                         if (NovaLibAPI.getApi().verbose())
                             NovaLibAPI.getApi().getBungeePlugin().getLogger().info("CrossTalk KeepAlive message received!");
 
-                        //Keep alive...
                         if (!isInList(clientIp, clientPort)) {
                             ClientSocketData csd = new ClientSocketData(clientIp, clientPort);
                             clients.add(csd);
@@ -109,6 +113,9 @@ public class ServerSocketHandler {
         });
         listenerTread.setDaemon(true);
         listenerTread.start();
+
+        if (NovaLibAPI.getApi().verbose())
+            NovaLibAPI.getApi().getBungeePlugin().getLogger().info("CrossTalk Server started! Listening for clients on " + serverSocket.getInetAddress() + ":" + serverSocket.getLocalPort());
     }
 
     /**
