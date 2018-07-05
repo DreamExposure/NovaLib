@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.LinkedHashMap;
+import java.util.UUID;
 
 @SuppressWarnings("unused")
 public class NovaLibAPI {
@@ -49,7 +50,7 @@ public class NovaLibAPI {
 
         bukkitConfig = new CustomConfig(bukkitPlugin, "", "config.yml");
 
-        bukkitConfig.update(getSettings());
+        bukkitConfig.update(getSettings(false));
 
         if (debug())
             getBukkitPlugin().getLogger().info("Started NovaLibAPI!");
@@ -68,7 +69,7 @@ public class NovaLibAPI {
         bukkit = false;
 
         bungeeConfig = new com.novamaday.novalib.api.bungee.file.CustomConfig(bungeePlugin, "", "config.yml");
-        bungeeConfig.update(getSettings());
+        bungeeConfig.update(getSettings(true));
 
         if (debug())
             getBungeePlugin().getLogger().info("Started NovaLibAPI!");
@@ -106,7 +107,7 @@ public class NovaLibAPI {
         bungeePlugin.getLogger().info("Plugin hooked: " + _bPlugin.getDescription().getName());
     }
 
-    private LinkedHashMap<String, Object> getSettings() {
+    private LinkedHashMap<String, Object> getSettings(boolean bungee) {
         LinkedHashMap<String, Object> s = new LinkedHashMap<>();
 
         s.put("DO NOT DELETE", "NovaLib and NovaLibAPI are developed and managed by NovaFox161 (Shades161");
@@ -115,6 +116,12 @@ public class NovaLibAPI {
 
         s.put("Console.Debug", false);
         s.put("Console.Verbose", false);
+
+        s.put("Stats.Server-Id", UUID.randomUUID());
+        if (bungee)
+            s.put("Stats.Network-Id", UUID.randomUUID());
+        else
+            s.put("Stats.Network-Id", "GET_FROM_BUNGEE_IF_IN_NETWORK");
 
         s.put("CrossTalk.Enabled", true);
         s.put("CrossTalk.Server.Hostname", "localhost");
