@@ -80,6 +80,8 @@ public class TicketBirdIntegration {
 
         String apiURL = "https://ticketbird.novamaday.com/api/v1/ticket/create";
         Request request = new Request.Builder()
+                //This can be public, its authorization for TicketBird's API only able to be used by NovaLib.
+                .header("Authorization", "CXikHAAARAIiiw2EnjbEX3E8ERammFJurMwqOOCJpv8qOge54qkr2mSQ69s9TznH")
                 .url(apiURL)
                 .post(body)
                 .build();
