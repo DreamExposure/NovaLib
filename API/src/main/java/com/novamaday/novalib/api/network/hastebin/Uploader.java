@@ -1,26 +1,23 @@
 package com.novamaday.novalib.api.network.hastebin;
 
-import com.google.gson.JsonParser;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
+import okhttp3.*;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
 public class Uploader {
     public static String post(String data) {
-        HttpClient client = HttpClientBuilder.create().build();
-        HttpPost post = new HttpPost("https://hastebin.com/documents");
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = RequestBody.create(MediaType.parse("text/plain; charset=utf-8"), data);
+
+        Request request = new Request.Builder().url("https://hastebin.com/documents").post(body).build();
 
         try {
-            post.setEntity(new StringEntity(data));
+            Response response = client.newCall(request).execute();
 
-            HttpResponse response = client.execute(post);
-            String result = EntityUtils.toString(response.getEntity());
-            return "https://hastebin.com/" + new JsonParser().parse(result).getAsJsonObject().get("key").getAsString();
+            if (response.body() != null)
+                return "https://hastebin.com/" + new JSONObject(response.body()).getString("key");
         } catch (IOException e) {
             e.printStackTrace();
         }
