@@ -35,14 +35,14 @@
 
     <distributionManagement>
         <repository>
-            <id>maven-releases-pub</id>
+            <id>nova-release-pub</id>
             <name>Releases</name>
-            <url>http://repo.novafox161.com/repository/maven-releases-pub/</url>
+            <url>http://repo.novafox161.com/repository/nova-release-pub/</url>
         </repository>
         <snapshotRepository>
-            <id>maven-snapshots-pub</id>
+            <id>nova-snapshots-pub</id>
             <name>Snapshots</name>
-            <url>http://repo.novafox161.com/repository/maven-snapshots-pub/</url>
+            <url>http://repo.novafox161.com/repository/nova-snapshots-pub/</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -64,8 +64,8 @@
         </repository>
         <!--Private Repo for CB Builds-->
         <repository>
-            <id>maven-private</id>
-            <url>http://repo.novafox161.com/repository/maven-private/</url>
+            <id>nova-private</id>
+            <url>http://repo.novafox161.com/repository/nova-private/</url>
         </repository>
     </repositories>
 

@@ -62,8 +62,8 @@ Directions on how to use it are provided below (currently only Maven is supporte
 1. Import into pom.xml by inserting the following (where version is your target version):
     ```xml
        <repository>
-           <id>maven-public</id>
-           <url>http://repo.novafox161.com/repository/maven-public/</url>
+           <id>nova-public</id>
+           <url>http://repo.novafox161.com/repository/nova-public/</url>
        </repository>
     ```
     
