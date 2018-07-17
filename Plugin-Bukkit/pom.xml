@@ -34,6 +34,14 @@
         <!--All supported MC versions get built into our plugin-->
         <dependency>
             <groupId>com.novamaday.novalib.nms</groupId>
+            <artifactId>v1_13_R1</artifactId>
+            <version>v1_13_R1</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.novamaday.novalib.nms</groupId>
             <artifactId>v1_12_R1</artifactId>
             <version>v1_12_R1</version>
             <type>jar</type>
