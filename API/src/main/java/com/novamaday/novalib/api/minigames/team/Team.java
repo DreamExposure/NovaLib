@@ -2,26 +2,30 @@ package com.novamaday.novalib.api.minigames.team;
 
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 @SuppressWarnings("unused")
 public enum Team {
-    RED(1, ChatColor.RED, DyeColor.RED),
-    BLUE(2, ChatColor.BLUE, DyeColor.LIGHT_BLUE),
-    GREEN(3, ChatColor.GREEN, DyeColor.LIME),
-    PURPLE(4, ChatColor.DARK_PURPLE, DyeColor.PURPLE),
-    AQUA(5, ChatColor.AQUA, DyeColor.CYAN),
-    WHITE(6, ChatColor.WHITE, DyeColor.WHITE),
-    GRAY(7, ChatColor.GRAY, DyeColor.GRAY),
-    YELLOW(8, ChatColor.YELLOW, DyeColor.YELLOW);
+    RED(1, ChatColor.RED, DyeColor.RED, new ItemStack(Material.RED_WOOL, 1)),
+    BLUE(2, ChatColor.BLUE, DyeColor.LIGHT_BLUE, new ItemStack(Material.LIGHT_BLUE_WOOL, 1)),
+    GREEN(3, ChatColor.GREEN, DyeColor.LIME, new ItemStack(Material.LIME_WOOL, 1)),
+    PURPLE(4, ChatColor.DARK_PURPLE, DyeColor.PURPLE, new ItemStack(Material.PURPLE_WOOL, 1)),
+    AQUA(5, ChatColor.AQUA, DyeColor.CYAN, new ItemStack(Material.CYAN_WOOL, 1)),
+    WHITE(6, ChatColor.WHITE, DyeColor.WHITE, new ItemStack(Material.WHITE_WOOL, 1)),
+    GRAY(7, ChatColor.GRAY, DyeColor.GRAY, new ItemStack(Material.GRAY_WOOL, 1)),
+    YELLOW(8, ChatColor.YELLOW, DyeColor.YELLOW, new ItemStack(Material.YELLOW_WOOL, 1));
 
     private int numValue;
     private ChatColor color;
     private DyeColor woolColor;
+    private ItemStack woolBlock;
 
-    Team(int _numValue, ChatColor _color, DyeColor _woolColor) {
+    Team(int _numValue, ChatColor _color, DyeColor _woolColor, ItemStack _woolBlock) {
         numValue = _numValue;
         color = _color;
         woolColor = _woolColor;
+        woolBlock = _woolBlock;
     }
 
     public int getValue() {
@@ -34,6 +38,10 @@ public enum Team {
 
     public DyeColor getWoolColor() {
         return woolColor;
+    }
+
+    public ItemStack getWoolBlock() {
+        return woolBlock;
     }
 
     public static Boolean exists(String teamName) {
