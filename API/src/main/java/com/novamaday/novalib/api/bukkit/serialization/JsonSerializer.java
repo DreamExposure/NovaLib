@@ -52,7 +52,7 @@ public class JsonSerializer {
             JSONArray enchants = new JSONArray();
             for (Enchantment e : is.getEnchantments().keySet()) {
                 JSONObject s = new JSONObject();
-                s.put("enchant", e.getName());
+                s.put("enchant", e.getKey());
                 s.put("level", is.getEnchantmentLevel(e));
                 enchants.put(s);
             }
@@ -60,11 +60,11 @@ public class JsonSerializer {
         }
 
         //Special item handling
-        if (is.getType() == Material.SKULL_ITEM) {
+        if (is.getType() == Material.PLAYER_HEAD) {
             json.put("skull", ((SkullMeta) is.getItemMeta()).getOwningPlayer().getUniqueId().toString());
         }
 
-        if (is.getType() == Material.WRITTEN_BOOK || is.getType() == Material.BOOK_AND_QUILL) {
+        if (is.getType() == Material.WRITTEN_BOOK || is.getType() == Material.WRITABLE_BOOK) {
             JSONObject book = new JSONObject();
             BookMeta bm = (BookMeta) is.getItemMeta();
             if (bm.hasTitle())
@@ -126,13 +126,13 @@ public class JsonSerializer {
         }
 
         //Special item handling
-        if (is.getType() == Material.SKULL_ITEM) {
+        if (is.getType() == Material.PLAYER_HEAD) {
             SkullMeta sm = (SkullMeta) is.getItemMeta();
             sm.setOwningPlayer(Bukkit.getOfflinePlayer(UUID.fromString(json.getString("skull"))));
             is.setItemMeta(sm);
         }
 
-        if (is.getType() == Material.WRITTEN_BOOK || is.getType() == Material.BOOK_AND_QUILL) {
+        if (is.getType() == Material.WRITTEN_BOOK || is.getType() == Material.WRITABLE_BOOK) {
             JSONObject b = json.getJSONObject("book");
             BookMeta book = (BookMeta) is.getItemMeta();
             if (b.has("title"))

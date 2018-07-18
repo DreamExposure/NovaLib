@@ -126,9 +126,8 @@ public class Regenerator {
             Location loc = block.getLocation();
             if (originalBlocks.containsKey(loc)) {
                 BlockState originalBlock = originalBlocks.get(loc);
-                int bId = originalBlock.getTypeId();
-                byte blockDat = originalBlock.getRawData();
-                block.setTypeIdAndData(bId, blockDat, false);
+                block.setType(originalBlock.getType());
+                block.setBlockData(originalBlock.getBlockData());
             }
         }
     }
@@ -171,7 +170,7 @@ public class Regenerator {
                 continue;
 
             Material mat = block.getType();
-            if (isOpenable(mat)) {
+            if (isOpenable(block.getState())) {
 
                 BlockState state = block.getState();
                 Openable o = (Openable) state.getData();
@@ -182,21 +181,7 @@ public class Regenerator {
         }
     }
 
-    private boolean isOpenable(Material mat) {
-        return mat.equals(Material.ACACIA_DOOR) ||
-                mat.equals(Material.BIRCH_DOOR) ||
-                mat.equals(Material.DARK_OAK_DOOR) ||
-                mat.equals(Material.SPRUCE_DOOR) ||
-                mat.equals(Material.JUNGLE_DOOR) ||
-                mat.equals(Material.IRON_DOOR) ||
-                mat.equals(Material.WOODEN_DOOR) ||
-                mat.equals(Material.TRAP_DOOR) ||
-                mat.equals(Material.FENCE_GATE) ||
-                mat.equals(Material.ACACIA_FENCE_GATE) ||
-                mat.equals(Material.BIRCH_FENCE_GATE) ||
-                mat.equals(Material.DARK_OAK_FENCE_GATE) ||
-                mat.equals(Material.SPRUCE_FENCE_GATE) ||
-                mat.equals(Material.JUNGLE_FENCE_GATE) ||
-                mat.equals(Material.IRON_TRAPDOOR);
+    private boolean isOpenable(BlockState state) {
+        return state.getData() instanceof Openable;
     }
 }

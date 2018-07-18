@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+@SuppressWarnings("unused")
 public class TicketBirdIntegration {
     private final String projectName;
     private final long guildId;
@@ -79,6 +80,7 @@ public class TicketBirdIntegration {
         RequestBody body = RequestBody.create(JSON, json.toString());
 
         String apiURL = "https://ticketbird.novamaday.com/api/v1/ticket/create";
+        @SuppressWarnings("SpellCheckingInspection")
         Request request = new Request.Builder()
                 //This can be public, its authorization for TicketBird's API only able to be used by NovaLib.
                 .header("Authorization", "CXikHAAARAIiiw2EnjbEX3E8ERammFJurMwqOOCJpv8qOge54qkr2mSQ69s9TznH")
