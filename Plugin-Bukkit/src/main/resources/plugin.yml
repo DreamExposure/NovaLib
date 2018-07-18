@@ -5,6 +5,8 @@ author: DreamExposure
 authors: [NovaFox161]
 website: https://www.novamaday.com/plugins/novalib
 
+api-version: 1.13
+
 softdepend: [Vault, PerWorldChatPlus]
 
 main: com.novamaday.novalib.plugin.bukkit.NovaLib
