@@ -117,9 +117,9 @@ public class NovaLibAPI {
         s.put("Console.Debug", false);
         s.put("Console.Verbose", false);
 
-        s.put("Stats.Server-Id", UUID.randomUUID());
+        s.put("Stats.Server-Id", UUID.randomUUID().toString());
         if (bungee)
-            s.put("Stats.Network-Id", UUID.randomUUID());
+            s.put("Stats.Network-Id", UUID.randomUUID().toString());
         else
             s.put("Stats.Network-Id", "GET_FROM_BUNGEE_IF_IN_NETWORK");
 
