@@ -4,7 +4,7 @@ An advanced API and library for my Bukkit plugins that can be used for many thin
 
 Join our discord server: https://discord.gg/2TFqyuy
 
-Javadoc: https://docs.novamaday.com/plugins/novalib/
+Javadoc: https://docs.dreamexposure.org/plugins/novalib/
 
 Wiki with WAY more info: https://wiki.novamaday.com/plugins/novalib/start
 

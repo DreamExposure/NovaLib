@@ -3,7 +3,7 @@ version: ${project.version}
 description: An advanced API and Library for our plugins and so much more!
 author: DreamExposure
 authors: [NovaFox161]
-website: https://www.novamaday.com/plugins/novalib
+website: https://www.dreamexposure.org/plugins/novalib
 
 api-version: 1.13
 
