@@ -1,4 +1,4 @@
-package com.novamaday.novalib.api.events.network.crosstalk;
+package com.novamaday.novalib.api.bukkit.events.network.crosstalk;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;

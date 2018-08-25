@@ -56,8 +56,12 @@ public class NovaLibAPI {
             getBukkitPlugin().getLogger().info("Started NovaLibAPI!");
 
         //Start CrossTalk
-        if (bukkitConfig.get().getBoolean("CrossTalk.Enabled"))
-            ClientSocketHandler.initListener();
+        if (bukkitConfig.get().getBoolean("CrossTalk.Enabled")) {
+            if (bukkitConfig.get().getBoolean("CrossTalk.Self as Server"))
+                ServerSocketHandler.initListener();
+            else
+                ClientSocketHandler.initListener();
+        }
     }
 
     /**
@@ -75,18 +79,29 @@ public class NovaLibAPI {
             getBungeePlugin().getLogger().info("Started NovaLibAPI!");
 
         //Start CrossTalk
-        if (bungeeConfig.get().getBoolean("CrossTalk.Enabled"))
-            ServerSocketHandler.initListener();
+        if (bungeeConfig.get().getBoolean("CrossTalk.Enabled")) {
+            if (bungeeConfig.get().getBoolean("CrossTalk.Self as Server"))
+                ServerSocketHandler.initListener();
+            else
+                ClientSocketHandler.initListener();
+        }
     }
 
     /**
      * Shuts down the API gracefully. This is automatically handled on server shutdown and SHOULD NOT be called by any plugins.
      */
     public void shutdownAPI() {
-        if (!bukkit && getBungeeConfig().get().getBoolean("CrossTalk.Enabled"))
-            ServerSocketHandler.shutdownListener();
-        else if (bukkit && bukkitConfig.get().getBoolean("CrossTalk.Enabled"))
-            ClientSocketHandler.shutdownListener();
+        if (bukkit && getBukkitConfig().get().getBoolean("CrossTalk.Enabled")) {
+            if (getBukkitConfig().get().getBoolean("CrossTalk.Self as Server"))
+                ServerSocketHandler.shutdownListener();
+            else
+                ClientSocketHandler.shutdownListener();
+        } else if (!bukkit && getBungeeConfig().get().getBoolean("CrossTalk.Enabled")) {
+            if (getBungeeConfig().get().getBoolean("CrossTalk.Self as Server"))
+                ServerSocketHandler.shutdownListener();
+            else
+                ClientSocketHandler.shutdownListener();
+        }
     }
 
     /**
@@ -124,6 +139,10 @@ public class NovaLibAPI {
             s.put("Stats.Network-Id", "GET_FROM_BUNGEE_IF_IN_NETWORK");
 
         s.put("CrossTalk.Enabled", true);
+        if (bungee)
+            s.put("CrossTalk.Self as Server", true);
+        else
+            s.put("Crosstalk.Self as Server", false);
         s.put("CrossTalk.Server.Hostname", "localhost");
         s.put("CrossTalk.Server.Port", 5200);
         s.put("CrossTalk.Client.Hostname", "localhost");

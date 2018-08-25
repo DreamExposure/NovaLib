@@ -29,8 +29,8 @@ public class NovaLib extends JavaPlugin {
     }
 
     private void startKeepAlive() {
-        if (NovaLibAPI.getApi().getBukkitConfig().get().getBoolean("CrossTalk.Enabled")) {
-            ClientSocketHandler.sendToServer(this, new JSONObject());
+        if (NovaLibAPI.getApi().getBukkitConfig().get().getBoolean("CrossTalk.Enabled") && !NovaLibAPI.getApi().getBukkitConfig().get().getBoolean("CrossTalk.Self as Server")) {
+            ClientSocketHandler.sendToServer(this.getDescription().getName(), new JSONObject());
 
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, this::startKeepAlive, 5 * 60 * 20L);
         }
