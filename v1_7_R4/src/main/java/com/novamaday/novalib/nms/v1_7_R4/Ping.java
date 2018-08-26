@@ -1,6 +1,6 @@
 package com.novamaday.novalib.nms.v1_7_R4;
 
-import com.novamaday.novalib.api.packets.IPing;
+import com.novamaday.novalib.api.bukkit.packets.IPing;
 import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 

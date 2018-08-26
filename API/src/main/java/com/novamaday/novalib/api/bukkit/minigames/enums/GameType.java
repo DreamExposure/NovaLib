@@ -1,4 +1,4 @@
-package com.novamaday.novalib.api.minigames.enums;
+package com.novamaday.novalib.api.bukkit.minigames.enums;
 
 @SuppressWarnings("unused")
 public enum GameType {

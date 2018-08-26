@@ -1,4 +1,4 @@
-package com.novamaday.novalib.api.minigames.team;
+package com.novamaday.novalib.api.bukkit.minigames.team;
 
 @SuppressWarnings("WeakerAccess")
 public class TeamUtils {

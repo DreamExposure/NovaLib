@@ -1,6 +1,6 @@
 package com.novamaday.novalib.nms.v1_8_R1;
 
-import com.novamaday.novalib.api.packets.IActionBar;
+import com.novamaday.novalib.api.bukkit.packets.IActionBar;
 import net.minecraft.server.v1_8_R1.ChatSerializer;
 import net.minecraft.server.v1_8_R1.IChatBaseComponent;
 import net.minecraft.server.v1_8_R1.PacketPlayOutChat;

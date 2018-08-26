@@ -1,9 +1,9 @@
 package com.novamaday.novalib.api;
 
 import com.novamaday.novalib.api.bukkit.file.CustomConfig;
+import com.novamaday.novalib.api.bukkit.packets.PacketManager;
 import com.novamaday.novalib.api.network.crosstalk.client.ClientSocketHandler;
 import com.novamaday.novalib.api.network.crosstalk.server.ServerSocketHandler;
-import com.novamaday.novalib.api.packets.PacketManager;
 import net.md_5.bungee.api.plugin.Plugin;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;

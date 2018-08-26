@@ -1,4 +1,4 @@
-package com.novamaday.novalib.api.minigames.team;
+package com.novamaday.novalib.api.bukkit.minigames.team;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

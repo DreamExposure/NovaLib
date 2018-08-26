@@ -1,7 +1,7 @@
 package com.novamaday.novalib.nms.v1_8_R2;
 
 import com.novamaday.novalib.api.NovaLibAPI;
-import com.novamaday.novalib.api.packets.ISignEditor;
+import com.novamaday.novalib.api.bukkit.packets.ISignEditor;
 import net.minecraft.server.v1_8_R2.*;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Sign;

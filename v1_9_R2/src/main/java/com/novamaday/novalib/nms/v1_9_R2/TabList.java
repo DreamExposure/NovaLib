@@ -1,6 +1,6 @@
 package com.novamaday.novalib.nms.v1_9_R2;
 
-import com.novamaday.novalib.api.packets.ITabList;
+import com.novamaday.novalib.api.bukkit.packets.ITabList;
 import net.minecraft.server.v1_9_R2.IChatBaseComponent;
 import net.minecraft.server.v1_9_R2.PacketPlayOutPlayerListHeaderFooter;
 import net.minecraft.server.v1_9_R2.PlayerConnection;

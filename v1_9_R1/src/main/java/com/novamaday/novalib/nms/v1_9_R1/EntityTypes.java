@@ -1,6 +1,6 @@
 package com.novamaday.novalib.nms.v1_9_R1;
 
-import com.novamaday.novalib.api.packets.IEntityTypes;
+import com.novamaday.novalib.api.bukkit.packets.IEntityTypes;
 import net.minecraft.server.v1_9_R1.Entity;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;

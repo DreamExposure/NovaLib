@@ -1,6 +1,6 @@
 package com.novamaday.novalib.nms.v1_13_R1;
 
-import com.novamaday.novalib.api.packets.IEntityTypes;
+import com.novamaday.novalib.api.bukkit.packets.IEntityTypes;
 import net.minecraft.server.v1_13_R1.Entity;
 import net.minecraft.server.v1_13_R1.MinecraftKey;
 import org.bukkit.Location;

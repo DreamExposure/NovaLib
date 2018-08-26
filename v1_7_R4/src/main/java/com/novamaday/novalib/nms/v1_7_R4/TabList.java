@@ -1,6 +1,6 @@
 package com.novamaday.novalib.nms.v1_7_R4;
 
-import com.novamaday.novalib.api.packets.ITabList;
+import com.novamaday.novalib.api.bukkit.packets.ITabList;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

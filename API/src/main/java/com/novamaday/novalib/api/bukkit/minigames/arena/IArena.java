@@ -1,8 +1,8 @@
-package com.novamaday.novalib.api.minigames.arena;
+package com.novamaday.novalib.api.bukkit.minigames.arena;
 
-import com.novamaday.novalib.api.minigames.enums.*;
-import com.novamaday.novalib.api.minigames.team.Team;
-import com.novamaday.novalib.api.minigames.team.Teams;
+import com.novamaday.novalib.api.bukkit.minigames.enums.*;
+import com.novamaday.novalib.api.bukkit.minigames.team.Team;
+import com.novamaday.novalib.api.bukkit.minigames.team.Teams;
 
 import java.util.ArrayList;
 import java.util.UUID;

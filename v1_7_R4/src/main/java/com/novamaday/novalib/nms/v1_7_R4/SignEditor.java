@@ -1,7 +1,7 @@
 package com.novamaday.novalib.nms.v1_7_R4;
 
 import com.novamaday.novalib.api.NovaLibAPI;
-import com.novamaday.novalib.api.packets.ISignEditor;
+import com.novamaday.novalib.api.bukkit.packets.ISignEditor;
 import net.minecraft.server.v1_7_R4.EntityPlayer;
 import net.minecraft.server.v1_7_R4.PacketPlayOutOpenSignEditor;
 import net.minecraft.server.v1_7_R4.PlayerConnection;

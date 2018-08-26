@@ -1,4 +1,4 @@
-package com.novamaday.novalib.api.minigames.regeneration;
+package com.novamaday.novalib.api.bukkit.minigames.regeneration;
 
 import com.novamaday.novalib.api.NovaLibAPI;
 import com.novamaday.novalib.api.bukkit.region.Cuboid;
