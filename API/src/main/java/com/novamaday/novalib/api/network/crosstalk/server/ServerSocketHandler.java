@@ -1,6 +1,7 @@
 package com.novamaday.novalib.api.network.crosstalk.server;
 
 import com.novamaday.novalib.api.NovaLibAPI;
+import com.novamaday.novalib.api.bukkit.events.network.crosstalk.CrossTalkReceiveEvent;
 import org.json.JSONObject;
 
 import java.io.DataInputStream;
@@ -10,7 +11,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
+@SuppressWarnings({"WeakerAccess", "UnusedReturnValue", "Duplicates"})
 public class ServerSocketHandler {
     private static ServerSocket serverSocket;
     private static Thread listenerTread;
@@ -52,6 +53,16 @@ public class ServerSocketHandler {
                     }
                 }
             }
+
+            //Finally dispatch local event in case plugins on CrossTalk server need to know...
+            if (NovaLibAPI.getApi().isBukkit()) {
+                CrossTalkReceiveEvent event = new CrossTalkReceiveEvent(data, clientIp, clientPlugin);
+                NovaLibAPI.getApi().getBukkitPlugin().getServer().getPluginManager().callEvent(event);
+            } else {
+                com.novamaday.novalib.api.bungee.events.network.crosstalk.CrossTalkReceiveEvent event = new com.novamaday.novalib.api.bungee.events.network.crosstalk.CrossTalkReceiveEvent(data, clientIp, clientPlugin);
+                NovaLibAPI.getApi().getBungeePlugin().getProxy().getPluginManager().callEvent(event);
+            }
+
             return true;
         } catch (Exception e) {
             if (NovaLibAPI.getApi().isBukkit())
@@ -88,7 +99,7 @@ public class ServerSocketHandler {
 
                     if (NovaLibAPI.getApi().verbose()) {
                         if (NovaLibAPI.getApi().isBukkit())
-                            NovaLibAPI.getApi().getBukkitPlugin().getLogger().info("Recieved Crosstalk Message from Client!");
+                            NovaLibAPI.getApi().getBukkitPlugin().getLogger().info("Received Crosstalk Message from Client!");
                         else
                             NovaLibAPI.getApi().getBungeePlugin().getLogger().info("Received CrossTalk Message from Client!");
                     }

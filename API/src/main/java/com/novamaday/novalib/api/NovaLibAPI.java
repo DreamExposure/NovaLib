@@ -125,7 +125,7 @@ public class NovaLibAPI {
     private LinkedHashMap<String, Object> getSettings(boolean bungee) {
         LinkedHashMap<String, Object> s = new LinkedHashMap<>();
 
-        s.put("DO NOT DELETE", "NovaLib and NovaLibAPI are developed and managed by NovaFox161 (Shades161");
+        s.put("DO NOT DELETE", "NovaLib and NovaLibAPI are developed and managed by DreamExposure");
         s.put("Updates.Check", true);
         s.put("Updates.Download", false);
 
