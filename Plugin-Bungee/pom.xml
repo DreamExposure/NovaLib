@@ -13,7 +13,7 @@
     </properties>
 
     <parent>
-        <groupId>com.novamaday.novalib</groupId>
+        <groupId>org.dreamexposure.novalib</groupId>
         <artifactId>NovaLib</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -24,93 +24,11 @@
     <dependencies>
         <!--Depend on our own API of course!!-->
         <dependency>
-            <groupId>com.novamaday.novalib</groupId>
+            <groupId>org.dreamexposure.novalib</groupId>
             <artifactId>API</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <scope>compile</scope>
             <optional>false</optional>
-        </dependency>
-
-        <!--All supported MC versions get built into our plugin-->
-        <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
-            <artifactId>v1_13_R1</artifactId>
-            <version>v1_13_R1</version>
-            <type>jar</type>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
-            <artifactId>v1_12_R1</artifactId>
-            <version>v1_12_R1</version>
-            <type>jar</type>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
-            <artifactId>v1_11_R1</artifactId>
-            <version>v1_11_R1</version>
-            <type>jar</type>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
-            <artifactId>v1_10_R1</artifactId>
-            <version>v1_10_R1</version>
-            <type>jar</type>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
-            <artifactId>v1_9_R1</artifactId>
-            <version>v1_9_R1</version>
-            <type>jar</type>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
-            <artifactId>v1_9_R2</artifactId>
-            <version>v1_9_R2</version>
-            <type>jar</type>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
-            <artifactId>v1_8_R1</artifactId>
-            <version>v1_8_R1</version>
-            <type>jar</type>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
-            <artifactId>v1_8_R2</artifactId>
-            <version>v1_8_R2</version>
-            <type>jar</type>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
-            <artifactId>v1_8_R3</artifactId>
-            <version>v1_8_R3</version>
-            <type>jar</type>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
-            <artifactId>v1_7_R4</artifactId>
-            <version>v1_7_R4</version>
-            <type>jar</type>
-            <scope>compile</scope>
-            <optional>true</optional>
         </dependency>
 
         <!--Latest Bungeecord release to build upon-->

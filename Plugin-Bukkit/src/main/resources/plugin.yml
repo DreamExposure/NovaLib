@@ -9,4 +9,4 @@ api-version: 1.13
 
 softdepend: [Vault, PerWorldChatPlus]
 
-main: com.novamaday.novalib.plugin.bukkit.NovaLib
+main: org.dreamexposure.novalib.plugin.bukkit.NovaLib

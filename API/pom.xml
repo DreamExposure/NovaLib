@@ -13,7 +13,7 @@
     </properties>
 
     <parent>
-        <groupId>com.novamaday.novalib</groupId>
+        <groupId>org.dreamexposure.novalib</groupId>
         <artifactId>NovaLib</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>

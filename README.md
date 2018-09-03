@@ -47,6 +47,7 @@ NovaLib is mainly static typed allowing you to use the various hooks without nee
 - 1.11.x
 - 1.12.x
 - 1.13.0
+- 1.13.1
 
 ## Issues
 Should you find an issue with NovaLib, please create a new issue in the Issues pages on this repository or via Dev Bukkit with a proper ticket.
@@ -68,12 +69,12 @@ Directions on how to use it are provided below (currently only Maven is supporte
     
     ```xml
        <dependency>
-           <groupId>com.novamaday.novalib</groupId>
+           <groupId>org.dreamexposure.novalib</groupId>
            <artifactId>API</artifactId>
            <version>VERSION</version>
        </dependency>
     ```
-2. Use the JavaDoc provided here: https://docs.novamaday.com/plugins/novalib/
+2. Use the JavaDoc provided here: https://docs.dreamexposure.org/plugins/novalib/
 
 3. And now you can start using NG in your plugin. Just check the Javadoc and wiki for further help.
    
