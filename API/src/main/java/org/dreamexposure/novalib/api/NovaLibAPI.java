@@ -132,13 +132,14 @@ public class NovaLibAPI {
         s.put("Console.Debug", false);
         s.put("Console.Verbose", false);
 
+        s.put("Stats.Enabled", true);
         s.put("Stats.Server-Id", UUID.randomUUID().toString());
         if (bungee)
             s.put("Stats.Network-Id", UUID.randomUUID().toString());
         else
             s.put("Stats.Network-Id", "GET_FROM_BUNGEE_IF_IN_NETWORK");
 
-        s.put("CrossTalk.Enabled", true);
+        s.put("CrossTalk.Enabled", false);
         if (bungee)
             s.put("CrossTalk.Self as Server", true);
         else
