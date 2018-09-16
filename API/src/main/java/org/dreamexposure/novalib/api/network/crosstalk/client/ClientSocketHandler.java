@@ -103,7 +103,7 @@ public class ClientSocketHandler {
                     JSONObject dataOr = new JSONObject(dataRaw);
 
                     //Parse
-                    JSONObject data = new JSONObject(dataOr.getJSONObject("Data"));
+                    JSONObject data = dataOr.getJSONObject("Data");
                     String clientIp = dataOr.getString("Client-IP");
                     String clientPlugin = dataOr.getString("Client-Plugin");
 

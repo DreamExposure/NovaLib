@@ -110,7 +110,7 @@ public class ServerSocketHandler {
                     JSONObject dataOr = new JSONObject(dataRaw);
 
                     //Parse
-                    JSONObject data = new JSONObject(dataOr.getJSONObject("Data"));
+                    JSONObject data = dataOr.getJSONObject("Data");
                     String clientIp = dataOr.getString("Client-IP");
                     int clientPort = dataOr.getInt("Client-Port");
                     String clientPlugin = dataOr.getString("Client-Plugin");
