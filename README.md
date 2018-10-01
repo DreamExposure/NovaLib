@@ -4,7 +4,7 @@ An advanced API and library for my Bukkit plugins that can be used for many thin
 
 Join our discord server: https://discord.gg/2TFqyuy
 
-Javadoc: https://docs.novamaday.com/plugins/novalib/
+Javadoc: https://docs.dreamexposure.org/plugins/novalib/
 
 Wiki with WAY more info: https://wiki.novamaday.com/plugins/novalib/start
 
@@ -32,10 +32,8 @@ NovaLib is mainly static typed allowing you to use the various hooks without nee
 ## Planned and In-Progress Features
 
 - SQLite support
-- Full and robust minigames API built in (replace NovaGamesLib)
+- Full and robust minigames API built in (replace NovaGamesLib; WIP)
 - Further handling of even more NMS code for you
-- Region/Cuboid API
-- 1.13.x Support
 - Custom Entity handling/API (Work in Progress)
 - And more!
 - Don't see a feature you want? DM me or open a ticket and I will add it in!
@@ -48,6 +46,8 @@ NovaLib is mainly static typed allowing you to use the various hooks without nee
 - 1.10.x
 - 1.11.x
 - 1.12.x
+- 1.13.0
+- 1.13.1
 
 ## Issues
 Should you find an issue with NovaLib, please create a new issue in the Issues pages on this repository or via Dev Bukkit with a proper ticket.
@@ -69,12 +69,12 @@ Directions on how to use it are provided below (currently only Maven is supporte
     
     ```xml
        <dependency>
-           <groupId>com.novamaday.novalib</groupId>
+           <groupId>org.dreamexposure.novalib</groupId>
            <artifactId>API</artifactId>
            <version>VERSION</version>
        </dependency>
     ```
-2. Use the JavaDoc provided here: https://docs.novamaday.com/plugins/novalib/
+2. Use the JavaDoc provided here: https://docs.dreamexposure.org/plugins/novalib/
 
 3. And now you can start using NG in your plugin. Just check the Javadoc and wiki for further help.
    

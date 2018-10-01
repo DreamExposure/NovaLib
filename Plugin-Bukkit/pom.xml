@@ -13,7 +13,7 @@
     </properties>
 
     <parent>
-        <groupId>com.novamaday.novalib</groupId>
+        <groupId>org.dreamexposure.novalib</groupId>
         <artifactId>NovaLib</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -24,7 +24,7 @@
     <dependencies>
         <!--Depend on our own API of course!!-->
         <dependency>
-            <groupId>com.novamaday.novalib</groupId>
+            <groupId>org.dreamexposure.novalib</groupId>
             <artifactId>API</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <scope>compile</scope>
@@ -33,7 +33,7 @@
 
         <!--All supported MC versions get built into our plugin-->
         <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
+            <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_13_R1</artifactId>
             <version>v1_13_R1</version>
             <type>jar</type>
@@ -41,7 +41,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
+            <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_12_R1</artifactId>
             <version>v1_12_R1</version>
             <type>jar</type>
@@ -49,7 +49,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
+            <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_11_R1</artifactId>
             <version>v1_11_R1</version>
             <type>jar</type>
@@ -57,7 +57,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
+            <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_10_R1</artifactId>
             <version>v1_10_R1</version>
             <type>jar</type>
@@ -65,7 +65,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
+            <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_9_R1</artifactId>
             <version>v1_9_R1</version>
             <type>jar</type>
@@ -73,7 +73,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
+            <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_9_R2</artifactId>
             <version>v1_9_R2</version>
             <type>jar</type>
@@ -81,7 +81,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
+            <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_8_R1</artifactId>
             <version>v1_8_R1</version>
             <type>jar</type>
@@ -89,7 +89,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
+            <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_8_R2</artifactId>
             <version>v1_8_R2</version>
             <type>jar</type>
@@ -97,7 +97,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
+            <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_8_R3</artifactId>
             <version>v1_8_R3</version>
             <type>jar</type>
@@ -105,7 +105,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.novamaday.novalib.nms</groupId>
+            <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_7_R4</artifactId>
             <version>v1_7_R4</version>
             <type>jar</type>
@@ -117,7 +117,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.13-R0.1-SNAPSHOT</version>
+            <version>1.13.1-R0.1-SNAPSHOT</version>
             <type>jar</type>
             <scope>provided</scope> <!-- The 'provided' scope will NOT get shaded in -->
             <optional>true</optional>
