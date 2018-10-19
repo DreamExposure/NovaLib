@@ -143,7 +143,7 @@ public class NovaLibAPI {
         if (bungee)
             s.put("CrossTalk.Self as Server", true);
         else
-            s.put("Crosstalk.Self as Server", false);
+            s.put("CrossTalk.Self as Server", false);
         s.put("CrossTalk.Server.Hostname", "localhost");
         s.put("CrossTalk.Server.Port", 5200);
         s.put("CrossTalk.Client.Hostname", "localhost");
