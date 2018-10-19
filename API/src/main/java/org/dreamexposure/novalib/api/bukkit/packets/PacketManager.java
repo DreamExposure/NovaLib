@@ -11,6 +11,7 @@ public class PacketManager {
     private ISignEditor signEditor;
     private IActionBar actionBar;
     private IEntityTypes entityTypes;
+    private IHologram hologram;
 
     private PacketManager() {
     }
@@ -40,6 +41,7 @@ public class PacketManager {
             signEditor = (ISignEditor) Class.forName(packageName + ".SignEditor").getConstructor().newInstance();
             actionBar = (IActionBar) Class.forName(packageName + ".ActionBar").getConstructor().newInstance();
             entityTypes = (IEntityTypes) Class.forName(packageName + ".EntityTypes").getConstructor().newInstance();
+            hologram = (IHologram) Class.forName(packageName + ".Hologram").getConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
             Bukkit.getLogger().severe("Could not find support for this CraftBukkit version!");
@@ -90,5 +92,14 @@ public class PacketManager {
      */
     public IEntityTypes getEntityTypes() {
         return entityTypes;
+    }
+
+    /**
+     * Gets the {@link IHologram} loaded for the current MC version of the server.
+     *
+     * @return The IHologram for this server.
+     */
+    public IHologram getHologram() {
+        return hologram;
     }
 }
