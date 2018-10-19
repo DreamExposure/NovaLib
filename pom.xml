@@ -20,6 +20,7 @@
 
     <modules>
         <module>API</module>
+        <module>v1_13_R2</module>
         <module>v1_13_R1</module>
         <module>v1_12_R1</module>
         <module>v1_11_R1</module>

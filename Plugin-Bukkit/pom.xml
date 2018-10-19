@@ -34,6 +34,14 @@
         <!--All supported MC versions get built into our plugin-->
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
+            <artifactId>v1_13_R2</artifactId>
+            <version>v1_13_R2</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_13_R1</artifactId>
             <version>v1_13_R1</version>
             <type>jar</type>
