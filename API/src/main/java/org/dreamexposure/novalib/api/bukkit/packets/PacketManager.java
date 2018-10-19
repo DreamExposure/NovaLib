@@ -35,7 +35,7 @@ public class PacketManager {
      */
     public void init(String serverVersion) {
         try {
-            String packageName = "com.novamaday.novalib.nms." + serverVersion;
+            String packageName = "org.dreamexposure.novalib.nms." + serverVersion;
             ping = (IPing) Class.forName(packageName + ".Ping").getConstructor().newInstance();
             tabList = (ITabList) Class.forName(packageName + ".TabList").getConstructor().newInstance();
             signEditor = (ISignEditor) Class.forName(packageName + ".SignEditor").getConstructor().newInstance();
