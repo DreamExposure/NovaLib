@@ -19,8 +19,8 @@ import java.util.regex.Pattern;
 /**
  * A utility class to assist in checking for updates for plugins uploaded to
  * <a href="https://spigotmc.org/resources/">SpigotMC</a>. Before any members of this
- * class are accessed, {@link #init(JavaPlugin, int)} must be invoked by the plugin,
- * preferably in its {@link JavaPlugin#onEnable()} method, though that is not a
+ * class are accessed, <code>#init(JavaPlugin, int)</code> must be invoked by the plugin,
+ * preferably in its <code>JavaPlugin#onEnable()</code> method, though that is not a
  * requirement.
  * <p>
  * This class performs asynchronous queries to <a href="https://spiget.org">SpiGet</a>,
