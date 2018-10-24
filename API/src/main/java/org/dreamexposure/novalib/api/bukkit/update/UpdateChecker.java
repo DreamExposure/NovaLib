@@ -166,7 +166,7 @@ public final class UpdateChecker {
     }
     
     /**
-     * Get the initialized instance of UpdateChecker. If {@link #init(JavaPlugin, int)} has not yet been
+     * Get the initialized instance of UpdateChecker. If <code>#init(JavaPlugin, int)</code> has not yet been
      * invoked, this method will throw an exception.
      *
      * @return the UpdateChecker instance
@@ -177,7 +177,7 @@ public final class UpdateChecker {
     }
     
     /**
-     * Check whether the UpdateChecker has been initialized or not (if {@link #init(JavaPlugin, int)}
+     * Check whether the UpdateChecker has been initialized or not (if <code>#init(JavaPlugin, int)</code>
      * has been invoked) and {@link #get()} is safe to use.
      *
      * @return true if initialized, false otherwise
