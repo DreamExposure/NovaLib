@@ -10,3 +10,8 @@ api-version: 1.13
 softdepend: [Vault, PerWorldChatPlus]
 
 main: org.dreamexposure.novalib.plugin.bukkit.NovaLib
+
+permissions:
+  novalib.update.notify:
+    description: Allows the player to be notified when an update is available.
+    default: op

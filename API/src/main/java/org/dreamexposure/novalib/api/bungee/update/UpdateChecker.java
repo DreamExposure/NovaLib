@@ -1,12 +1,12 @@
-package org.dreamexposure.novalib.api.bukkit.update;
+package org.dreamexposure.novalib.api.bungee.update;
 
 import com.google.common.base.Preconditions;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import net.md_5.bungee.api.plugin.Plugin;
 import org.apache.commons.lang.math.NumberUtils;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -58,11 +58,11 @@ public final class UpdateChecker {
     
     private UpdateResult lastResult = null;
     
-    private final JavaPlugin plugin;
+    private final Plugin plugin;
     private final int pluginID;
     private final VersionScheme versionScheme;
     
-    private UpdateChecker(JavaPlugin plugin, int pluginID, VersionScheme versionScheme) {
+    private UpdateChecker(Plugin plugin, int pluginID, VersionScheme versionScheme) {
         this.plugin = plugin;
         this.pluginID = pluginID;
         this.versionScheme = versionScheme;
@@ -142,7 +142,7 @@ public final class UpdateChecker {
      * @param versionScheme a custom version scheme parser. Cannot be null
      * @return the UpdateChecker instance
      */
-    public static UpdateChecker init(JavaPlugin plugin, int pluginID, VersionScheme versionScheme) {
+    public static UpdateChecker init(Plugin plugin, int pluginID, VersionScheme versionScheme) {
         Preconditions.checkArgument(plugin != null, "Plugin cannot be null");
         Preconditions.checkArgument(pluginID > 0, "Plugin ID must be greater than 0");
         Preconditions.checkArgument(versionScheme != null, "null version schemes are unsupported");
@@ -161,7 +161,7 @@ public final class UpdateChecker {
      *                 value must be greater than 0
      * @return the UpdateChecker instance
      */
-    public static UpdateChecker init(JavaPlugin plugin, int pluginID) {
+    public static UpdateChecker init(Plugin plugin, int pluginID) {
         return init(plugin, pluginID, VERSION_SCHEME_DECIMAL);
     }
     
