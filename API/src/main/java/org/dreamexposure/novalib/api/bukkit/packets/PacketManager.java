@@ -12,6 +12,7 @@ public class PacketManager {
     private IActionBar actionBar;
     private IEntityTypes entityTypes;
     private IHologram hologram;
+    private IArmorStand armorStand;
 
     private PacketManager() {
     }
@@ -42,6 +43,8 @@ public class PacketManager {
             actionBar = (IActionBar) Class.forName(packageName + ".ActionBar").getConstructor().newInstance();
             entityTypes = (IEntityTypes) Class.forName(packageName + ".EntityTypes").getConstructor().newInstance();
             hologram = (IHologram) Class.forName(packageName + ".Hologram").getConstructor().newInstance();
+            if (serverVersion.equals("v1_7_R4"))
+                armorStand = (IArmorStand) Class.forName(packageName + ".ArmorStand").getConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
             Bukkit.getLogger().severe("Could not find support for this CraftBukkit version!");
@@ -101,5 +104,14 @@ public class PacketManager {
      */
     public IHologram getHologram() {
         return hologram;
+    }
+    
+    /**
+     * Gets the {@link IArmorStand} loaded for te current MC version of the server.
+     *
+     * @return The IArmorStand for this server.
+     */
+    public IArmorStand getArmorStand() {
+        return armorStand;
     }
 }
