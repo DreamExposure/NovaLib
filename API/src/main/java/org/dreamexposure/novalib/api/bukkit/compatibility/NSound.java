@@ -250,4 +250,19 @@ public enum NSound {
     public void playSound(Location location, float volume, float pitch) {
         location.getWorld().playSound(location, bukkitSound(), volume, pitch);
     }
+    
+    public static NSound find(String toLookFor) {
+        for (NSound s : values()) {
+            if (s.name().equalsIgnoreCase(toLookFor))
+                return s;
+            else {
+                for (String str : s.versionDependentNames) {
+                    if (str.equalsIgnoreCase(toLookFor))
+                        return s;
+                }
+            }
+        }
+        //Requested sound not found, return default sound to prevent null errors.
+        return LEVEL_UP;
+    }
 }
