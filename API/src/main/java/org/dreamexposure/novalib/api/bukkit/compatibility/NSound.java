@@ -262,7 +262,12 @@ public enum NSound {
                 }
             }
         }
-        //Requested sound not found, return default sound to prevent null errors.
-        return LEVEL_UP;
+        return null;
+    }
+    
+    public static NSound find(String toLookFor, NSound defaultSound) {
+        NSound s = find(toLookFor);
+        if (s != null) return s;
+        return defaultSound;
     }
 }
