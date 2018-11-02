@@ -7,7 +7,7 @@ website: https://www.dreamexposure.org/plugins/novalib
 
 api-version: 1.13
 
-softdepend: [Vault, PerWorldChatPlus]
+softdepend: [Vault]
 
 main: org.dreamexposure.novalib.plugin.bukkit.NovaLib
 
