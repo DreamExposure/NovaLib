@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.material.MaterialData;
+import org.dreamexposure.novalib.api.bukkit.compatibility.NMaterial;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -27,13 +28,13 @@ public class JsonSerializer {
      * @param is The ItemStack to serialize
      * @return a new JSONObject representing the ItemStack.
      */
+    @SuppressWarnings("deprecation")
     public static JSONObject serializeItemStack(ItemStack is) {
         JSONObject json = new JSONObject();
-
-        json.put("material", is.getType().name());
+    
+        json.put("material", NMaterial.requestNMaterial(is.getType().name(), is.getData().getData()));
         json.put("data", is.getData());
         json.put("amount", is.getAmount());
-        json.put("durability", is.getDurability());
 
         if (is.hasItemMeta()) {
             JSONObject meta = new JSONObject();
@@ -95,7 +96,7 @@ public class JsonSerializer {
      * @return A new ItemStack from the provided data.
      */
     public static ItemStack deserializeItemStack(JSONObject json) {
-        ItemStack is = new ItemStack(Material.getMaterial(json.getString("material")));
+        ItemStack is = NMaterial.valueOf(json.getString("material")).parseItem();
         is.setData((MaterialData) json.get("data"));
         is.setAmount(json.getInt("amount"));
         is.setDurability((Short) json.get("durability"));

@@ -13,29 +13,30 @@ public class ExpTimer {
      * @param plugin The plugin using the timer. (Registers the bukkit task with it).
      */
     public static void start(final ExpTimerData data, JavaPlugin plugin) {
-        plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
             //Increment time by one...
             data.setCurrentTimeInSeconds(data.getCurrentTimeInSeconds() + 1);
 
             //Check if we should continue....
             if (data.getCurrentTimeInSeconds() < data.getLengthInSeconds()) {
                 Player p = Bukkit.getPlayer(data.getId());
-
+    
                 //Check if player is online of course to prevent errors.
                 if (p != null) {
                     if (data.getLengthInSeconds() - data.getCurrentTimeInSeconds() <= 60 && data.getUnit() == ExpTimerUnit.MINUTES)
                         data.setUnit(ExpTimerUnit.SECONDS);
-
+    
                     if (data.getUnit() == ExpTimerUnit.SECONDS) {
                         p.setLevel(data.getLengthInSeconds() - data.getCurrentTimeInSeconds());
                         p.setExp((float) (data.getLengthInSeconds() / (data.getLengthInSeconds() - data.getCurrentTimeInSeconds())));
-
+                        start(data, plugin);
                     } else if (data.getUnit() == ExpTimerUnit.MINUTES) {
                         p.setLevel((data.getLengthInSeconds() - data.getCurrentTimeInSeconds()) / 60);
                         p.setExp((float) (data.getLengthInSeconds() / (data.getLengthInSeconds() - data.getCurrentTimeInSeconds())));
+                        start(data, plugin);
                     }
                 }
             }
-        }, 20L, 20L);
+        }, 20L);
     }
 }

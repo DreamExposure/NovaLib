@@ -3,12 +3,11 @@ package org.dreamexposure.novalib.api.bukkit.minigames.regeneration;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.data.Openable;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.material.MaterialData;
-import org.bukkit.material.Openable;
 import org.dreamexposure.novalib.api.NovaLibAPI;
 import org.dreamexposure.novalib.api.bukkit.region.Cuboid;
 import org.dreamexposure.novalib.api.file.FileUtils;
@@ -120,7 +119,6 @@ public class Regenerator {
      * Regenerates all blocks from memory.
      * @param regenArea The region to restore.
      */
-    @SuppressWarnings("deprecation")
     public void regenAllBlocksFromMemory(Cuboid regenArea) {
         for (Block block : regenArea.getBlocks()) {
             Location loc = block.getLocation();
@@ -173,15 +171,15 @@ public class Regenerator {
             if (isOpenable(block.getState())) {
 
                 BlockState state = block.getState();
-                Openable o = (Openable) state.getData();
+                Openable o = (Openable) state.getBlockData();
                 o.setOpen(false);
-                state.setData((MaterialData) o);
+                state.setBlockData(o);
                 state.update();
             }
         }
     }
 
     private boolean isOpenable(BlockState state) {
-        return state.getData() instanceof Openable;
+        return state.getBlockData() instanceof Openable;
     }
 }

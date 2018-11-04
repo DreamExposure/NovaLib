@@ -902,7 +902,7 @@ public enum NMaterial {
     
     private static HashMap<String, NMaterial> cachedSearch = new HashMap<>();
     
-    public static NMaterial requestXMaterial(String name, byte data) {
+    public static NMaterial requestNMaterial(String name, byte data) {
         if (cachedSearch.containsKey(name.toUpperCase() + "," + data))
             return cachedSearch.get(name.toUpperCase() + "," + data);
         for (NMaterial mat : NMaterial.values()) {
@@ -947,9 +947,9 @@ public enum NMaterial {
         } catch (IllegalArgumentException e) {
             String[] split = key.split(":");
             if (split.length == 1)
-                nMaterial = requestXMaterial(key, (byte) 0);
+                nMaterial = requestNMaterial(key, (byte) 0);
             else
-                nMaterial = requestXMaterial(split[0], (byte) Integer.parseInt(split[1]));
+                nMaterial = requestNMaterial(split[0], (byte) Integer.parseInt(split[1]));
             
             return nMaterial;
         }
