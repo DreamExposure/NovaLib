@@ -47,9 +47,7 @@ public class Teams {
             if (index < teamAmount + 1) {
                 registerTeam(team);
                 index = index + 1;
-            } else {
-                break;
-            }
+            } else break;
         }
     }
 
@@ -61,9 +59,7 @@ public class Teams {
                     teamWithFewestPlayers = team;
             }
             return teamWithFewestPlayers;
-        } else {
-            return Team.RED;
-        }
+        } else return Team.RED;
     }
 
 
@@ -105,10 +101,8 @@ public class Teams {
 
     public Team getTeam(UUID uuid) {
         for (Team team: teamsInGame) {
-            if (playersOnTeam.containsKey(team)) {
-                if (playersOnTeam.get(team).contains(uuid))
-                    return team;
-            }
+            if (playersOnTeam.containsKey(team) && playersOnTeam.get(team).contains(uuid))
+                return team;
         }
         return null;
     }

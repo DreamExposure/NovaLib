@@ -2,19 +2,19 @@ package org.dreamexposure.novalib.api.bukkit.minigames.team;
 
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.dreamexposure.novalib.api.bukkit.compatibility.NMaterial;
 
 @SuppressWarnings("unused")
 public enum Team {
-    RED(1, ChatColor.RED, DyeColor.RED, new ItemStack(Material.RED_WOOL, 1)),
-    BLUE(2, ChatColor.BLUE, DyeColor.LIGHT_BLUE, new ItemStack(Material.LIGHT_BLUE_WOOL, 1)),
-    GREEN(3, ChatColor.GREEN, DyeColor.LIME, new ItemStack(Material.LIME_WOOL, 1)),
-    PURPLE(4, ChatColor.DARK_PURPLE, DyeColor.PURPLE, new ItemStack(Material.PURPLE_WOOL, 1)),
-    AQUA(5, ChatColor.AQUA, DyeColor.CYAN, new ItemStack(Material.CYAN_WOOL, 1)),
-    WHITE(6, ChatColor.WHITE, DyeColor.WHITE, new ItemStack(Material.WHITE_WOOL, 1)),
-    GRAY(7, ChatColor.GRAY, DyeColor.GRAY, new ItemStack(Material.GRAY_WOOL, 1)),
-    YELLOW(8, ChatColor.YELLOW, DyeColor.YELLOW, new ItemStack(Material.YELLOW_WOOL, 1));
+    RED(1, ChatColor.RED, DyeColor.RED, NMaterial.RED_WOOL.parseItem()),
+    BLUE(2, ChatColor.BLUE, DyeColor.LIGHT_BLUE, NMaterial.LIGHT_BLUE_WOOL.parseItem()),
+    GREEN(3, ChatColor.GREEN, DyeColor.LIME, NMaterial.LIME_WOOL.parseItem()),
+    PURPLE(4, ChatColor.DARK_PURPLE, DyeColor.PURPLE, NMaterial.PURPLE_WOOL.parseItem()),
+    AQUA(5, ChatColor.AQUA, DyeColor.CYAN, NMaterial.CYAN_WOOL.parseItem()),
+    WHITE(6, ChatColor.WHITE, DyeColor.WHITE, NMaterial.WHITE_WOOL.parseItem()),
+    GRAY(7, ChatColor.GRAY, DyeColor.GRAY, NMaterial.GRAY_WOOL.parseItem()),
+    YELLOW(8, ChatColor.YELLOW, DyeColor.YELLOW, NMaterial.YELLOW_WOOL.parseItem());
 
     private int numValue;
     private ChatColor color;
