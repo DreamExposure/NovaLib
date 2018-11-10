@@ -50,91 +50,125 @@ public class ArenaConfig {
     }
     
     public String getDisplayName() {
-        return config.get().getString("DisplayName");
+        if (config.get().contains("DisplayName"))
+            return config.get().getString("DisplayName");
+        return gameName;
     }
     
     public int getMaxPlayers() {
-        return config.get().getInt("Players.Max");
+        if (config.get().contains("Players.Max"))
+            return config.get().getInt("Players.Max");
+        return 0;
     }
     
     public int getMinPlayers() {
-        return config.get().getInt("Players.Min");
+        if (config.get().contains("Players.Min"))
+            return config.get().getInt("Players.Min");
+        return 0;
     }
     
     public GameType getGameType() {
-        return GameType.valueOf(config.get().getString("Game.Type"));
+        if (config.get().contains("Game.Type"))
+            return GameType.valueOf(config.get().getString("Game.Type"));
+        return GameType.FREE_FOR_ALL;
     }
     
     public int getWaitLength() {
-        return config.get().getInt("Time.Wait");
+        if (config.get().contains("Time.Wait"))
+            return config.get().getInt("Time.Wait");
+        return 60; //60 seconds
     }
     
     public int getGameLength() {
-        return config.get().getInt("Time.Game");
+        if (config.get().contains("Time.Game"))
+            return config.get().getInt("Time.Game");
+        return 5; //5 minutes
     }
     
     public int getTeamMin() {
-        return config.get().getInt("Team.Count.Min");
+        if (config.get().contains("Team.Count.Min"))
+            return config.get().getInt("Team.Count.Min");
+        return 2;
     }
     
     public int getTeamMax() {
-        return config.get().getInt("Team.Count.Max");
+        if (config.get().contains("Team.Count.Max"))
+            return config.get().getInt("Team.Count.Max");
+        return 8;
     }
     
     public int getTeamMinPlayers(Team team) {
-        return config.get().getInt("Team." + team.name() + ".Players.Min");
+        if (config.get().contains("Team." + team.name() + ".Players.Min"))
+            return config.get().getInt("Team." + team.name() + ".Players.Min");
+        return 2;
     }
     
     public int getTeamMaxPlayers(Team team) {
-        return config.get().getInt("Team." + team.name() + ".Players.Max");
+        if (config.get().contains("Team." + team.name() + ".Players.Max"))
+            return config.get().getInt("Team." + team.name() + ".Players.Max");
+        return 4;
     }
     
     public String getTeamDisplayName(Team team) {
-        return config.get().getString("Team." + team.name() + ".DisplayName");
+        if (config.get().contains("Team." + team.name() + ".DisplayName"))
+            return config.get().getString("Team." + team.name() + ".DisplayName");
+        return team.name();
     }
     
     public Location getEndLocation() {
-        World w = Bukkit.getWorld(config.get().getString("Locations.End.world"));
-        double x = config.get().getDouble("Locations.End.x");
-        double y = config.get().getDouble("Locations.End.y");
-        double z = config.get().getDouble("Locations.End.z");
-        float ya = (float) config.get().getDouble("Locations.End.yaw");
-        float pi = (float) config.get().getDouble("Locations.End.pitch");
+        if (config.get().contains("Locations.End")) {
+            World w = Bukkit.getWorld(config.get().getString("Locations.End.world"));
+            double x = config.get().getDouble("Locations.End.x");
+            double y = config.get().getDouble("Locations.End.y");
+            double z = config.get().getDouble("Locations.End.z");
+            float ya = (float) config.get().getDouble("Locations.End.yaw");
+            float pi = (float) config.get().getDouble("Locations.End.pitch");
         
-        return new Location(w, x, y, z, ya, pi);
+            return new Location(w, x, y, z, ya, pi);
+        } else
+            return null;
     }
     
     public Location getQuitLocation() {
-        World w = Bukkit.getWorld(config.get().getString("Locations.Quit.world"));
-        double x = config.get().getDouble("Locations.Quit.x");
-        double y = config.get().getDouble("Locations.Quit.y");
-        double z = config.get().getDouble("Locations.Quit.z");
-        float ya = (float) config.get().getDouble("Locations.Quit.yaw");
-        float pi = (float) config.get().getDouble("Locations.Quit.pitch");
+        if (config.get().contains("Locations.Quit")) {
+            World w = Bukkit.getWorld(config.get().getString("Locations.Quit.world"));
+            double x = config.get().getDouble("Locations.Quit.x");
+            double y = config.get().getDouble("Locations.Quit.y");
+            double z = config.get().getDouble("Locations.Quit.z");
+            float ya = (float) config.get().getDouble("Locations.Quit.yaw");
+            float pi = (float) config.get().getDouble("Locations.Quit.pitch");
         
-        return new Location(w, x, y, z, ya, pi);
+            return new Location(w, x, y, z, ya, pi);
+        } else
+            return null;
     }
     
     public Location getLobbyLocation() {
-        World w = Bukkit.getWorld(config.get().getString("Locations.Lobby.world"));
-        double x = config.get().getDouble("Locations.Lobby.x");
-        double y = config.get().getDouble("Locations.Lobby.y");
-        double z = config.get().getDouble("Locations.Lobby.z");
-        float ya = (float) config.get().getDouble("Locations.Lobby.yaw");
-        float pi = (float) config.get().getDouble("Locations.Lobby.pitch");
+        if (config.get().contains("Locations.Lobby")) {
+            World w = Bukkit.getWorld(config.get().getString("Locations.Lobby.world"));
+            double x = config.get().getDouble("Locations.Lobby.x");
+            double y = config.get().getDouble("Locations.Lobby.y");
+            double z = config.get().getDouble("Locations.Lobby.z");
+            float ya = (float) config.get().getDouble("Locations.Lobby.yaw");
+            float pi = (float) config.get().getDouble("Locations.Lobby.pitch");
         
-        return new Location(w, x, y, z, ya, pi);
+            return new Location(w, x, y, z, ya, pi);
+        } else
+            return null;
     }
     
     public Location getSpectateLocation() {
-        World w = Bukkit.getWorld(config.get().getString("Locations.Spectate.world"));
-        double x = config.get().getDouble("Locations.Spectate.x");
-        double y = config.get().getDouble("Locations.Spectate.y");
-        double z = config.get().getDouble("Locations.Spectate.z");
-        float ya = (float) config.get().getDouble("Locations.Spectate.yaw");
-        float pi = (float) config.get().getDouble("Locations.Spectate.pitch");
+        if (config.get().contains("Locations.Spectate")) {
+            World w = Bukkit.getWorld(config.get().getString("Locations.Spectate.world"));
+            double x = config.get().getDouble("Locations.Spectate.x");
+            double y = config.get().getDouble("Locations.Spectate.y");
+            double z = config.get().getDouble("Locations.Spectate.z");
+            float ya = (float) config.get().getDouble("Locations.Spectate.yaw");
+            float pi = (float) config.get().getDouble("Locations.Spectate.pitch");
         
-        return new Location(w, x, y, z, ya, pi);
+            return new Location(w, x, y, z, ya, pi);
+        } else
+            return null;
     }
     
     public Location getSpawnLocation() {
@@ -142,14 +176,17 @@ public class ArenaConfig {
     }
     
     public Location getSpawnLocation(int num) {
-        World w = Bukkit.getWorld(config.get().getString("Locations.Spawn." + num + ".world"));
-        double x = config.get().getDouble("Locations.Spawn." + num + ".x");
-        double y = config.get().getDouble("Locations.Spawn." + num + ".y");
-        double z = config.get().getDouble("Locations.Spawn." + num + ".z");
-        float ya = (float) config.get().getDouble("Locations.Spawn." + num + ".yaw");
-        float pi = (float) config.get().getDouble("Locations.Spawn." + num + ".pitch");
+        if (config.get().contains("Locations.Spawn." + num)) {
+            World w = Bukkit.getWorld(config.get().getString("Locations.Spawn." + num + ".world"));
+            double x = config.get().getDouble("Locations.Spawn." + num + ".x");
+            double y = config.get().getDouble("Locations.Spawn." + num + ".y");
+            double z = config.get().getDouble("Locations.Spawn." + num + ".z");
+            float ya = (float) config.get().getDouble("Locations.Spawn." + num + ".yaw");
+            float pi = (float) config.get().getDouble("Locations.Spawn." + num + ".pitch");
         
-        return new Location(w, x, y, z, ya, pi);
+            return new Location(w, x, y, z, ya, pi);
+        } else
+            return null;
     }
     
     public Location getTeamSpawnLocation(Team team) {
@@ -157,31 +194,37 @@ public class ArenaConfig {
     }
     
     public Location getTeamSpawnLocation(Team team, int num) {
-        World w = Bukkit.getWorld(config.get().getString("Locations.Spawn." + team.name() + "." + num + ".world"));
-        double x = config.get().getDouble("Locations.Spawn." + team.name() + "." + num + ".x");
-        double y = config.get().getDouble("Locations.Spawn." + team.name() + "." + num + ".y");
-        double z = config.get().getDouble("Locations.Spawn." + team.name() + "." + num + ".z");
-        float ya = (float) config.get().getDouble("Locations.Spawn." + team.name() + "." + num + ".yaw");
-        float pi = (float) config.get().getDouble("Locations.Spawn." + team.name() + "." + num + ".pitch");
+        if (config.get().contains("Locations.Spawn." + team.name() + "." + num)) {
+            World w = Bukkit.getWorld(config.get().getString("Locations.Spawn." + team.name() + "." + num + ".world"));
+            double x = config.get().getDouble("Locations.Spawn." + team.name() + "." + num + ".x");
+            double y = config.get().getDouble("Locations.Spawn." + team.name() + "." + num + ".y");
+            double z = config.get().getDouble("Locations.Spawn." + team.name() + "." + num + ".z");
+            float ya = (float) config.get().getDouble("Locations.Spawn." + team.name() + "." + num + ".yaw");
+            float pi = (float) config.get().getDouble("Locations.Spawn." + team.name() + "." + num + ".pitch");
         
-        return new Location(w, x, y, z, ya, pi);
+            return new Location(w, x, y, z, ya, pi);
+        } else
+            return null;
     }
     
     public Cuboid getArenaRegion() {
-        World w1 = Bukkit.getWorld(config.get().getString("Locations.Region.1.world"));
-        double x1 = config.get().getDouble("Locations.Region.1.x");
-        double y1 = config.get().getDouble("Locations.Region.1.y");
-        double z1 = config.get().getDouble("Locations.Region.1.z");
+        if (config.get().contains("Locations.Region.1") && config.get().contains("Locations.Region.2")) {
+            World w1 = Bukkit.getWorld(config.get().getString("Locations.Region.1.world"));
+            double x1 = config.get().getDouble("Locations.Region.1.x");
+            double y1 = config.get().getDouble("Locations.Region.1.y");
+            double z1 = config.get().getDouble("Locations.Region.1.z");
         
-        World w2 = Bukkit.getWorld(config.get().getString("Locations.Region.2.world"));
-        double x2 = config.get().getDouble("Locations.Region.2.x");
-        double y2 = config.get().getDouble("Locations.Region.2.y");
-        double z2 = config.get().getDouble("Locations.Region.2.z");
+            World w2 = Bukkit.getWorld(config.get().getString("Locations.Region.2.world"));
+            double x2 = config.get().getDouble("Locations.Region.2.x");
+            double y2 = config.get().getDouble("Locations.Region.2.y");
+            double z2 = config.get().getDouble("Locations.Region.2.z");
         
-        Location loc1 = new Location(w1, x1, y1, z1);
-        Location loc2 = new Location(w2, x2, y2, z2);
+            Location loc1 = new Location(w1, x1, y1, z1);
+            Location loc2 = new Location(w2, x2, y2, z2);
         
-        return new Cuboid(loc1, loc2);
+            return new Cuboid(loc1, loc2);
+        } else
+            return null;
     }
     
     
