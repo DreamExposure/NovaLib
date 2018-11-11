@@ -1,6 +1,7 @@
 package org.dreamexposure.novalib.api.bukkit.minigames.arena;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.dreamexposure.novalib.api.NovaLibAPI;
@@ -49,6 +50,24 @@ public class ArenaConfig {
         return config;
     }
     
+    public boolean isEnabled() {
+        if (config.get().contains("Enabled"))
+            return config.get().getBoolean("Enabled");
+        return false;
+    }
+    
+    public boolean allowLateJoin() {
+        if (config.get().contains("LateJoin"))
+            return config.get().getBoolean("LateJoin");
+        return false;
+    }
+    
+    public GameMode getGameMode() {
+        if (config.get().contains("GameMode"))
+            return GameMode.valueOf(config.get().getString("GameMode"));
+        return GameMode.SURVIVAL;
+    }
+    
     public String getDisplayName() {
         if (config.get().contains("DisplayName"))
             return config.get().getString("DisplayName");
@@ -76,6 +95,12 @@ public class ArenaConfig {
     public int getWaitLength() {
         if (config.get().contains("Time.Wait"))
             return config.get().getInt("Time.Wait");
+        return 60; //60 seconds
+    }
+    
+    public int getStartLength() {
+        if (config.get().contains("Time.Start"))
+            return config.get().getInt("Time.Start");
         return 60; //60 seconds
     }
     
@@ -229,6 +254,20 @@ public class ArenaConfig {
     
     
     //Setters
+    public void setEnabled(boolean enabled) {
+        config.get().set("Enabled", enabled);
+        config.save();
+    }
+    
+    public void setLateJoin(boolean lateJoin) {
+        config.get().set("LateJoin", lateJoin);
+        config.save();
+    }
+    
+    public void setGameMode(GameMode gameMode) {
+        config.get().set("GameMode", gameMode.name());
+    }
+    
     public void setDisplayName(String displayName) {
         config.get().set("DisplayName", displayName);
         config.save();
@@ -251,6 +290,11 @@ public class ArenaConfig {
     
     public void setWaitLength(int waitLength) {
         config.get().set("Time.Wait", waitLength);
+        config.save();
+    }
+    
+    public void setStartLength(int startLength) {
+        config.get().set("Time.Start", startLength);
         config.save();
     }
     
