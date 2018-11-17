@@ -57,14 +57,14 @@ public class ArenaConfig {
     }
     
     public boolean allowLateJoin() {
-        if (config.get().contains("LateJoin"))
-            return config.get().getBoolean("LateJoin");
+        if (config.get().contains("Mechanics.LateJoin"))
+            return config.get().getBoolean("Mechanics.LateJoin");
         return false;
     }
     
     public GameMode getGameMode() {
-        if (config.get().contains("GameMode"))
-            return GameMode.valueOf(config.get().getString("GameMode"));
+        if (config.get().contains("Mechanics.GameMode"))
+            return GameMode.valueOf(config.get().getString("Mechanics.GameMode"));
         return GameMode.SURVIVAL;
     }
     
@@ -138,6 +138,18 @@ public class ArenaConfig {
         if (config.get().contains("Team." + team.name() + ".DisplayName"))
             return config.get().getString("Team." + team.name() + ".DisplayName");
         return team.name();
+    }
+    
+    public boolean allowFriendlyFire() {
+        if (config.get().contains("Mechanics.FriendlyFire"))
+            return config.get().getBoolean("Mechanics.FriendlyFire");
+        return false;
+    }
+    
+    public boolean hideNames() {
+        if (config.get().contains("Mechanics.HideNames"))
+            return config.get().getBoolean("Mechanics.HideNames");
+        return true;
     }
     
     public Location getEndLocation() {
@@ -260,12 +272,12 @@ public class ArenaConfig {
     }
     
     public void setLateJoin(boolean lateJoin) {
-        config.get().set("LateJoin", lateJoin);
+        config.get().set("Mechanics.LateJoin", lateJoin);
         config.save();
     }
     
     public void setGameMode(GameMode gameMode) {
-        config.get().set("GameMode", gameMode.name());
+        config.get().set("Mechanics.GameMode", gameMode.name());
     }
     
     public void setDisplayName(String displayName) {
@@ -325,6 +337,16 @@ public class ArenaConfig {
     
     public void setTeamDisplayName(String teamDisplayName, Team team) {
         config.get().set("Team." + team.name() + ".DisplayName", teamDisplayName);
+        config.save();
+    }
+    
+    public void setFriendlyFire(boolean friendlyFire) {
+        config.get().set("Mechanics.FriendlyFire", friendlyFire);
+        config.save();
+    }
+    
+    public void setHideNames(boolean hideNames) {
+        config.get().set("Mechanics.HideNames", hideNames);
         config.save();
     }
     
