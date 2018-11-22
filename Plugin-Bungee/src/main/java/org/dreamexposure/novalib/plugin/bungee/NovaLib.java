@@ -4,6 +4,8 @@ import net.md_5.bungee.api.plugin.Plugin;
 import org.dreamexposure.novalib.api.NovaLibAPI;
 import org.dreamexposure.novalib.api.bungee.update.UpdateChecker;
 import org.dreamexposure.novalib.api.network.crosstalk.client.ClientSocketHandler;
+import org.dreamexposure.novalib.api.network.pubsub.PubSubManager;
+import org.dreamexposure.novalib.plugin.bungee.listeners.PubSubListener;
 import org.json.JSONObject;
 
 import java.util.concurrent.TimeUnit;
@@ -21,11 +23,17 @@ public class NovaLib extends Plugin {
 
         startKeepAlive();
     
+        getProxy().getPluginManager().registerListener(this, new PubSubListener());
+    
+        if (NovaLibAPI.getApi().getBungeeConfig().get().getBoolean("Redis.PubSub.Enabled"))
+            PubSubManager.get().register(getDescription().getName(), "NovaLib.Internal.ToBungee");
     }
 
     @Override
     public void onDisable() {
         NovaLibAPI.getApi().shutdownAPI();
+    
+        PubSubManager.get().unregisterAll(getDescription().getName());
     }
 
     @SuppressWarnings("unused")

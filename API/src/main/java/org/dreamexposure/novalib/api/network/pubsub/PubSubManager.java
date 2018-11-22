@@ -53,19 +53,19 @@ public class PubSubManager {
     //Functions
     public void init() {
         if (NovaLibAPI.getApi().isBukkit()) {
-            String hostname = NovaLibAPI.getApi().getBukkitConfig().get().getString("Redis.SubPub.Hostname");
-            int port = NovaLibAPI.getApi().getBukkitConfig().get().getInt("Redis.SubPub.Port");
-            String user = NovaLibAPI.getApi().getBukkitConfig().get().getString("Redis.SubPub.User");
-            String pass = NovaLibAPI.getApi().getBukkitConfig().get().getString("Redis.SubPub.Password");
+            String hostname = NovaLibAPI.getApi().getBukkitConfig().get().getString("Redis.PubSub.Hostname");
+            int port = NovaLibAPI.getApi().getBukkitConfig().get().getInt("Redis.PubSub.Port");
+            String user = NovaLibAPI.getApi().getBukkitConfig().get().getString("Redis.PubSub.User");
+            String pass = NovaLibAPI.getApi().getBukkitConfig().get().getString("Redis.PubSub.Password");
             
             DatabaseSettings settings = new DatabaseSettings(hostname, port + "", "N/a", user, pass, "N/a");
             
             info = DatabaseManager.connectToRedis(settings);
         } else {
-            String hostname = NovaLibAPI.getApi().getBungeeConfig().get().getString("Redis.SubPub.Hostname");
-            int port = NovaLibAPI.getApi().getBungeeConfig().get().getInt("Redis.SubPub.Port");
-            String user = NovaLibAPI.getApi().getBungeeConfig().get().getString("Redis.SubPub.User");
-            String pass = NovaLibAPI.getApi().getBungeeConfig().get().getString("Redis.SubPub.Password");
+            String hostname = NovaLibAPI.getApi().getBungeeConfig().get().getString("Redis.PubSub.Hostname");
+            int port = NovaLibAPI.getApi().getBungeeConfig().get().getInt("Redis.PubSub.Port");
+            String user = NovaLibAPI.getApi().getBungeeConfig().get().getString("Redis.PubSub.User");
+            String pass = NovaLibAPI.getApi().getBungeeConfig().get().getString("Redis.PubSub.Password");
             
             DatabaseSettings settings = new DatabaseSettings(hostname, port + "", "N/a", user, pass, "N/a");
             
@@ -107,6 +107,19 @@ public class PubSubManager {
             
             subscribers.remove(sub);
         }
+    }
+    
+    public void unregisterAll(String pluginName) {
+        List<ISubscriber> toRemove = new ArrayList<>();
+        
+        for (ISubscriber s : subscribers) {
+            if (s.getPluginName().equals(pluginName)) {
+                toRemove.add(s);
+                s.unsubscribe();
+            }
+            
+        }
+        subscribers.removeAll(toRemove);
     }
     
     public void publish(String channel, JSONObject data) {

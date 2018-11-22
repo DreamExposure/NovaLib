@@ -5,7 +5,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.dreamexposure.novalib.api.NovaLibAPI;
 import org.dreamexposure.novalib.api.bukkit.update.UpdateChecker;
 import org.dreamexposure.novalib.api.network.crosstalk.client.ClientSocketHandler;
+import org.dreamexposure.novalib.api.network.pubsub.PubSubManager;
 import org.dreamexposure.novalib.plugin.bukkit.listener.JoinListener;
+import org.dreamexposure.novalib.plugin.bukkit.listener.PubSubListener;
 import org.json.JSONObject;
 
 public class NovaLib extends JavaPlugin {
@@ -21,17 +23,23 @@ public class NovaLib extends JavaPlugin {
     
         //Register listeners
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
+        getServer().getPluginManager().registerEvents(new PubSubListener(), this);
     
     
         //Finish up
         checkForUpdates();
 
         startKeepAlive();
+    
+        if (NovaLibAPI.getApi().getBukkitConfig().get().getBoolean("Redis.PubSub.Enabled"))
+            PubSubManager.get().register(getName(), "NovaLib.Internal.ToBukkit");
     }
 
     @Override
     public void onDisable() {
         NovaLibAPI.getApi().shutdownAPI();
+    
+        PubSubManager.get().unregisterAll(getName());
     }
 
     @SuppressWarnings("unused")

@@ -65,7 +65,7 @@ public class NovaLibAPI {
         }
     
         //Start SubPub System
-        if (bukkitConfig.get().getBoolean("Redis.SubPub.Enabled")) {
+        if (bukkitConfig.get().getBoolean("Redis.PubSub.Enabled")) {
             PubSubManager.get().init();
         }
     }
@@ -151,11 +151,11 @@ public class NovaLibAPI {
         else
             s.put("Stats.Network-Id", "GET_FROM_BUNGEE_IF_IN_NETWORK");
     
-        s.put("Redis.SubPub.Enabled", false);
-        s.put("Redis.SubPub.Hostname", "localhost");
-        s.put("Redis.SubPub.Port", 6379);
-        s.put("Redis.SubPub.User", "root");
-        s.put("Redis.SubPub.Password", "password");
+        s.put("Redis.PubSub.Enabled", false);
+        s.put("Redis.PubSub.Hostname", "localhost");
+        s.put("Redis.PubSub.Port", 6379);
+        s.put("Redis.PubSub.User", "root");
+        s.put("Redis.PubSub.Password", "password");
         
         s.put("CrossTalk.Enabled", false);
         if (bungee)
@@ -166,6 +166,8 @@ public class NovaLibAPI {
         s.put("CrossTalk.Server.Port", 5200);
         s.put("CrossTalk.Client.Hostname", "localhost");
         s.put("CrossTalk.Client.Port", 5301);
+    
+        s.put("Network.ServerName", "SERVER NAME AS MATCHES IN BUNGEE CONFIG!");
 
         return s;
     }
