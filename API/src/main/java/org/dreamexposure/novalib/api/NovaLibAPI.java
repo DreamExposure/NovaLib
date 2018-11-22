@@ -7,11 +7,12 @@ import org.dreamexposure.novalib.api.bukkit.file.CustomConfig;
 import org.dreamexposure.novalib.api.bukkit.packets.PacketManager;
 import org.dreamexposure.novalib.api.network.crosstalk.client.ClientSocketHandler;
 import org.dreamexposure.novalib.api.network.crosstalk.server.ServerSocketHandler;
+import org.dreamexposure.novalib.api.network.pubsub.SubManager;
 
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "ControlFlowStatementWithoutBraces", "Duplicates"})
 public class NovaLibAPI {
     private static NovaLibAPI instance;
 
@@ -62,6 +63,11 @@ public class NovaLibAPI {
             else
                 ClientSocketHandler.initListener();
         }
+    
+        //Start SubPub System
+        if (bukkitConfig.get().getBoolean("Redis.SubPub.Enabled")) {
+            SubManager.get().init();
+        }
     }
 
     /**
@@ -85,6 +91,12 @@ public class NovaLibAPI {
             else
                 ClientSocketHandler.initListener();
         }
+    
+        //Start SubPub System
+        if (bungeeConfig.get().getBoolean("Redis.SubPub.Enabled")) {
+            SubManager.get().init();
+        }
+        
     }
 
     /**
@@ -138,7 +150,13 @@ public class NovaLibAPI {
             s.put("Stats.Network-Id", UUID.randomUUID().toString());
         else
             s.put("Stats.Network-Id", "GET_FROM_BUNGEE_IF_IN_NETWORK");
-
+    
+        s.put("Redis.SubPub.Enabled", false);
+        s.put("Redis.SubPub.Hostname", "localhost");
+        s.put("Redis.SubPub.Port", 6379);
+        s.put("Redis.SubPub.User", "root");
+        s.put("Redis.SubPub.Password", "password");
+        
         s.put("CrossTalk.Enabled", false);
         if (bungee)
             s.put("CrossTalk.Self as Server", true);

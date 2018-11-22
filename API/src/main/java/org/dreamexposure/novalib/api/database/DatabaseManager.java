@@ -1,5 +1,6 @@
 package org.dreamexposure.novalib.api.database;
 
+import io.lettuce.core.RedisClient;
 import org.dreamexposure.novalib.api.NovaLibAPI;
 
 import java.sql.Connection;
@@ -54,6 +55,44 @@ public class DatabaseManager {
                 NovaLibAPI.getApi().getBukkitPlugin().getLogger().warning("MySQL Connection may not have been closed properly! Data may be invalidated!");
             else
                 NovaLibAPI.getApi().getBungeePlugin().getLogger().warning("MySQL Connection may not have been closed properly! Data may be invalidated!");
+        }
+        return false;
+    }
+    
+    public static RedisInfo connectToRedis(DatabaseSettings settings) {
+        try {
+            RedisClient client = RedisClient.create("redis://" + settings.getPassword() + "@" + settings.getHostname() + ":" + settings.getPort() + "/0");
+            
+            if (NovaLibAPI.getApi().isBukkit())
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().info("Database connection successful!");
+            else
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().info("Database connection successful!");
+            
+            return new RedisInfo(client, settings);
+        } catch (Exception e) {
+            if (NovaLibAPI.getApi().isBukkit())
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().severe("Failed to connect to Redis! Are the settings provided correct?");
+            else
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().severe("Failed to connect to Redis! Are the settings provided correct?");
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public static boolean disconnectFromRedis(RedisInfo info) {
+        try {
+            info.getClient().shutdown();
+            
+            if (NovaLibAPI.getApi().isBukkit())
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().info("Successfully disconnected from Redis!");
+            else
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().info("Successfully disconnected from Redis!");
+            return true;
+        } catch (Exception e) {
+            if (NovaLibAPI.getApi().isBukkit())
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().warning("Redis Connection may not have been closed properly! Data may be invalidated!");
+            else
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().warning("Redis Connection may not have been closed properly! Data may be invalidated!");
         }
         return false;
     }
