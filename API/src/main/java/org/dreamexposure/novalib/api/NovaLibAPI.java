@@ -7,7 +7,7 @@ import org.dreamexposure.novalib.api.bukkit.file.CustomConfig;
 import org.dreamexposure.novalib.api.bukkit.packets.PacketManager;
 import org.dreamexposure.novalib.api.network.crosstalk.client.ClientSocketHandler;
 import org.dreamexposure.novalib.api.network.crosstalk.server.ServerSocketHandler;
-import org.dreamexposure.novalib.api.network.pubsub.SubManager;
+import org.dreamexposure.novalib.api.network.pubsub.PubSubManager;
 
 import java.util.LinkedHashMap;
 import java.util.UUID;
@@ -66,7 +66,7 @@ public class NovaLibAPI {
     
         //Start SubPub System
         if (bukkitConfig.get().getBoolean("Redis.SubPub.Enabled")) {
-            SubManager.get().init();
+            PubSubManager.get().init();
         }
     }
 
@@ -94,7 +94,7 @@ public class NovaLibAPI {
     
         //Start SubPub System
         if (bungeeConfig.get().getBoolean("Redis.SubPub.Enabled")) {
-            SubManager.get().init();
+            PubSubManager.get().init();
         }
         
     }

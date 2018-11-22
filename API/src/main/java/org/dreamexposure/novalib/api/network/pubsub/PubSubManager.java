@@ -6,6 +6,7 @@ import org.dreamexposure.novalib.api.bungee.network.subpub.BungeePubSubscriber;
 import org.dreamexposure.novalib.api.database.DatabaseManager;
 import org.dreamexposure.novalib.api.database.DatabaseSettings;
 import org.dreamexposure.novalib.api.database.RedisInfo;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,18 +20,18 @@ import java.util.UUID;
  * Company Website: https://www.dreamexposure.org
  * Contact: nova@dreamexposure.org
  */
-public class SubManager {
-    private static SubManager instance;
+public class PubSubManager {
+    private static PubSubManager instance;
     
     private RedisInfo info;
     
     private List<ISubscriber> subscribers = new ArrayList<>();
     
-    private SubManager() {
+    private PubSubManager() {
     } //Prevent initialization
     
-    public static SubManager get() {
-        if (instance == null) instance = new SubManager();
+    public static PubSubManager get() {
+        if (instance == null) instance = new PubSubManager();
         
         return instance;
     }
@@ -106,5 +107,9 @@ public class SubManager {
             
             subscribers.remove(sub);
         }
+    }
+    
+    public void publish(String channel, JSONObject data) {
+        info.getClient().connect().async().publish(channel, data.toString());
     }
 }
