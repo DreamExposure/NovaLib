@@ -21,7 +21,7 @@ public class PlayerTransfer {
         data.put("Reason", "Server-Transfer");
         data.put("Plugin-Name", plugin.getName());
         data.put("Server-To", serverName);
-        data.put("Server-From", NovaLibAPI.getApi().getBukkitConfig().get().getString("Network.ServerName"));
+        data.put("Server-From", NovaLibAPI.getApi().getServerName());
         data.put("Player", player.getUniqueId());
         
         PubSubManager.get().publish("NovaLib.Internal.ToBungee", data);

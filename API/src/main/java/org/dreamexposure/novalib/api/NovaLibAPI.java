@@ -241,4 +241,11 @@ public class NovaLibAPI {
         else
             return getApi().getBungeeConfig().get().getBoolean("Console.Verbose");
     }
+    
+    public String getServerName() {
+        if (getApi().isBukkit())
+            return getApi().getBukkitConfig().get().getString("Network.ServerName");
+        else
+            return getApi().getBungeeConfig().get().getString("Network.ServerName");
+    }
 }
