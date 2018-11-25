@@ -42,18 +42,22 @@ public class BukkitPubSubscriber implements ISubscriber {
         connection = info.getClient().connectPubSub();
         
         listener = new RedisPubSubAdapter<String, String>() {
+            @SuppressWarnings("Duplicates")
             @Override
             public void message(String channel, String message) {
                 if (NovaLibAPI.getApi().debug())
                     System.out.println(String.format("Channel: %s, Message: %s", channel, message));
-                
+        
                 try {
-                    JSONObject data = new JSONObject(message);
-                    
-                    PubSubReceiveEvent event = new PubSubReceiveEvent(data, channel, pluginName);
-                    
+                    JSONObject rawData = new JSONObject(message);
+                    String serverFrom = rawData.getString("server-from");
+                    boolean fromBukkit = rawData.getBoolean("is-bukkit");
+                    JSONObject data = rawData.getJSONObject("data");
+            
+                    PubSubReceiveEvent event = new PubSubReceiveEvent(data, channel, pluginName, serverFrom, fromBukkit);
+            
                     Bukkit.getPluginManager().callEvent(event);
-                    
+            
                 } catch (JSONException e) {
                     if (NovaLibAPI.getApi().debug())
                         NovaLibAPI.getApi().getBukkitPlugin().getLogger().warning("PubSub Message received is not JSON!");

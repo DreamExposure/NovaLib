@@ -123,6 +123,14 @@ public class PubSubManager {
     }
     
     public void publish(String channel, JSONObject data) {
-        info.getClient().connect().async().publish(channel, data.toString());
+        //Add server data...
+    
+        JSONObject toSend = new JSONObject();
+        toSend.put("server-from", NovaLibAPI.getApi().getServerName());
+        toSend.put("is-bukkit", NovaLibAPI.getApi().isBukkit());
+        toSend.put("data", data);
+    
+    
+        info.getClient().connect().async().publish(channel, toSend.toString());
     }
 }

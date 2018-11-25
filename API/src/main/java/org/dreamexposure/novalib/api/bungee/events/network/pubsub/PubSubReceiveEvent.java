@@ -16,11 +16,15 @@ public class PubSubReceiveEvent extends Event {
     private final JSONObject data;
     private final String channelName;
     private final String pluginName;
+    private final String serverNameFrom;
+    private final boolean serverIsBukkit;
     
-    public PubSubReceiveEvent(JSONObject _data, String _channelName, String _pluginName) {
+    public PubSubReceiveEvent(JSONObject _data, String _channelName, String _pluginName, String _serverFrom, boolean _isBukkit) {
         data = _data;
         channelName = _channelName;
         pluginName = _pluginName;
+        serverNameFrom = _serverFrom;
+        serverIsBukkit = _isBukkit;
     }
     
     /**
@@ -48,5 +52,23 @@ public class PubSubReceiveEvent extends Event {
      */
     public String getPluginName() {
         return pluginName;
+    }
+    
+    /**
+     * Gets the name of the server that sent the data
+     *
+     * @return The name of the server that sent the data.
+     */
+    public String getServerNameFrom() {
+        return serverNameFrom;
+    }
+    
+    /**
+     * Gets whether or not the server that sent the message was a bukkit or bungee server
+     *
+     * @return Whether or not the server that sent the message was a bukkit or bungee server.
+     */
+    public boolean isBukkit() {
+        return serverIsBukkit;
     }
 }
