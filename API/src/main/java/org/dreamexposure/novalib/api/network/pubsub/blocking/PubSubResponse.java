@@ -1,32 +1,26 @@
-package org.dreamexposure.novalib.api.bungee.events.network.pubsub;
+package org.dreamexposure.novalib.api.network.pubsub.blocking;
 
-import net.md_5.bungee.api.plugin.Event;
 import org.json.JSONObject;
 
 /**
  * @author NovaFox161
- * Date Created: 11/21/2018
+ * Date Created: 11/29/2018
  * For Project: NovaLib
  * Author Website: https://www.novamaday.com
  * Company Website: https://www.dreamexposure.org
  * Contact: nova@dreamexposure.org
  */
-@SuppressWarnings("unused")
-public class PubSubReceiveEvent extends Event {
-    
+public class PubSubResponse {
     private final JSONObject data;
     private final String channelName;
-    private final String pluginName;
     private final String serverNameFrom;
     private final boolean serverIsBukkit;
-    
     private boolean requiresResponse;
     private String oneTimeResponseChannel;
     
-    public PubSubReceiveEvent(JSONObject _data, String _channelName, String _pluginName, String _serverFrom, boolean _isBukkit) {
+    public PubSubResponse(JSONObject _data, String _channelName, String _serverFrom, boolean _isBukkit) {
         data = _data;
         channelName = _channelName;
-        pluginName = _pluginName;
         serverNameFrom = _serverFrom;
         serverIsBukkit = _isBukkit;
         
@@ -34,10 +28,9 @@ public class PubSubReceiveEvent extends Event {
         oneTimeResponseChannel = "N/a";
     }
     
-    public PubSubReceiveEvent(JSONObject _data, String _channelName, String _pluginName, String _serverFrom, boolean _isBukkit, String _responseChannel) {
+    public PubSubResponse(JSONObject _data, String _channelName, String _serverFrom, boolean _isBukkit, String _responseChannel) {
         data = _data;
         channelName = _channelName;
-        pluginName = _pluginName;
         serverNameFrom = _serverFrom;
         serverIsBukkit = _isBukkit;
         
@@ -55,22 +48,14 @@ public class PubSubReceiveEvent extends Event {
     }
     
     /**
-     * Gets the name of the channel the message was received through.
+     * Gets the name of the channel the data was received through.
      *
-     * @return The name of the channel the message was received through.
+     * @return The name of the channel the data was received through.
      */
     public String getChannelName() {
         return channelName;
     }
     
-    /**
-     * Gets the name of the plugin that sent the data.
-     *
-     * @return The name of the plugin that sent the data.
-     */
-    public String getPluginName() {
-        return pluginName;
-    }
     
     /**
      * Gets the name of the server that sent the data

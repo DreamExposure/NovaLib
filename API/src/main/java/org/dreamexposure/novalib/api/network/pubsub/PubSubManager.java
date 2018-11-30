@@ -1,11 +1,15 @@
 package org.dreamexposure.novalib.api.network.pubsub;
 
+import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
+import io.lettuce.core.pubsub.api.reactive.ChannelMessage;
+import io.lettuce.core.pubsub.api.reactive.RedisPubSubReactiveCommands;
 import org.dreamexposure.novalib.api.NovaLibAPI;
 import org.dreamexposure.novalib.api.bukkit.network.subpub.BukkitPubSubscriber;
 import org.dreamexposure.novalib.api.bungee.network.subpub.BungeePubSubscriber;
 import org.dreamexposure.novalib.api.database.DatabaseManager;
 import org.dreamexposure.novalib.api.database.DatabaseSettings;
 import org.dreamexposure.novalib.api.database.RedisInfo;
+import org.dreamexposure.novalib.api.network.pubsub.blocking.PubSubResponse;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -81,31 +85,36 @@ public class PubSubManager {
     }
     
     public UUID register(String pluginName, String channel) {
-        if (NovaLibAPI.getApi().isBukkit()) {
-            BukkitPubSubscriber subscriber = new BukkitPubSubscriber(info, pluginName, channel);
+        if (info != null) {
+            if (NovaLibAPI.getApi().isBukkit()) {
+                BukkitPubSubscriber subscriber = new BukkitPubSubscriber(info, pluginName, channel);
             
-            subscribers.add(subscriber);
+                subscribers.add(subscriber);
             
-            subscriber.subscribe();
+                subscriber.subscribe();
             
-            return subscriber.getUniqueId();
-        } else {
-            BungeePubSubscriber subscriber = new BungeePubSubscriber(info, pluginName, channel);
+                return subscriber.getUniqueId();
+            } else {
+                BungeePubSubscriber subscriber = new BungeePubSubscriber(info, pluginName, channel);
             
-            subscribers.add(subscriber);
+                subscribers.add(subscriber);
             
-            subscriber.subscribe();
+                subscriber.subscribe();
             
-            return subscriber.getUniqueId();
+                return subscriber.getUniqueId();
+            }
         }
+        return null;
     }
     
     public void unregister(UUID id) {
-        if (isRegistered(id)) {
-            ISubscriber sub = getSubscriber(id);
-            sub.unsubscribe();
+        if (id != null) {
+            if (isRegistered(id)) {
+                ISubscriber sub = getSubscriber(id);
+                sub.unsubscribe();
             
-            subscribers.remove(sub);
+                subscribers.remove(sub);
+            }
         }
     }
     
@@ -123,14 +132,57 @@ public class PubSubManager {
     }
     
     public void publish(String channel, JSONObject data) {
-        //Add server data...
+        if (info != null) {
+            //Add server data...
+            JSONObject toSend = new JSONObject();
+            toSend.put("server-from", NovaLibAPI.getApi().getServerName());
+            toSend.put("is-bukkit", NovaLibAPI.getApi().isBukkit());
+            toSend.put("data", data);
+        
+            info.getClient().connect().async().publish(channel, toSend.toString());
+        }
+    }
     
-        JSONObject toSend = new JSONObject();
-        toSend.put("server-from", NovaLibAPI.getApi().getServerName());
-        toSend.put("is-bukkit", NovaLibAPI.getApi().isBukkit());
-        toSend.put("data", data);
-    
-    
-        info.getClient().connect().async().publish(channel, toSend.toString());
+    @SuppressWarnings("ConstantConditions")
+    public PubSubResponse publishAndWaitForResponseReactive(String channel, JSONObject data) {
+        if (info != null) {
+            //Generate one time response channel.
+            String oneTimeResponse = "NovaLib.OneTime." + UUID.randomUUID().toString();
+            
+            //Add server data...
+            JSONObject toSend = new JSONObject();
+            toSend.put("server-from", NovaLibAPI.getApi().getServerName());
+            toSend.put("is-bukkit", NovaLibAPI.getApi().isBukkit());
+            toSend.put("require-response", true);
+            toSend.put("one-time-response-channel", oneTimeResponse);
+            toSend.put("data", data);
+            
+            //Handling connection
+            StatefulRedisPubSubConnection<String, String> connection = info.getClient().connectPubSub();
+            
+            RedisPubSubReactiveCommands<String, String> reactive = connection.reactive();
+            reactive.subscribe(oneTimeResponse).subscribe();
+            
+            //Publish...
+            connection.async().publish(channel, toSend.toString());
+            
+            //Block until message comes back. Thanks reactive lol.
+            ChannelMessage<String, String> message = reactive.observeChannels().blockFirst();
+            
+            JSONObject rawData = new JSONObject(message.getMessage());
+            String serverFrom = rawData.getString("server-from");
+            boolean fromBukkit = rawData.getBoolean("is-bukkit");
+            JSONObject dataReceived = rawData.getJSONObject("data");
+            
+            PubSubResponse responseToReturn;
+            if (rawData.getBoolean("require-response")) {
+                String responseChannel = rawData.getString("one-time-response-channel");
+                responseToReturn = new PubSubResponse(dataReceived, channel, serverFrom, fromBukkit, responseChannel);
+            } else
+                responseToReturn = new PubSubResponse(dataReceived, channel, serverFrom, fromBukkit);
+            
+            return responseToReturn;
+        }
+        return null;
     }
 }

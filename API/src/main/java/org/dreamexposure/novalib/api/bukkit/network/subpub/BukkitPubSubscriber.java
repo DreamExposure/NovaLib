@@ -46,15 +46,21 @@ public class BukkitPubSubscriber implements ISubscriber {
             @Override
             public void message(String channel, String message) {
                 if (NovaLibAPI.getApi().debug())
-                    System.out.println(String.format("Channel: %s, Message: %s", channel, message));
+                    NovaLibAPI.getApi().getBukkitPlugin().getLogger().info(String.format("Channel: %s, Message: %s", channel, message));
         
                 try {
                     JSONObject rawData = new JSONObject(message);
                     String serverFrom = rawData.getString("server-from");
                     boolean fromBukkit = rawData.getBoolean("is-bukkit");
                     JSONObject data = rawData.getJSONObject("data");
-            
-                    PubSubReceiveEvent event = new PubSubReceiveEvent(data, channel, pluginName, serverFrom, fromBukkit);
+    
+                    PubSubReceiveEvent event;
+    
+                    if (rawData.getBoolean("require-response")) {
+                        String responseChannel = rawData.getString("one-time-response-channel");
+                        event = new PubSubReceiveEvent(data, channel, pluginName, serverFrom, fromBukkit, responseChannel);
+                    } else
+                        event = new PubSubReceiveEvent(data, channel, pluginName, serverFrom, fromBukkit);
             
                     Bukkit.getPluginManager().callEvent(event);
             

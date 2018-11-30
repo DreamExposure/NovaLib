@@ -21,6 +21,8 @@ public class PubSubReceiveEvent extends Event {
     private final String pluginName;
     private final String serverNameFrom;
     private final boolean serverIsBukkit;
+    private boolean requiresResponse;
+    private String oneTimeResponseChannel;
     
     public PubSubReceiveEvent(JSONObject _data, String _channelName, String _pluginName, String _serverFrom, boolean _isBukkit) {
         data = _data;
@@ -28,6 +30,20 @@ public class PubSubReceiveEvent extends Event {
         pluginName = _pluginName;
         serverNameFrom = _serverFrom;
         serverIsBukkit = _isBukkit;
+        
+        requiresResponse = false;
+        oneTimeResponseChannel = "N/a";
+    }
+    
+    public PubSubReceiveEvent(JSONObject _data, String _channelName, String _pluginName, String _serverFrom, boolean _isBukkit, String _responseChannel) {
+        data = _data;
+        channelName = _channelName;
+        pluginName = _pluginName;
+        serverNameFrom = _serverFrom;
+        serverIsBukkit = _isBukkit;
+        
+        requiresResponse = true;
+        oneTimeResponseChannel = _responseChannel;
     }
     
     
@@ -50,9 +66,9 @@ public class PubSubReceiveEvent extends Event {
     }
     
     /**
-     * Gets the IP of the client server the data was sent from.
+     * Gets the name of the channel the data was received through.
      *
-     * @return The IP of the client server the data was sent from.
+     * @return The name of the channel the data was received through.
      */
     public String getChannelName() {
         return channelName;
@@ -83,5 +99,24 @@ public class PubSubReceiveEvent extends Event {
      */
     public boolean isBukkit() {
         return serverIsBukkit;
+    }
+    
+    /**
+     * Gets whether or not the server is waiting for a response to this message.
+     *
+     * @return Whether or not the server is waiting for a response to this message.
+     */
+    public boolean isRequiresResponse() {
+        return requiresResponse;
+    }
+    
+    
+    /**
+     * Gets the name of the one-time-response channel to send data through in order to respond to the requires.
+     *
+     * @return The name of the one-time-response channel.
+     */
+    public String getOneTimeResponseChannel() {
+        return oneTimeResponseChannel;
     }
 }
