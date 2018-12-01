@@ -154,7 +154,6 @@ public class NovaLibAPI {
         s.put("Redis.PubSub.Enabled", false);
         s.put("Redis.PubSub.Hostname", "localhost");
         s.put("Redis.PubSub.Port", 6379);
-        s.put("Redis.PubSub.User", "root");
         s.put("Redis.PubSub.Password", "password");
         
         s.put("CrossTalk.Enabled", false);

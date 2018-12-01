@@ -59,19 +59,17 @@ public class PubSubManager {
         if (NovaLibAPI.getApi().isBukkit()) {
             String hostname = NovaLibAPI.getApi().getBukkitConfig().get().getString("Redis.PubSub.Hostname");
             int port = NovaLibAPI.getApi().getBukkitConfig().get().getInt("Redis.PubSub.Port");
-            String user = NovaLibAPI.getApi().getBukkitConfig().get().getString("Redis.PubSub.User");
             String pass = NovaLibAPI.getApi().getBukkitConfig().get().getString("Redis.PubSub.Password");
-            
-            DatabaseSettings settings = new DatabaseSettings(hostname, port + "", "N/a", user, pass, "N/a");
+    
+            DatabaseSettings settings = new DatabaseSettings(hostname, port + "", "N/a", "N/a", pass, "N/a");
             
             info = DatabaseManager.connectToRedis(settings);
         } else {
             String hostname = NovaLibAPI.getApi().getBungeeConfig().get().getString("Redis.PubSub.Hostname");
             int port = NovaLibAPI.getApi().getBungeeConfig().get().getInt("Redis.PubSub.Port");
-            String user = NovaLibAPI.getApi().getBungeeConfig().get().getString("Redis.PubSub.User");
             String pass = NovaLibAPI.getApi().getBungeeConfig().get().getString("Redis.PubSub.Password");
-            
-            DatabaseSettings settings = new DatabaseSettings(hostname, port + "", "N/a", user, pass, "N/a");
+    
+            DatabaseSettings settings = new DatabaseSettings(hostname, port + "", "N/a", "N/a", pass, "N/a");
             
             info = DatabaseManager.connectToRedis(settings);
         }
