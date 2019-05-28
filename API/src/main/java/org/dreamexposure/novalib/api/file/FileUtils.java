@@ -2,7 +2,7 @@ package org.dreamexposure.novalib.api.file;
 
 import java.io.*;
 
-@SuppressWarnings({"ResultOfMethodCallIgnored", "unused", "ConstantConditions", "WeakerAccess", "UnusedReturnValue"})
+@SuppressWarnings({"ResultOfMethodCallIgnored", "unused", "ConstantConditions", "UnusedReturnValue"})
 public class FileUtils {
 
     /**
@@ -19,7 +19,7 @@ public class FileUtils {
                 dest.mkdir();
 
             //list all the directory contents
-            String files[] = src.list();
+            String[] files = src.list();
             for (String file : files) {
                 //construct the src and dest file structure
                 File srcFile = new File(src, file);

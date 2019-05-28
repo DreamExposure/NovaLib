@@ -19,8 +19,8 @@
     </parent>
 
     <groupId>org.dreamexposure.novalib.nms</groupId>
-    <artifactId>v1_8_R3</artifactId>
-    <version>v1_8_R3</version>
+    <artifactId>v1_14_R1</artifactId>
+    <version>v1_14_R1</version>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -28,7 +28,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
-            <version>1.8.8</version>
+            <version>1.14</version>
             <type>jar</type>
             <optional>true</optional>
             <scope>provided</scope>

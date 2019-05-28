@@ -8,6 +8,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -31,8 +32,12 @@ public class JsonSerializer {
     @SuppressWarnings("deprecation")
     public static JSONObject serializeItemStack(ItemStack is) {
         JSONObject json = new JSONObject();
-    
-        json.put("material", NMaterial.requestNMaterial(is.getType().name(), is.getData().getData()));
+
+        if (is.getData() != null)
+            json.put("material", NMaterial.getNMaterial(is.getType().name() + ":" + is.getData().getData()));
+        else
+            json.put("material", NMaterial.getNMaterial(is.getType().name()));
+
         json.put("data", is.getData());
         json.put("amount", is.getAmount());
 
@@ -96,7 +101,7 @@ public class JsonSerializer {
      * @return A new ItemStack from the provided data.
      */
     public static ItemStack deserializeItemStack(JSONObject json) {
-        ItemStack is = NMaterial.valueOf(json.getString("material")).parseItem();
+        ItemStack is = NMaterial.valueOf(json.getString("material")).getItemStack();
         is.setData((MaterialData) json.get("data"));
         is.setAmount(json.getInt("amount"));
         is.setDurability((Short) json.get("durability"));
@@ -164,17 +169,16 @@ public class JsonSerializer {
      * @param inventory The Inventory to serialize.
      * @return a new JSONObject representing the Inventory.
      */
-    public static JSONObject serializeInventory(Inventory inventory) {
+    public static JSONObject serializeInventoryView(InventoryView inventory) {
         JSONObject json = new JSONObject();
 
-        json.put("name", inventory.getName());
         json.put("type", inventory.getType().name());
         json.put("title", inventory.getTitle());
-        json.put("size", inventory.getSize());
-        json.put("holder", inventory.getHolder());
+        json.put("size", inventory.getTopInventory().getSize());
+        json.put("holder", inventory.getTopInventory().getHolder());
 
         JSONArray items = new JSONArray();
-        for (ItemStack i : inventory.getContents()) {
+        for (ItemStack i : inventory.getTopInventory().getContents()) {
             items.put(serializeItemStack(i));
         }
 
@@ -189,7 +193,7 @@ public class JsonSerializer {
      * @param json The JSONObject representing the Inventory.
      * @return A new Inventory from the provided data.
      */
-    public static Inventory deserializeInventory(JSONObject json) {
+    public static Inventory deserializeInventoryView(JSONObject json) {
         InventoryType type = InventoryType.valueOf(json.getString("type"));
         InventoryHolder holder;
         try {

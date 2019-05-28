@@ -7,14 +7,14 @@ import org.dreamexposure.novalib.api.bukkit.compatibility.NMaterial;
 
 @SuppressWarnings("unused")
 public enum Team {
-    RED(1, ChatColor.RED, DyeColor.RED, NMaterial.RED_WOOL.parseItem()),
-    BLUE(2, ChatColor.BLUE, DyeColor.LIGHT_BLUE, NMaterial.LIGHT_BLUE_WOOL.parseItem()),
-    GREEN(3, ChatColor.GREEN, DyeColor.LIME, NMaterial.LIME_WOOL.parseItem()),
-    PURPLE(4, ChatColor.DARK_PURPLE, DyeColor.PURPLE, NMaterial.PURPLE_WOOL.parseItem()),
-    AQUA(5, ChatColor.AQUA, DyeColor.CYAN, NMaterial.CYAN_WOOL.parseItem()),
-    WHITE(6, ChatColor.WHITE, DyeColor.WHITE, NMaterial.WHITE_WOOL.parseItem()),
-    GRAY(7, ChatColor.GRAY, DyeColor.GRAY, NMaterial.GRAY_WOOL.parseItem()),
-    YELLOW(8, ChatColor.YELLOW, DyeColor.YELLOW, NMaterial.YELLOW_WOOL.parseItem());
+    RED(1, ChatColor.RED, DyeColor.RED, NMaterial.RED_WOOL.getItemStack()),
+    BLUE(2, ChatColor.BLUE, DyeColor.LIGHT_BLUE, NMaterial.LIGHT_BLUE_WOOL.getItemStack()),
+    GREEN(3, ChatColor.GREEN, DyeColor.LIME, NMaterial.LIME_WOOL.getItemStack()),
+    PURPLE(4, ChatColor.DARK_PURPLE, DyeColor.PURPLE, NMaterial.PURPLE_WOOL.getItemStack()),
+    AQUA(5, ChatColor.AQUA, DyeColor.CYAN, NMaterial.CYAN_WOOL.getItemStack()),
+    WHITE(6, ChatColor.WHITE, DyeColor.WHITE, NMaterial.WHITE_WOOL.getItemStack()),
+    GRAY(7, ChatColor.GRAY, DyeColor.GRAY, NMaterial.GRAY_WOOL.getItemStack()),
+    YELLOW(8, ChatColor.YELLOW, DyeColor.YELLOW, NMaterial.YELLOW_WOOL.getItemStack());
 
     private int numValue;
     private ChatColor color;
@@ -48,19 +48,12 @@ public enum Team {
         String teamNameUse = teamName.toUpperCase();
         switch (teamNameUse) {
             case "RED":
-                return true;
-            case "BLUE":
-                return true;
-            case "GREEN":
-                return true;
-            case "PURPLE":
-                return true;
-            case "AQUA":
-                return true;
             case "WHITE":
-                return true;
+            case "GREEN":
+            case "BLUE":
+            case "PURPLE":
+            case "AQUA":
             case "GRAY":
-                return true;
             case "YELLOW":
                 return true;
         }
@@ -69,8 +62,6 @@ public enum Team {
 
     public static Team valueOf(int value) {
         switch (value) {
-            case 1:
-                return RED;
             case 2:
                 return BLUE;
             case 3:
