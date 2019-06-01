@@ -1,5 +1,6 @@
 package org.dreamexposure.novalib.api.database;
 
+import com.zaxxer.hikari.HikariDataSource;
 import io.lettuce.core.RedisClient;
 import org.dreamexposure.novalib.api.NovaLibAPI;
 
@@ -49,6 +50,7 @@ public class DatabaseManager {
                 NovaLibAPI.getApi().getBukkitPlugin().getLogger().info("Successfully disconnected from MySQL Database!");
             else
                 NovaLibAPI.getApi().getBungeePlugin().getLogger().info("Successfully disconnected from MySQL Database!");
+
             return true;
         } catch (SQLException e) {
             if (NovaLibAPI.getApi().isBukkit())
@@ -56,6 +58,58 @@ public class DatabaseManager {
             else
                 NovaLibAPI.getApi().getBungeePlugin().getLogger().warning("MySQL Connection may not have been closed properly! Data may be invalidated!");
         }
+
+        return false;
+    }
+
+    public static HikariInfo connectToHikariMySQL(DatabaseSettings settings) {
+        try {
+            HikariDataSource ds = new HikariDataSource();
+
+            String connectionURL = "jdbc:mysql://" + settings.getHostname() + ":" + settings.getPort();
+            if (settings.getDatabase() != null)
+                connectionURL = connectionURL + "/" + settings.getDatabase() + "?useSSL=false";
+
+            ds.setJdbcUrl(connectionURL);
+            ds.setUsername(settings.getUser());
+            ds.setPassword(settings.getPassword());
+
+            if (NovaLibAPI.getApi().isBukkit())
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().info("Database connection successful!");
+            else
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().info("Database connection successful!");
+
+            return new HikariInfo(ds, settings);
+        } catch (Exception e) {
+            if (NovaLibAPI.getApi().isBukkit())
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().severe("Failed to connect to database! Are the settings provided correct?");
+            else
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().severe("Failed to connect to database! Are the settings provided correct?");
+
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static boolean disconnectFromHikariMySQL(HikariInfo info) {
+        try {
+            info.getSource().close();
+            if (NovaLibAPI.getApi().isBukkit())
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().info("Successfully disconnected from MySQL Database!");
+            else
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().info("Successfully disconnected from MySQL Database!");
+
+            return true;
+        } catch (Exception e) {
+            if (NovaLibAPI.getApi().isBukkit())
+                NovaLibAPI.getApi().getBukkitPlugin().getLogger().warning("MySQL Connection may not have been closed properly! Data may be invalidated!");
+            else
+                NovaLibAPI.getApi().getBungeePlugin().getLogger().warning("MySQL Connection may not have been closed properly! Data may be invalidated!");
+
+            e.printStackTrace();
+        }
+
         return false;
     }
     

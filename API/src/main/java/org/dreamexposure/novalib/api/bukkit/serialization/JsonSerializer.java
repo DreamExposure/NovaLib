@@ -8,7 +8,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -20,7 +19,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.UUID;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "ConstantConditions"})
 public class JsonSerializer {
 
     /**
@@ -169,16 +168,16 @@ public class JsonSerializer {
      * @param inventory The Inventory to serialize.
      * @return a new JSONObject representing the Inventory.
      */
-    public static JSONObject serializeInventoryView(InventoryView inventory) {
+    public static JSONObject serializeInventory(Inventory inventory, String title) {
         JSONObject json = new JSONObject();
 
         json.put("type", inventory.getType().name());
-        json.put("title", inventory.getTitle());
-        json.put("size", inventory.getTopInventory().getSize());
-        json.put("holder", inventory.getTopInventory().getHolder());
+        json.put("title", title);
+        json.put("size", inventory.getSize());
+        json.put("holder", inventory.getHolder());
 
         JSONArray items = new JSONArray();
-        for (ItemStack i : inventory.getTopInventory().getContents()) {
+        for (ItemStack i : inventory.getContents()) {
             items.put(serializeItemStack(i));
         }
 
@@ -193,7 +192,7 @@ public class JsonSerializer {
      * @param json The JSONObject representing the Inventory.
      * @return A new Inventory from the provided data.
      */
-    public static Inventory deserializeInventoryView(JSONObject json) {
+    public static Inventory deserializeInventory(JSONObject json) {
         InventoryType type = InventoryType.valueOf(json.getString("type"));
         InventoryHolder holder;
         try {
