@@ -14,6 +14,12 @@
         <project.build.targetEncoding>UTF-8</project.build.targetEncoding>
     </properties>
 
+    <parent>
+        <groupId>org.dreamexposure</groupId>
+        <artifactId>DreamExposure-Parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
     <groupId>org.dreamexposure.novalib</groupId>
     <artifactId>NovaLib</artifactId>
     <version>1.1.0-SNAPSHOT</version>
@@ -36,24 +42,10 @@
         <module>Plugin-Bungee</module>
     </modules>
 
-    <distributionManagement>
-        <repository>
-            <id>nova-release-pub</id>
-            <name>Releases</name>
-            <url>http://repo.novafox161.com/repository/nova-release-pub/</url>
-        </repository>
-        <snapshotRepository>
-            <id>nova-snapshots-pub</id>
-            <name>Snapshots</name>
-            <url>http://repo.novafox161.com/repository/nova-snapshots-pub/</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <repositories>
-        <!--Maven Central-->
         <repository>
-            <id>central</id>
-            <url>http://central.maven.org/maven2/</url>
+            <id>nova-public</id>
+            <url>https://repo.novafox161.com/repository/nova-public/</url>
         </repository>
         <!--Bukkit Repo-->
         <repository>
@@ -64,11 +56,6 @@
         <repository>
             <id>bungeecord-repo</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </repository>
-        <!--Private Repo for CB Builds-->
-        <repository>
-            <id>nova-private</id>
-            <url>http://repo.novafox161.com/repository/nova-private/</url>
         </repository>
     </repositories>
 
@@ -82,6 +69,15 @@
                     <source>8</source>
                     <target>8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven.plugin.deploy.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+                <inherited>false</inherited>
             </plugin>
         </plugins>
     </build>
