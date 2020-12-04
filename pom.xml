@@ -43,6 +43,11 @@
     </modules>
 
     <repositories>
+        <!--Maven Central because jenkins is being dumb-->
+        <repository>
+            <id>central</id>
+            <url>http://central.maven.org/maven2/</url>
+        </repository>
         <repository>
             <id>nova-public</id>
             <url>https://repo.novafox161.com/repository/nova-public/</url>
