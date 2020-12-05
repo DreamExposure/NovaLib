@@ -46,7 +46,7 @@
         <!--Maven Central because jenkins is being dumb-->
         <repository>
             <id>central</id>
-            <url>http://central.maven.org/maven2/</url>
+            <url>https://central.maven.org/maven2/</url>
         </repository>
         <repository>
             <id>nova-public</id>
