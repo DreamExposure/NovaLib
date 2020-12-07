@@ -43,11 +43,6 @@
     </modules>
 
     <repositories>
-        <!--Maven Central because jenkins is being dumb-->
-        <repository>
-            <id>central</id>
-            <url>https://central.maven.org/maven2/</url>
-        </repository>
         <repository>
             <id>nova-public</id>
             <url>https://repo.novafox161.com/repository/nova-public/</url>
@@ -69,7 +64,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>${maven.plugin.compiler.version}</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
