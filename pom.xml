@@ -65,6 +65,11 @@
             <id>dreamexposure-public</id>
             <url>https://emily.dreamexposure.org/artifactory/dreamexposure-public/</url>
         </repository>
+        <!--Spigot Repo-->
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
         <!--Bukkit Repo-->
         <repository>
             <id>bukkit-repo</id>
