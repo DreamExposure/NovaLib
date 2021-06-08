@@ -42,10 +42,28 @@
         <module>Plugin-Bungee</module>
     </modules>
 
-    <repositories>
+    <distributionManagement>
         <repository>
-            <id>nova-public</id>
-            <url>https://repo.novafox161.com/repository/nova-public/</url>
+            <id>dreamexposure-public-release</id>
+            <name>Releases</name>
+            <url>https://emily.dreamexposure.org/artifactory/dreamexposure-public-release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>dreamexposure-public-snapshot</id>
+            <name>Snapshots</name>
+            <url>https://emily.dreamexposure.org/artifactory/dreamexposure-public-snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <!--DreamExposure Repositories-->
+        <repository>
+            <id>dreamexposure-private</id>
+            <url>https://emily.dreamexposure.org/artifactory/dreamexposure-private/</url>
+        </repository>
+        <repository>
+            <id>dreamexposure-public</id>
+            <url>https://emily.dreamexposure.org/artifactory/dreamexposure-public/</url>
         </repository>
         <!--Bukkit Repo-->
         <repository>
