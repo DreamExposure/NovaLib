@@ -1,5 +1,5 @@
 name: NovaLib
-version: ${project.version}
+version: ${revision}
 description: An advanced API and Library for our plugins and so much more!
 author: DreamExposure
 authors: [NovaFox161]
