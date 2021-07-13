@@ -1,21 +1,13 @@
-package org.dreamexposure.novalib.nms.v1_14_R1;
+package org.dreamexposure.novalib.nms.v1_15_R1;
 
-import net.minecraft.server.v1_14_R1.Entity;
-import net.minecraft.server.v1_14_R1.MinecraftKey;
+import net.minecraft.server.v1_15_R1.Entity;
+import net.minecraft.server.v1_15_R1.MinecraftKey;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_14_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.dreamexposure.novalib.api.bukkit.packets.IEntityTypes;
 
 import java.lang.reflect.Field;
 
-/**
- * @author NovaFox161
- * Date Created: 5/4/2019
- * For Project: NovaLib
- * Author Website: https://www.novamaday.com
- * Company Website: https://www.dreamexposure.org
- * Contact: nova@dreamexposure.org
- */
 public class EntityTypes implements IEntityTypes {
     /**
      * Adds the custom Entity
@@ -29,7 +21,7 @@ public class EntityTypes implements IEntityTypes {
         MinecraftKey minecraftKey = new MinecraftKey(entityName);
 
         //TODO: Figure this shit out... its way too early in 1.14's existence for people to know.
-        net.minecraft.server.v1_14_R1.EntityTypes.a.a(net.minecraft.server.v1_14_R1.EnumCreatureType.valueOf(entityName));
+        net.minecraft.server.v1_15_R1.EntityTypes.a.a(net.minecraft.server.v1_15_R1.EnumCreatureType.valueOf(entityName));
         //net.minecraft.server.v1_13_R1.EntityTypes.b.a(entityId, minecraftKey, entityClass);
     }
 

@@ -26,8 +26,16 @@
         <!--All supported MC versions get built into our plugin-->
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
+            <artifactId>v1_15_R1</artifactId>
+            <version>${revision}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_14_R1</artifactId>
-            <version>v1_14_R1</version>
+            <version>${revision}</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
@@ -35,7 +43,7 @@
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_13_R2</artifactId>
-            <version>v1_13_R2</version>
+            <version>${revision}</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
@@ -43,7 +51,7 @@
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_13_R1</artifactId>
-            <version>v1_13_R1</version>
+            <version>${revision}</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
@@ -51,7 +59,7 @@
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_12_R1</artifactId>
-            <version>v1_12_R1</version>
+            <version>${revision}</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
@@ -59,7 +67,7 @@
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_11_R1</artifactId>
-            <version>v1_11_R1</version>
+            <version>${revision}</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
@@ -67,7 +75,7 @@
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_10_R1</artifactId>
-            <version>v1_10_R1</version>
+            <version>${revision}</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
@@ -75,7 +83,7 @@
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_9_R1</artifactId>
-            <version>v1_9_R1</version>
+            <version>${revision}</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
@@ -83,7 +91,7 @@
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_9_R2</artifactId>
-            <version>v1_9_R2</version>
+            <version>${revision}</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
@@ -91,7 +99,7 @@
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_8_R1</artifactId>
-            <version>v1_8_R1</version>
+            <version>${revision}</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
@@ -99,7 +107,7 @@
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_8_R2</artifactId>
-            <version>v1_8_R2</version>
+            <version>${revision}</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
@@ -107,7 +115,7 @@
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_8_R3</artifactId>
-            <version>v1_8_R3</version>
+            <version>${revision}</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
@@ -115,7 +123,7 @@
         <dependency>
             <groupId>org.dreamexposure.novalib.nms</groupId>
             <artifactId>v1_7_R4</artifactId>
-            <version>v1_7_R4</version>
+            <version>${revision}</version>
             <type>jar</type>
             <scope>compile</scope>
             <optional>true</optional>
@@ -125,7 +133,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.13.1-R0.1-SNAPSHOT</version>
+            <version>1.15.2-R0.1-SNAPSHOT</version>
             <type>jar</type>
             <scope>provided</scope> <!-- The 'provided' scope will NOT get shaded in -->
             <optional>true</optional>

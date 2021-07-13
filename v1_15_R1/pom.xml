@@ -11,16 +11,17 @@
     </parent>
 
     <groupId>org.dreamexposure.novalib.nms</groupId>
-    <artifactId>v1_12_R1</artifactId>
+    <artifactId>v1_15_R1</artifactId>
     <version>${revision}</version>
     <packaging>jar</packaging>
+
 
     <dependencies>
         <!--CB version-->
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
-            <version>1.12.2-R0.1</version>
+            <version>1.15-R0.1</version>
             <type>jar</type>
             <optional>true</optional>
             <scope>provided</scope>
