@@ -1,10 +1,10 @@
-package org.dreamexposure.nms.v1_16_R3;
+package org.dreamexposure.novalib.nms.v1_17_R1;
 
-import net.minecraft.server.v1_16_R3.IChatBaseComponent;
-import net.minecraft.server.v1_16_R3.PacketPlayOutPlayerListHeaderFooter;
-import net.minecraft.server.v1_16_R3.PlayerConnection;
+import net.minecraft.network.chat.IChatBaseComponent;
+import net.minecraft.network.protocol.game.PacketPlayOutPlayerListHeaderFooter;
+import net.minecraft.server.network.PlayerConnection;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.dreamexposure.novalib.api.bukkit.packets.ITabList;
 
@@ -20,13 +20,14 @@ public class TabList implements ITabList {
      */
     @Override
     public void sendTablist(Player p, String header, String footer) {
-        PacketPlayOutPlayerListHeaderFooter headerFooterPacket = new PacketPlayOutPlayerListHeaderFooter();
-
         header = ChatColor.translateAlternateColorCodes('&', header);
         footer = ChatColor.translateAlternateColorCodes('&', footer);
 
         IChatBaseComponent headerComponent = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + header + "\"}");
         IChatBaseComponent footerComponent = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + footer + "\"}");
+
+        PacketPlayOutPlayerListHeaderFooter headerFooterPacket =
+            new PacketPlayOutPlayerListHeaderFooter(headerComponent, footerComponent);
 
         try {
             Field headerField = headerFooterPacket.getClass().getDeclaredField("a");
@@ -43,7 +44,7 @@ public class TabList implements ITabList {
             e.printStackTrace();
         }
 
-        PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
+        PlayerConnection connection = ((CraftPlayer) p).getHandle().b;
         connection.sendPacket(headerFooterPacket);
     }
 }

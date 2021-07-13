@@ -1,4 +1,4 @@
-package org.dreamexposure.nms.v1_16_R3;
+package org.dreamexposure.novalib.nms.v1_16_R3;
 
 import net.minecraft.server.v1_16_R3.ChatMessageType;
 import net.minecraft.server.v1_16_R3.IChatBaseComponent;

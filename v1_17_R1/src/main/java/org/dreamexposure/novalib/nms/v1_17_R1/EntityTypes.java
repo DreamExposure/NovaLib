@@ -1,9 +1,9 @@
-package org.dreamexposure.nms.v1_16_R3;
+package org.dreamexposure.novalib.nms.v1_17_R1;
 
-import net.minecraft.server.v1_16_R3.Entity;
-import net.minecraft.server.v1_16_R3.MinecraftKey;
+import net.minecraft.resources.MinecraftKey;
+import net.minecraft.world.entity.Entity;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.dreamexposure.novalib.api.bukkit.packets.IEntityTypes;
 
 import java.lang.reflect.Field;
@@ -21,7 +21,8 @@ public class EntityTypes implements IEntityTypes {
         MinecraftKey minecraftKey = new MinecraftKey(entityName);
 
         //TODO: Figure this shit out... its way too early in 1.14's existence for people to know.
-        net.minecraft.server.v1_16_R3.EntityTypes.Builder.a(net.minecraft.server.v1_16_R3.EnumCreatureType.valueOf(entityName));
+
+        net.minecraft.world.entity.EntityTypes.Builder.a(net.minecraft.world.entity.EnumCreatureType.valueOf(entityName));
         //net.minecraft.server.v1_13_R1.EntityTypes.b.a(entityId, minecraftKey, entityClass);
     }
 
@@ -63,4 +64,3 @@ public class EntityTypes implements IEntityTypes {
         return o;
     }
 }
-

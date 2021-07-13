@@ -1,8 +1,8 @@
-package org.dreamexposure.nms.v1_16_R3;
+package org.dreamexposure.novalib.nms.v1_17_R1;
 
-import net.minecraft.server.v1_16_R3.Entity;
-import net.minecraft.server.v1_16_R3.EntityArmorStand;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.decoration.EntityArmorStand;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.dreamexposure.novalib.api.bukkit.packets.IArmorStand;
 
 public class ArmorStand implements IArmorStand {
@@ -12,6 +12,7 @@ public class ArmorStand implements IArmorStand {
 
         EntityArmorStand entityArmorStand = (EntityArmorStand) armorEntity;
 
-        entityArmorStand.noclip = clip;
+        //P is #noclip variable
+        entityArmorStand.P = clip;
     }
 }

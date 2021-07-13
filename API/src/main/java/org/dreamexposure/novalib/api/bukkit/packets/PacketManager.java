@@ -47,7 +47,7 @@ public class PacketManager {
                 armorStand = (IArmorStand) Class.forName(packageName + ".ArmorStand").getConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
-            Bukkit.getLogger().severe("Could not find support for this CraftBukkit version!");
+            Bukkit.getLogger().severe("Could not find support for this CraftBukkit version (" + serverVersion + ")!");
             Bukkit.getLogger().info("Please make sure you have the latest NovaLib version!");
         }
     }

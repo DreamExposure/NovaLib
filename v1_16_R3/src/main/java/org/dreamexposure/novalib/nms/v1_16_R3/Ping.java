@@ -1,4 +1,4 @@
-package org.dreamexposure.nms.v1_16_R3;
+package org.dreamexposure.novalib.nms.v1_16_R3;
 
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -16,4 +16,3 @@ public class Ping implements IPing {
         return ((CraftPlayer) p).getHandle().ping;
     }
 }
-

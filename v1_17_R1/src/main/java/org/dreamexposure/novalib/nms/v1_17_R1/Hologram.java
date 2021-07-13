@@ -1,8 +1,12 @@
-package org.dreamexposure.nms.v1_16_R3;
+package org.dreamexposure.novalib.nms.v1_17_R1;
 
-import net.minecraft.server.v1_16_R3.*;
+import net.minecraft.network.protocol.game.PacketPlayOutEntityTeleport;
+import net.minecraft.server.level.EntityPlayer;
+import net.minecraft.server.level.WorldServer;
+import net.minecraft.world.entity.decoration.EntityArmorStand;
+import net.minecraft.world.entity.player.EntityHuman;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -96,17 +100,18 @@ public class Hologram implements IHologram {
         }
     }
 
-    private void setPosition(net.minecraft.server.v1_16_R3.Entity entity, Location location) {
+    private void setPosition(net.minecraft.world.entity.Entity entity, Location location) {
         entity.setPosition(location.getX(), location.getY(), location.getZ());
         PacketPlayOutEntityTeleport teleportPacket = new PacketPlayOutEntityTeleport(entity);
-        for (EntityHuman human : entity.world.getPlayers()) {
+        for (EntityHuman human : entity.getWorld().getPlayers()) {
             if (!(human instanceof EntityPlayer))
                 continue;
             EntityPlayer player = (EntityPlayer) human;
             double distanceSquared =
                 Math.pow(player.locX() - entity.locX(), 2) + Math.pow(player.locZ() - entity.locZ(), 2);
-            if (distanceSquared < 8192 && player.playerConnection != null) {
-                player.playerConnection.sendPacket(teleportPacket);
+            //player#b is PlayerConnection
+            if (distanceSquared < 8192 && player.b != null) {
+                player.b.sendPacket(teleportPacket);
             }
 
         }
@@ -142,4 +147,3 @@ public class Hologram implements IHologram {
         return new ArrayList<>(registeredHolograms.values());
     }
 }
-
