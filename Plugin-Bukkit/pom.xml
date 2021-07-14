@@ -157,15 +157,12 @@
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
-
-        <!--Latest Bukkit release to build upon-->
+        <!--Latest Spigot release to build upon-->
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
-            <type>jar</type>
-            <scope>provided</scope> <!-- The 'provided' scope will NOT get shaded in -->
-            <optional>true</optional>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.17.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
